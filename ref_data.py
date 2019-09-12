@@ -25,3 +25,13 @@ class Code_Block:
 class Resource:
     __def__():
         pass
+
+single_link_node = Data_Aggregate()
+head = Property()
+list_size = Property()
+initialize = Method()
+push = Method()
+pop = Method()
+peek = Method()
+is_empty = Method()
+stack = Structure()
