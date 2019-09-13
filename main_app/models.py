@@ -33,6 +33,9 @@ class Element(models.Model):
     code_block = models.ForeignKey(Code_Block, on_delete=models.CASCADE)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
 
+    __str__(self):
+        return self.name
+
 class Property(models.Model):
     name = models.CharField(max_length=50)
     STRING = 'str'
@@ -51,10 +54,16 @@ class Property(models.Model):
     code_block = models.ForeignKey(Code_Block, on_delete=models.CASCADE)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
 
+    __str__(self):
+        return self.name
+
 class Method(models.Model):
     name = models.CharField(max_length=50)
     code_block = models.ForeignKey(Code_Block, on_delete=models.CASCADE)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
+
+    __str__(self):
+        return self.name
 
 class Data_Structure(models.Model):
     name = models.CharField(max_length=50)
@@ -63,3 +72,6 @@ class Data_Structure(models.Model):
     properties = models.ManyToManyField(Property)
     methods = models.ManyToManyField(Method)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    __str__(self):
+        return f'{self.user.username}\'s {self.name}'
