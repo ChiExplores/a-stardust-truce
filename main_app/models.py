@@ -2,12 +2,12 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Code_Block(models.Model):
-    python = models.TextField()
-    javascript = models.TextField()
+    python = models.TextField(max_length=300)
+    javascript = models.TextField(max_length=300)
 
 class Resource(models.Model):
-    description = models.TextField()
-    img_url = models.CharField()
+    description = models.TextField(max_length=255)
+    img_url = models.CharField(max_length=100)
 
 class Element(models.Model):
     name = models.CharField(max_length=50)
@@ -23,8 +23,10 @@ class Element(models.Model):
         default=NODE
     )
     dimension = models.IntegerField(
-        MaxValueValidator(2), # can be increased later
-        MinValueValidator(1),
+        validators = [
+            MaxValueValidator(2), # can be increased later
+            MinValueValidator(1),
+        ],
         default=1
     )
     code_block = models.ForeignKey(Code_Block, on_delete=models.CASCADE)
@@ -56,6 +58,6 @@ class Method(models.Model):
 class Data_Structure(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(max_length=255)
-    element = models.ForeignKey(Element, on_delete=models.CASCADE)
+    # element = models.ForeignKey(Element, on_delete=models.CASCADE)
     properties = models.ManyToManyField(Property)
     methods = models.ManyToManyField(Method)
