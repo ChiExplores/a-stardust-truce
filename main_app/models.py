@@ -3,10 +3,12 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 
 class Code_Block(models.Model):
+    name = models.CharField(max_length=50)
     python = models.TextField(max_length=300)
     javascript = models.TextField(max_length=300)
 
 class Resource(models.Model):
+    name = models.CharField(max_length=50)
     description = models.TextField(max_length=255)
     img_url = models.CharField(max_length=100)
 
