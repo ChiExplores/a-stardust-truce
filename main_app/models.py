@@ -30,7 +30,7 @@ class Element(models.Model):
     code_block = models.ForeignKey(Code_Block, on_delete=models.CASCADE)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
 
-class Property:
+class Property(models.Model):
     name = models.CharField(max_length=50)
     STRING = 'str'
     INTEGER = 'int'
@@ -48,12 +48,12 @@ class Property:
     code_block = models.ForeignKey(Code_Block, on_delete=models.CASCADE)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
 
-class Method:
+class Method(models.Model):
     name = models.CharField(max_length=50)
     code_block = models.ForeignKey(Code_Block, on_delete=models.CASCADE)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
 
-class Data_Structure:
+class Data_Structure(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(max_length=255)
     element = models.ForeignKey(Element, on_delete=models.CASCADE)
