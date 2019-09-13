@@ -10,6 +10,9 @@ class Code_Block(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name="Code Block"
+
 class Resource(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(max_length=255)
@@ -49,10 +52,12 @@ class Property(models.Model):
     STRING = 'str'
     INTEGER = 'int'
     FLOAT = 'float'
+    SCALAR = 'sca'
     TYPE_CHOICES = (
         (STRING, 'String'),
         (INTEGER, 'Integer'),
-        (FLOAT, 'Float')
+        (FLOAT, 'Float'),
+        (SCALAR, 'Scalar')
     )
     type = models.CharField(
         max_length=5,
@@ -86,3 +91,6 @@ class Data_Structure(models.Model):
 
     def __str__(self):
         return f'{self.user.username}\'s {self.name}'
+
+    class Meta:
+        verbose_name = "Data Structure"
