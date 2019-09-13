@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 # List of Views
 def home(request):
-    return render(request, 'sandbox.html')
+    return render(request, './main_app/edit.html')
 
 def signup(request):
   error_message = ''
