@@ -33,7 +33,7 @@ class Element(models.Model):
     code_block = models.ForeignKey(Code_Block, on_delete=models.CASCADE)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
 
-    __str__(self):
+    def __str__(self):
         return self.name
 
 class Property(models.Model):
@@ -54,7 +54,7 @@ class Property(models.Model):
     code_block = models.ForeignKey(Code_Block, on_delete=models.CASCADE)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
 
-    __str__(self):
+    def __str__(self):
         return self.name
 
 class Method(models.Model):
@@ -62,7 +62,7 @@ class Method(models.Model):
     code_block = models.ForeignKey(Code_Block, on_delete=models.CASCADE)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
 
-    __str__(self):
+    def __str__(self):
         return self.name
 
 class Data_Structure(models.Model):
@@ -73,5 +73,5 @@ class Data_Structure(models.Model):
     methods = models.ManyToManyField(Method)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    __str__(self):
+    def __str__(self):
         return f'{self.user.username}\'s {self.name}'
