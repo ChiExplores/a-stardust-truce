@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
+from main_app.dependencies import checkMethod, checkProperty
+
+# checkComponent signature
+# checkComponent(component, data_structure, on_success, on_failure)
 
 # Account Functionality
 from django.contrib.auth import login
