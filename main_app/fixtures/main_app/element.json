@@ -1,0 +1,11 @@
+[{
+  "model": "main_app.element",
+  "pk": 1,
+  "fields": {
+    "name": "single_link_node",
+    "type": "NO",
+    "dimension": 1,
+    "code_block": 1,
+    "resource": 1
+  }
+}]
