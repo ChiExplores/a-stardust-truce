@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import User
 
 class Code_Block(models.Model):
     python = models.TextField(max_length=300)
@@ -61,3 +62,4 @@ class Data_Structure(models.Model):
     element = models.ForeignKey(Element, on_delete=models.CASCADE)
     properties = models.ManyToManyField(Property)
     methods = models.ManyToManyField(Method)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
