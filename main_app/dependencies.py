@@ -29,14 +29,15 @@ dependencies = {
 }
 
 # to search for dependencies of property
-
-# if data_structure['element'] in dependences['properities'][some_prop]:
-#     return 'That Property Can be added to this Data Structure!' 
-# else:
-#     return 'Sorry, that Property Can\'t Be added to this Data Structure!'
+def checkProperty(property, data_structure, success, failure):
+    if data_structure['element'] in dependencies['properities'][property]:
+        return success
+    else:
+        return failure
 
 # search for dependencies of method
-# if data_structure['element'] in dependences['methods'][some_method]['element'] and data_structure['property'] in dependences['methods'][some_method]['property']:
-#     return 'That Property Can be added to this Data Structure!'
-# else:
-#     return 'Sorry, that Property Can\'t Be added to this Data Structure!'
+def checkMethod(method, data_structure, success, failure):
+    if data_structure['element'] in dependencies['methods'][method]['element'] and data_structure['property'] in dependencies['methods'][method]['property']:
+        return success
+    else:
+        return failure
