@@ -7,10 +7,16 @@ class Code_Block(models.Model):
     python = models.TextField(max_length=300)
     javascript = models.TextField(max_length=300)
 
+    def __str__(self):
+        return self.name
+
 class Resource(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(max_length=255)
     img_url = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 class Element(models.Model):
     name = models.CharField(max_length=50)
@@ -58,6 +64,9 @@ class Property(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name = "Property"
+        verbose_name_plural = "Properties"
 
 class Method(models.Model):
     name = models.CharField(max_length=50)
