@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from main_app.dependencies import checkMethod, checkProperty
+from .models import Data_Structure
 
 # checkComponent signature
 # checkComponent(component, data_structure, on_success, on_failure)
@@ -27,4 +28,17 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+class StructureList(ListView):
+    model = Data_Structure
+
+
+
+def structure_create(request):
+    structure = Data_Structure.create()
+    return render(request, 'data_structures/detail.html',{
+    'structure': structure
+    })
+
+
 
