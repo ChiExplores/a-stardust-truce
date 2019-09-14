@@ -1,0 +1,57 @@
+[{
+  "model": "main_app.resource",
+  "pk": 1,
+  "fields": {
+    "name": "single_link_node",
+    "description": "This is a node that contains one reference point to another node in memory",
+    "img_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Single_node1.jpg"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 2,
+  "fields": {
+    "name": "list-head",
+    "description": "The first element in a linked list",
+    "img_url": "https://media.geeksforgeeks.org/wp-content/cdn-uploads/gq/2013/03/Linkedlist.png"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 3,
+  "fields": {
+    "name": "list-size",
+    "description": "List size is an integer value that initializes at 0 and is iterated upwards by 1 for every new value carrying node that is added to the list and iterated downward by 1 for every value carrying node that is removed from the list.",
+    "img_url": "http://web.augsburg.edu/~crockett/210/graphics/linked_list_four_nodes.jpg"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 4,
+  "fields": {
+    "name": "list-push",
+    "description": "Add element to end of list",
+    "img_url": "https://picsum.photos/id/605/100/100"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 5,
+  "fields": {
+    "name": "list-pop",
+    "description": "list-pop description",
+    "img_url": "https://picsum.photos/id/605/100/100"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 6,
+  "fields": {
+    "name": "list-peek",
+    "description": "See the value of the head element of a list without removing it from the list",
+    "img_url": "https://picsum.photos/id/605/100/100"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 7,
+  "fields": {
+    "name": "list-is-empty",
+    "description": "Determines whether linked list has any value bearing elements and returns a boolean",
+    "img_url": "https://picsum.photos/id/605/100/100"
+  }
+}]

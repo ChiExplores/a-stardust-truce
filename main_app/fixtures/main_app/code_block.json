@@ -1,0 +1,57 @@
+[{
+  "model": "main_app.code_block",
+  "pk": 1,
+  "fields": {
+    "name": "single-link-node",
+    "python": "class Node:\r\n  def __init__(self, val, next):\r\n    self.val = val\r\n    self.next = next",
+    "javascript": "class Node {\r\n  constructor(val, next) {\r\n    this.val = val;\r\n    this.next = next;\r\n  }\r\n}"
+  }
+}, {
+  "model": "main_app.code_block",
+  "pk": 2,
+  "fields": {
+    "name": "list-head",
+    "python": "self.head = None",
+    "javascript": "const addListHead = (obj, prop) => obj[prop] = none;\r\n\r\n// within class factory function\r\n\r\n  addListHead(obj, 'head');"
+  }
+}, {
+  "model": "main_app.code_block",
+  "pk": 3,
+  "fields": {
+    "name": "list-size",
+    "python": "self.size = 0",
+    "javascript": "const addListSize(obj, prop) => obj[prop] = 0;"
+  }
+}, {
+  "model": "main_app.code_block",
+  "pk": 4,
+  "fields": {
+    "name": "list-push",
+    "python": "def push(self, val):\r\n        new_node = Node(val, self.head)\r\n        self.size += 1",
+    "javascript": "const methAddFirst = (obj, meth) => {\r\n  return obj[meth] = node => {\r\n    node = new Node(node);\r\n    node.next = obj.first, obj.first = node;\r\n  }\r\n}\r\n\r\n// class body\r\n  methAddFirst(obj, 'push');"
+  }
+}, {
+  "model": "main_app.code_block",
+  "pk": 5,
+  "fields": {
+    "name": "list-pop",
+    "python": "# some python",
+    "javascript": "const methDestroyFirst = (obj, meth) => {\r\n  return obj[meth] = () => {\r\n    first = obj.first;\r\n    obj.first = first.next;\r\n    return first.val;\r\n  }\r\n}\r\n\r\n// in class factory function\r\n\r\n  methDestroyFirst(obj, 'pop');"
+  }
+}, {
+  "model": "main_app.code_block",
+  "pk": 6,
+  "fields": {
+    "name": "list-peek",
+    "python": "# some py",
+    "javascript": "const methPeekFirst = (obj, meth) => {\r\n  return obj[meth] = () => {\r\n    return obj.first.val;\r\n  }\r\n}\r\n\r\n// \r\n\r\n  addPeekFirst(obj, 'peekShift');"
+  }
+}, {
+  "model": "main_app.code_block",
+  "pk": 7,
+  "fields": {
+    "name": "list-is-empty",
+    "python": "# some py",
+    "javascript": "// some js"
+  }
+}]
