@@ -120,4 +120,4 @@ class Data_Structure(models.Model):
         verbose_name = "Data Structure"
 
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'data_structure_id': self.id})
+        return reverse('detail', kwargs={'data_structures_id': self.id})
