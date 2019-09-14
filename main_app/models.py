@@ -94,15 +94,30 @@ class Data_Structure(models.Model):
         return f'{self.user.username}\'s {self.name}'
 
     def __get_js__(self):
-        js = f"{self.element.code_block.javascript}"
+        properties = self.properties.all()
+        methods = self.methods.all()
+        js = self.element.code_block.javascript + f'''const {self.name} {{
+
+        }}'''
+        for property in properties:
+            js += '\n' + property.code_block.javascript
+        for method in methods:
+            js += '\n' + method.code_block.javascript
+        js += '\n}'
         return js
 
     def __get_py__(self):
-        py = f"{self.element.code_block.python}"
+        properties = self.properties.all()
+        methods = self.methods.all()
+        py = self.element.code_block.python + f'class {self.name}:'
+        for property in properties:
+            py += '\n\t' + property.code_block.python
+        for method in methods:
+            py += '\n\t' + method.code_block.python
         return py
 
     class Meta:
         verbose_name = "Data Structure"
 
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'data_structure_id': self.id})
+        return reverse('detail', kwargs={'data_structures_id': self.id})
