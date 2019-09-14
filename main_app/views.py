@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView
 from main_app.dependencies import checkMethod, checkProperty
-from .models import Data_Structure
+from .models import Data_Structure, Element
 
 # checkComponent signature
 # checkComponent(component, data_structure, on_success, on_failure)
@@ -33,12 +34,27 @@ class StructureList(ListView):
     model = Data_Structure
 
 
+class StructureCreate(CreateView):
+  model = Data_Structure
+  fields = '__all__'
 
-def structure_create(request):
-    structure = Data_Structure.create()
-    return render(request, 'data_structures/detail.html',{
-    'structure': structure
+
+  # This inherited method is called when a
+  # valid structure form is being submitted
+#   def form_valid(self, form):
+#     # Assign the logged in user (self.request.user)
+#     form.instance.user = self.request.user
+#     # Let the CreateView do its job as usual
+#     return super().form_valid(form)
+
+
+# stubbed detailed
+def structure_detail(request, structure_id):
+    ds = Data_Structure.objects.get(id = structure_id)
+    py = ds.get_py()
+    js = ds.get_js()
+    return render(request, 'stuctures/detail.html', {
+        'ds':ds,
+        'py': py,
+        'js': js
     })
-
-
-

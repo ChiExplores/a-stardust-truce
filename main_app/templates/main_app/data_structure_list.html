@@ -2,14 +2,10 @@
 {% block content %}
 <h1>Structures List</h1>
 {% for structure in data_structure_list %}
-  <!-- <a href=""> {% url 'detail' structure.id %} -->
-    <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ structure.name }}</span>
-            <p>Description: {{ structure.description }}</p>
-        </div>
-    </div>
-  </a>
+ <a href="">
+    {{ structure.name }}
+</a>
+    <p>Description: {{ structure.description }}</p> 
 {% endfor %}
 {% endblock %}
 
