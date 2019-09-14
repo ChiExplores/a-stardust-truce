@@ -1,0 +1,19 @@
+[{
+  "model": "main_app.property",
+  "pk": 1,
+  "fields": {
+    "name": "list-head",
+    "type": "sca",
+    "code_block": 2,
+    "resource": 2
+  }
+}, {
+  "model": "main_app.property",
+  "pk": 2,
+  "fields": {
+    "name": "list-size",
+    "type": "int",
+    "code_block": 3,
+    "resource": 3
+  }
+}]

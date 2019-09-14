@@ -1,0 +1,12 @@
+[{
+  "model": "main_app.data_structure",
+  "pk": 1,
+  "fields": {
+    "name": "single-link-list-stack",
+    "description": "A single link linked list implementation of a LIFO structure.",
+    "element": 1,
+    "user": 1,
+    "properties": [1, 2],
+    "methods": [1, 2, 3, 4]
+  }
+}]
