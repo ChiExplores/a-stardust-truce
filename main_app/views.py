@@ -49,12 +49,15 @@ class StructureCreate(CreateView):
 
 
 # stubbed detailed
-def structure_detail(request, structure_id):
-    ds = Data_Structure.objects.get(id = structure_id)
-    py = ds.get_py()
-    js = ds.get_js()
-    return render(request, 'stuctures/detail.html', {
+def structure_detail(request, data_structures_id):
+    ds = Data_Structure.objects.get(id = data_structures_id)
+    py = ds.__get_py__()
+    js = ds.__get_js__()
+    print(ds)
+    return render(request, 'detail_test.html', {
         'ds':ds,
         'py': py,
         'js': js
     })
+
+
