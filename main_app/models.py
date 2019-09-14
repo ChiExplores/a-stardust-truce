@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 class Code_Block(models.Model):
     name = models.CharField(max_length=50)
@@ -83,14 +84,25 @@ class Method(models.Model):
 
 class Data_Structure(models.Model):
     name = models.CharField(max_length=50)
-    description = models.TextField(max_length=255)
+    description = models.TextField(max_length=255, blank=True)
     element = models.ForeignKey(Element, on_delete=models.CASCADE)
-    properties = models.ManyToManyField(Property)
-    methods = models.ManyToManyField(Method)
+    properties = models.ManyToManyField(Property, blank=True)
+    methods = models.ManyToManyField(Method, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.user.username}\'s {self.name}'
 
+    def __get_js__(self):
+        js = f"{self.element.code_block.javascript}"
+        return js
+
+    def __get_py__(self):
+        py = f"{self.element.code_block.python}"
+        return py
+
     class Meta:
         verbose_name = "Data Structure"
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'data_structure_id': self.id})
