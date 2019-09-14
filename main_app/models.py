@@ -83,10 +83,10 @@ class Method(models.Model):
 
 class Data_Structure(models.Model):
     name = models.CharField(max_length=50)
-    description = models.TextField(max_length=255)
+    description = models.TextField(max_length=255, blank=True)
     element = models.ForeignKey(Element, on_delete=models.CASCADE)
-    properties = models.ManyToManyField(Property)
-    methods = models.ManyToManyField(Method)
+    properties = models.ManyToManyField(Property, blank=True)
+    methods = models.ManyToManyField(Method, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
