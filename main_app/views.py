@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, DeleteView
 from django.views.generic.edit import CreateView, UpdateView
 from main_app.dependencies import checkMethod, checkProperty
 from .models import Data_Structure, Element
@@ -41,6 +41,10 @@ class StructureCreate(CreateView):
 class StructureUpdate(UpdateView):
   model = Data_Structure
   fields = '__all__'
+
+class StructureDelete(DeleteView):
+    model = Data_Structure
+    success_url = '/structures/'
 
 
 # stubbed detailed
