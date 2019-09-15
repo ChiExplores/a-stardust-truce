@@ -110,7 +110,7 @@ const {self.name} {{'''
         methods = self.methods.all()
         py = self.element.code_block.python + f'''
 class {self.name}:
-    def __init(self)'''
+    def __init(self):'''
         for property in properties:
             py += '\n\t' + property.code_block.python
         for method in methods:
