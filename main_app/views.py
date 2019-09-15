@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from main_app.dependencies import checkMethod, checkProperty
 from .models import Data_Structure, Element
 
@@ -38,14 +38,9 @@ class StructureCreate(CreateView):
   model = Data_Structure
   fields = '__all__'
 
-
-  # This inherited method is called when a
-  # valid structure form is being submitted
-#   def form_valid(self, form):
-#     # Assign the logged in user (self.request.user)
-#     form.instance.user = self.request.user
-#     # Let the CreateView do its job as usual
-#     return super().form_valid(form)
+class StructureUpdate(UpdateView):
+  model = Data_Structure
+  fields = '__all__'
 
 
 # stubbed detailed
