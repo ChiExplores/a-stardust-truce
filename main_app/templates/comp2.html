@@ -1,4 +1,19 @@
 <div class="container2 w-100">
-    <h1>Component 2</h1>
+    <h1>Properties:</h1>
+
+    {{props}}
+    <!-- {{ds.properties}} -->
+    <!-- {{js}} -->
+
+    {% for code in js %}
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">JavaScript Code</span>
+            <p>{{code.javascript}}</p>
+            <p>Description: Description Placeholder</p>
+        </div>
+    </div>
+    {% endfor %}
+
 
 </div>
