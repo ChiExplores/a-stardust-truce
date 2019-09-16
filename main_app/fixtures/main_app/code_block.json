@@ -3,55 +3,55 @@
   "pk": 1,
   "fields": {
     "name": "single-link-node",
-    "python": "class Node:\r\n  def __init__(self, val, next):\r\n    self.val = val\r\n    self.next = next",
-    "javascript": "class Node {\r\n  constructor(val, next) {\r\n    this.val = val;\r\n    this.next = next;\r\n  }\r\n}"
+    "python": "class Node:\r\n    def __init__(self, val, next):\r\n        self.val = val\r\n        self.next = next",
+    "javascript": "const Node = (val, next) => {\r\n  let node = {}\r\n  node.val = val, node.next = next;\r\n  return node;\r\n}"
   }
 }, {
   "model": "main_app.code_block",
   "pk": 2,
   "fields": {
     "name": "list-head",
-    "python": "self.head = None",
-    "javascript": "const addListHead = (obj, prop) => obj[prop] = none;\r\n\r\n// within class factory function\r\n\r\n  addListHead(obj, 'head');"
+    "python": "# list_head\r\n        self.head = None",
+    "javascript": "// list-head\r\n  obj.head = null;"
   }
 }, {
   "model": "main_app.code_block",
   "pk": 3,
   "fields": {
     "name": "list-size",
-    "python": "self.size = 0",
-    "javascript": "const addListSize(obj, prop) => obj[prop] = 0;"
+    "python": "# list-size\r\n        self.size = 0",
+    "javascript": "// list-size\r\n  obj.size = 0;"
   }
 }, {
   "model": "main_app.code_block",
   "pk": 4,
   "fields": {
     "name": "list-push",
-    "python": "def push(self, val):\r\n        new_node = Node(val, self.head)\r\n        self.size += 1",
-    "javascript": "const methAddFirst = (obj, meth) => {\r\n  return obj[meth] = node => {\r\n    node = new Node(node);\r\n    node.next = obj.first, obj.first = node;\r\n  }\r\n}\r\n\r\n// class body\r\n  methAddFirst(obj, 'push');"
+    "python": "# list_push\r\n    def push(self, val):\r\n        new_node = Node(val, self.head)\r\n        if hasattr(self, 'size'):\r\n            self.size += 1\r\n        self.head = new_node",
+    "javascript": "// list-push\r\n  obj.push = node => {\r\n    node = Node(node, obj.head);\r\n    obj.head = node;\r\n    if (obj.hasOwnProperty('size')) obj.size++;\r\n  };"
   }
 }, {
   "model": "main_app.code_block",
   "pk": 5,
   "fields": {
     "name": "list-pop",
-    "python": "# some python",
-    "javascript": "const methDestroyFirst = (obj, meth) => {\r\n  return obj[meth] = () => {\r\n    first = obj.first;\r\n    obj.first = first.next;\r\n    return first.val;\r\n  }\r\n}\r\n\r\n// in class factory function\r\n\r\n  methDestroyFirst(obj, 'pop');"
+    "python": "# list_pop\r\n    def pop(self):\r\n        if self.head:\r\n            pop = self.head\r\n            self.head = pop.next\r\n            if hasattr(self, 'size'):\r\n                self.size -= 1\r\n            return pop.val\r\n        else:\r\n            return None",
+    "javascript": "// list-pop\r\n  obj.pop = _ => {\r\n    let pop = obj.head || null;\r\n    obj.head = pop ? pop.next : null;\r\n    if (obj.hasOwnProperty('size')) obj.size--;\r\n    return pop ? pop.val : undefined;\r\n  }"
   }
 }, {
   "model": "main_app.code_block",
   "pk": 6,
   "fields": {
     "name": "list-peek",
-    "python": "# some py",
-    "javascript": "const methPeekFirst = (obj, meth) => {\r\n  return obj[meth] = () => {\r\n    return obj.first.val;\r\n  }\r\n}\r\n\r\n// \r\n\r\n  addPeekFirst(obj, 'peekShift');"
+    "python": "# list_peek\r\n    def peek(self):\r\n        if self.head:\r\n            return self.head.val\r\n        else:\r\n            return None",
+    "javascript": "// list-peek\r\n  obj.peek = _ => obj.head ? obj.head.val : undefined;"
   }
 }, {
   "model": "main_app.code_block",
   "pk": 7,
   "fields": {
     "name": "list-is-empty",
-    "python": "# some py",
-    "javascript": "// some js"
+    "python": "# list_is_empty\r\n    def is_empty(self):\r\n        return not bool(self.head)",
+    "javascript": "// list-isEmpty\r\n  obj.isEmpty = _ => !obj.head"
   }
 }]
