@@ -1,6 +1,6 @@
 from django.test import Client
 from django.test import TestCase
-from django.contrib.auth.models import User, get_user_model
+
 
 class Setup_Class(TestCase):
   def setUp(self):
