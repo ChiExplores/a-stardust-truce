@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView, DeleteView
 from django.views.generic.edit import CreateView, UpdateView
 from main_app.dependencies import checkMethod, checkProperty
 from .models import Data_Structure, Element
+from django.http import HttpResponse, FileResponse
 
 # checkComponent signature
 # checkComponent(component, data_structure, on_success, on_failure)
@@ -64,9 +65,23 @@ def structure_info(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     py = ds.__get_py__()
+
     return render(request, './main_app/info.html', {
         'ds': ds,
         'props': ds.properties,
         'js': js,
         'py': py,
     })
+
+def structure_download(request, data_structures_id):
+    ds = Data_Structure.objects.get(id = data_structures_id)
+    js = ds.__get_js__()
+    py = ds.__get_py__()
+
+    js_data = open(f'{ds.name}.js', 'w+')
+    print("hello")
+    file_data = js
+    js_data.write(file_data)
+    response = HttpResponse(js_data, content_type='application/javascript') 
+    response['Content-Disposition'] = "attachment; filename='somejs.js'"
+    return FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
