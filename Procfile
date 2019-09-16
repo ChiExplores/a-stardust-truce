@@ -1,1 +1,1 @@
-web: gunicorn a_stardust_truce
+web: gunicorn a_stardust_truce.wsgi

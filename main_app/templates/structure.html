@@ -4,6 +4,7 @@
         <p class="text-center">Front of Card</p> 
         <h1>{{ds}}</h1>
         <h2>{{ds.name}}</h2>
+        <p>{{ ds.id }}</p>
         <hr>
         <h4>{{ds.description}}</h4>
         <h5>{{ds.element}}</h5>
@@ -26,6 +27,9 @@
                     <pre><code><p class="code-display" style="text-align: left;">
                         {{js}}
                     </p></code></pre>
+                
+                    <button class="btn-outline-primary">Download JS</button>
+                    <a href='/structures/{{ds.id}}/js'>Download the code pls</a>
                 </div>
 
             </div>
@@ -41,6 +45,8 @@
                     <pre><code><p class="code-display" style="text-align: left;">
                         {{py}}
                     </p></code></pre>
+
+                    <button class="btn-outline-primary">Download PY</button>
                 </div>
 
             </div>
