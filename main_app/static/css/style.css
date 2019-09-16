@@ -108,15 +108,9 @@ pre code {
     display: block;
   }
 
-code{
-    white-space: pre-wrap;
-}
-
 .button {
     margin: 20px 0 20px 0;
 }
-
-
 
 .flip-card {
     background-color: transparent;
