@@ -1,0 +1,33 @@
+[{
+  "model": "main_app.method",
+  "pk": 1,
+  "fields": {
+    "name": "list-push",
+    "code_block": 4,
+    "resource": 4
+  }
+}, {
+  "model": "main_app.method",
+  "pk": 2,
+  "fields": {
+    "name": "list-pop",
+    "code_block": 5,
+    "resource": 5
+  }
+}, {
+  "model": "main_app.method",
+  "pk": 3,
+  "fields": {
+    "name": "list-peek",
+    "code_block": 6,
+    "resource": 6
+  }
+}, {
+  "model": "main_app.method",
+  "pk": 4,
+  "fields": {
+    "name": "list-is-empty",
+    "code_block": 7,
+    "resource": 7
+  }
+}]

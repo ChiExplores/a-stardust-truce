@@ -1,0 +1,12 @@
+
+{% block content %}
+<h1>Structures List</h1>
+{% for structure in data_structure_list %}
+ <a href="{%url 'detail' structure.id %}">
+    {{ structure.name }}
+</a>
+    <p>Description: {{ structure.description }}</p> 
+{% endfor %}
+{% endblock %}
+
+
