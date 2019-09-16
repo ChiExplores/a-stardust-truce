@@ -3,16 +3,15 @@
 {% block content %}
 <div class="body-container d-flex">
     
-    <div class="maincontainer h-100 col-6 text-center">
+    <div class="maincontainer h-100 col-6 text-center align-items-center my-auto">
         {% include '../structure.html' %}
     </div>
     
-    <div class="sidecontainer h-100 col-6 text-center">
+    <div class="sidecontainer h-100 col-6 text-center align-items-center mx-auto">
         {% include '../comp1.html' %}
         {% include '../comp2.html' %}
         {% include '../comp3.html' %}
     </div>
 
 </div>
-
 {% endblock %}
