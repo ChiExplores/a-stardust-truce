@@ -12,7 +12,7 @@ OrangeSherbet : #F5A169
 
 body, html {
     background-color: #FFE6B4;
-    height: 100vh;
+    height: 90%;
     margin: 0;
     padding: 0;
 }
@@ -32,41 +32,48 @@ body, html {
 
 .body-container {
     height: 100%;
+    width: 100%;
 }
 
 .maincontainer {
     border: 1px solid black;
     background-color: white;
-    overflow: auto;
+    height: 100%;
+    width: 100%;
     perspective: 2000px;
+    overflow: auto;
+    margin: 0 auto;
 }
 
 .container1 {
     border: 1px solid black;
-    background-color: E6DBFF
+    background-color: E6DBFF;
 }
 
 .container2 {
     border: 1px solid black;
-    background-color: 7299ED
+    background-color: 7299ED;
 }
 
 .container3 {
     border: 1px solid black;
-    background-color: 5726CC
+    background-color: 5726CC;
 }
 
 .card {
-    max-height: 300px;
+    margin: 0 auto;
+    max-height: 75%;
+    border: none !important;
 }
 
 .cardflip {
     width: 80%;
-    height: 80%;
+    height: 100%;
     cursor: pointer;
     transform-origin: center right;
     transform-style: preserve-3d;
     transition: transform 1s;
+    border: none !important;
 }
 
 .card.is-flipped {
@@ -75,6 +82,8 @@ body, html {
 
 .card-face {
     position: absolute;
+    /* margin: 10px auto; */
+    padding: 10px auto;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
@@ -98,3 +107,47 @@ pre code {
     border: 1px solid #999;
     display: block;
   }
+
+.button {
+    margin: 20px 0 20px 0;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 80%;
+    height: 300px;
+    perspective: 1000px;
+    margin: 0 auto;
+  }
+  
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+  
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+  
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+  
+.flip-card-front {
+    background-color: #bbb;
+    color: black;
+}
+  
+.flip-card-back {
+    background-color: #2980b9;
+    color: white;
+    transform: rotateY(180deg);
+}

@@ -14,7 +14,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 # List of Views
 def home(request):
-    return render(request, 'sandbox.html')
+    return render(request, './main_app/edit.html')
 
 def signup(request):
   error_message = ''
@@ -60,3 +60,13 @@ def structure_detail(request, data_structures_id):
     })
 
 
+def structure_info(request, data_structures_id):
+    ds = Data_Structure.objects.get(id = data_structures_id)
+    js = ds.__get_js__()
+    py = ds.__get_py__()
+    return render(request, './main_app/info.html', {
+        'ds': ds,
+        'props': ds.properties,
+        'js': js,
+        'py': py,
+    })

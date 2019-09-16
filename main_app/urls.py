@@ -21,4 +21,6 @@ urlpatterns = [
 	# Account Functionality
 	path('accounts/signup', views.signup, name='signup'),
 	
+	# Testing Routes
+	path('structures/<int:data_structures_id>/info', views.structure_info, name='info'),
 ]

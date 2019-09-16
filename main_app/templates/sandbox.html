@@ -13,7 +13,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="navbar-container">
+    <!-- <div class="navbar-container">
         <nav class="navbar navbar-expand-lg" id="navbarpls">
 
             <a class="navbar-brand" href="#">Navbar</a>
@@ -38,7 +38,7 @@
 
         </nav>
 
-    </div>
+    </div> -->
 
     <div class="body-container d-flex ">
 
@@ -149,3 +149,60 @@ button2.addEventListener( 'click', function() {
 </body>
 </html>
 
+{% for props in ds.properties %}
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ props.name }}</span>
+        <p>Type: {{ props.type }}</p>
+        <p>Description: Description Placeholder</p>
+    </div>
+</div>
+{% endfor %}
+
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <!-- Scrolling enabled for longer content -->
+        <div class="info-card">
+            <div class="front">
+                <h2>Element</h2>
+            </div>
+
+            <div class="back">
+                <h2>JavaScript: </h2>
+                <p>
+                    JavaScript Code Placeholder
+                </p>
+                <h2>Python: </h2>
+                <p>
+                    Python Code Placeholder
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="flip-card">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <h2>Elements</h2>
+            <p>Element Name Placeholder</p>
+            <p>Element Name Placeholder</p>
+        </div>
+        <div class="flip-card-back">
+            <h2>JavaScript:</h2> 
+            <p>JavaScript Code Placeholder</p> 
+            <p>JavaScript Code Placeholder</p>
+            <h2>Python:</h2>
+            <p>Python Code Placeholder</p>
+        </div>
+    </div>
+</div>
