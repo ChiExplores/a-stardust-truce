@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.http import HttpRequest
 # from django.test import SimpleTestCase
 # from django.urls import reverse
-from .views import *
+
 
 
 class ViewTest(TestCase):
