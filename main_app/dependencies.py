@@ -2,7 +2,7 @@ element = 'element'
 property = 'property'
 all_elements = ('single-link-node','double-link-list-node')
 all_properties = ('list-head','list-size')
-all_methods = ('push-list','pop-list','peek-list','is-empty-list')
+all_methods = ('list-push','list-pop','list-peek','list-is-empty')
 
 dependencies = {
     'properties': {
@@ -10,19 +10,19 @@ dependencies = {
         'list-size': ('single-link-node', 'double-link-list-node',),
     },
     'methods': {
-        'push-list': {
+        'list-push': {
             element: ('single-link-node', 'double-link-list-node',),
             property: ('list-head',)
         },
-        'pop-list': {
+        'list-pop': {
             element: ('single-link-node', 'double-link-list-node',),
             property: ('list-head',)
         },
-        'peek-list': {
+        'list-peek': {
             element: ('single-link-node', 'double-link-list-node',),
             property: ('list-head',)
         },
-        'is-empty-list': {
+        'list-is-empty': {
             element: ('single-link-node', 'double-link-list-node',),
             property: all_properties
         }
@@ -30,15 +30,16 @@ dependencies = {
 }
 
 # to search for dependencies of property
-def checkProperty(property, element, success, failure):
+def checkProperty(property, element):
     if element in dependencies['properties'][property]:
-        return success
+        return True
     else:
-        return failure
+        return False
 
 # search for dependencies of method
-def checkMethod(method, element, success, failure):
-    if element in dependencies['methods'][method]['element'] and data_structure['property'] in dependencies['methods'][method]['property']:
-        return success
+def checkMethod(method, element, property):
+    if element in dependencies['methods'][method]['element'] and property in dependencies['methods'][method]['property']:
+        return True
     else:
-        return failure
+        return True
+

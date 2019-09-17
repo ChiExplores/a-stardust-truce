@@ -15,21 +15,37 @@
     <form action="" method="post">
         <!-- Django requires the following for security purposes -->
         {% csrf_token %}
+        <table>
+            <!-- Render the inputs inside of <tr>s & <td>s -->
+            {{ form|crispy }}
 
-            {{ form.name }}
-            {{ form.description|as_crispy_field }}
-            {{ form.element|as_crispy_field }}
-            {{ form.user|as_crispy_field }}
-            
-            <div class="sidecontainer h-100 col-6 text-center align-items-center mx-auto">
-                {% include '../elements_cr.html' %}
-                {% include '../properties_cr.html' %}
-                {% include '../methods_cr.html' %}
+            <div id="div_id_properties" class="form-group"> 
+              <label for="id_properties" class="col-form-label ">Properties</label> 
+              <div class=""> 
+                <select name="properties" class="selectmultiple form-control" id="id_properties" multiple=""> 
+                  {% for property in properties %}
+                        <option value="{{property.id}}">{{property.name}}</option> 
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div id="div_id_methods" class="form-group">
+              <label for="id_methods" class="col-form-label ">Methods</label> 
+              <div class="">
+                <select name="methods" class="selectmultiple form-control" id="id_methods" multiple="">
+                  {% for method in methods %}
+                    <option value="{{method.id}}" selected="">{{method.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
             </div>
 
-      
-
-        <button class='btn-outline-primary' type="submit">Submit</button>
+        </table>
+    {% if object %}
+        <button class='btn-outline-primary' type='submit'>Update Structure</button>
+    {% else %}
+        <button class='btn-outline-primary' type='submit'>Create Structure</button>
+    {% endif %}
       
     </form>
 </div>
