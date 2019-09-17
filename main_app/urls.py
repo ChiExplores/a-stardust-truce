@@ -19,8 +19,8 @@ urlpatterns = [
 	path('structures/create/', views.StructureCreate.as_view(), name = 'create'),
 
 	# Account Functionality
-	path('accounts/signup', views.signup, name='signup'),
-	
+	path('accounts/signup', views.signup, name='signup'),	
 	# Testing Routes
 	path('structures/<int:data_structures_id>/info', views.structure_info, name='info'),
+	path('structures/<int:data_structures_id>/js', views.structure_download, name='download'),
 ]

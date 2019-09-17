@@ -3,6 +3,7 @@ from django.http import HttpRequest
 from django.urls import reverse
 from main_app.models import Data_Structure
 
+
 class ViewTest(TestCase):
 
   def test_homepage(self):
