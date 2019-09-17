@@ -18,9 +18,18 @@
         <table>
             <!-- Render the inputs inside of <tr>s & <td>s -->
             {{ form|crispy }}
+
+            <div id="div_id_properties" class="form-group"> 
+              <label for="id_properties" class="col-form-label ">Properties</label> 
+              <div class=""> 
+                <select name="properties" class="selectmultiple form-control" id="id_properties" multiple=""> 
+                  {% for property in properties %}
+                        <option value="{{property.id}}">{{property.name}}</option> 
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
         </table>
-      
-      
     {% if object %}
         <button class='btn-outline-primary' type='submit'>Update Structure</button>
     {% else %}

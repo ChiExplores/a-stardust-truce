@@ -30,15 +30,15 @@ dependencies = {
 }
 
 # to search for dependencies of property
-def checkProperty(property, element, success, failure):
+def checkProperty(property, element):
     if element in dependencies['properties'][property]:
-        return success
+        return True
     else:
-        return failure
+        return False
 
 # search for dependencies of method
-def checkMethod(method, element, success, failure):
+def checkMethod(method, element, property):
     if element in dependencies['methods'][method]['element'] and data_structure['property'] in dependencies['methods'][method]['property']:
-        return success
+        return True
     else:
-        return failure
+        return True
