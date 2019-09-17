@@ -101,12 +101,15 @@ class Data_Structure(models.Model):
         properties = self.properties.all()
         methods = self.methods.all()
         js = self.element.code_block.javascript + f'''
-const {self.name} {{'''
+const {self.name} _ => {{
+  let obj = {{}}'''
         for property in properties:
             js += '\n' + property.code_block.javascript
         for method in methods:
             js += '\n' + method.code_block.javascript
-        js += '\n}'
+        js += '''
+  return obj
+}'''
         return js
 
     def __get_py__(self):
