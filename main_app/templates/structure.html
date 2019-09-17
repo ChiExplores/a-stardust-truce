@@ -8,7 +8,7 @@
         <hr>
         <h4>Description: {{ds.description}}</h4>
         <h5>Elements: {{ds.element}}</h5>
-        <h5>Properties: {{props}}</h5>
+        <h5>Properties: {{ds.properties}}</h5>
         <h5>Methods: {{ds.methods}}</h5>
         <h5>Created By: {{ds.user}}</h5>
         <button class="button btn-outline-primary">View Code</button>
@@ -23,9 +23,9 @@
                 </div>
 
                 <div class="card-body">
-                    <pre><code><p class="code-display" style="text-align: left;">
-                        {{js}}
-                    </p></code></pre>
+                    <pre><code>
+                        <p class="code-display" style="text-align: left;">{{js}}</p>
+                    </code></pre>
                 
                     <button class="btn-outline-primary">Download JS</button>
                     <a href='/structures/{{ds.id}}/js'>Download the code pls</a>
@@ -41,10 +41,9 @@
                 </div>
 
                 <div class="card-body">
-                    <pre><code><p class="code-display" style="text-align: left;">
-                        {{py}}
-                    </p></code></pre>
-
+                    <pre><code>
+                      <p class="code-display" style="text-align: left;">{{py}}</p>
+                    </code></pre>
                     <button class="btn-outline-primary">Download PY</button>
                 </div>
 
