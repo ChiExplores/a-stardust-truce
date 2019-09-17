@@ -128,9 +128,21 @@ class {self.name}:
         element = self.element.name
         valid_properties = []
         for property in all_properties:
-            valid_properties.append(property)
-        print(valid_properties)
+            if checkProperty(property, element):
+                valid_properties.append(property)
         return Property.objects.filter(name__in=valid_properties)
+
+    def __get_valid_methods__(self):
+        element = self.element.name
+        properties = self.properties.all()
+        valid_methods = []
+        print(self.properties)
+        for method in all_methods:
+            for property in properties:
+                if checkMethod(method, element, property):
+                    valid_methods.append(method)
+        print(valid_methods)
+        return Method.objects.filter(name__in=valid_methods)
 
     class Meta:
         verbose_name = "Data Structure"

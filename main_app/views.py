@@ -41,7 +41,13 @@ class StructureCreate(CreateView):
 
 class StructureUpdate(UpdateView):
   model = Data_Structure
-  fields = '__all__'
+  fields = ['name', 'description', 'element']
+  def get_context_data(self, *args, **kwargs):
+    context = super().get_context_data(*args)
+    context['properties'] = self.object.__get_valid_properties__()
+    context['methods'] = self.object.__get_valid_methods__()
+    return context
+
 
 class StructureDelete(DeleteView):
     model = Data_Structure
@@ -65,18 +71,20 @@ def structure_info(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     py = ds.__get_py__()
+    valid_props = ds.__get_valid_properties__()
 
     return render(request, './main_app/info.html', {
         'ds': ds,
         'js': js,
         'py': py,
+        'valid_props': valid_props
     })
 
 def structure_download(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     py = ds.__get_py__()
-
+    
     js_data = open(f'{ds.name}.js', 'w+')
     file_data = js
     js_data.write(file_data)
