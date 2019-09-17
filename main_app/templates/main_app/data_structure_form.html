@@ -1,19 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
 {% block content %}
-  {% if object %}
-    <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
-  {% else %}
-    <h1>Add Structure</h1>
-  {% endif %}
-  <!-- Leaving the action empty makes the form post to the same url used to display it -->
-  <form action="" method="post">
-    <!-- Django requires the following for security purposes -->
-    {% csrf_token %}
-    <table>
-      <!-- Render the inputs inside of <tr>s & <td>s -->
-      {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit!" class="btn">
-  </form>
+<div class="text-center">
+    {% if object %}
+        <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
+    {% else %}
+        <h1>Create a Structure</h1>
+    {% endif %}
+</div>
+
+<div class="maincontainer h-100 col-6 text-center my-auto">
+    <!-- Leaving the action empty makes the form post to the same url used to display it -->
+    <form action="" method="post">
+        <!-- Django requires the following for security purposes -->
+        {% csrf_token %}
+        <table>
+            <!-- Render the inputs inside of <tr>s & <td>s -->
+            {{ form|crispy }}
+        </table>
+      
+      
+    {% if object %}
+        <button class='btn-outline-primary' type='submit'>Update Structure</button>
+    {% else %}
+        <button class='btn-outline-primary' type='submit'>Create Structure</button>
+    {% endif %}
+      
+    </form>
+</div>
 
 
 {% endblock %}
