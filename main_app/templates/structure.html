@@ -3,15 +3,14 @@
     <div class="card-face card-face-front">
         <p class="text-center">Front of Card</p> 
         <h1>{{ds}}</h1>
-        <h2>{{ds.name}}</h2>
-        <p>{{ ds.id }}</p>
+        <h2>DS Name: {{ds.name}}</h2>
+        <p>DS ID (for testing): {{ ds.id }}</p>
         <hr>
-        <h4>{{ds.description}}</h4>
-        <h5>{{ds.element}}</h5>
-        <h5>{{props}}</h5>
-
-        <h5>{{ds.methods}}</h5>
-        <h5>{{ds.user}}</h5>
+        <h4>Description: {{ds.description}}</h4>
+        <h5>Elements: {{ds.element}}</h5>
+        <h5>Properties: {{props}}</h5>
+        <h5>Methods: {{ds.methods}}</h5>
+        <h5>Created By: {{ds.user}}</h5>
         <button class="button btn-outline-primary">View Code</button>
     </div>
     <div class="card-face card-face-back">
