@@ -29,6 +29,17 @@
                 </select>
               </div>
             </div>
+            <div id="div_id_methods" class="form-group">
+              <label for="id_methods" class="col-form-label ">Methods</label> 
+              <div class="">
+                <select name="methods" class="selectmultiple form-control" id="id_methods" multiple="">
+                  {% for method in methods %}
+                    <option value="{{method.id}}" selected="">{{method.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+
         </table>
     {% if object %}
         <button class='btn-outline-primary' type='submit'>Update Structure</button>

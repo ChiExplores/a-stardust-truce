@@ -41,10 +41,11 @@ class StructureCreate(CreateView):
 
 class StructureUpdate(UpdateView):
   model = Data_Structure
-  fields = ['name', 'description', 'element', 'methods']
+  fields = ['name', 'description', 'element']
   def get_context_data(self, *args, **kwargs):
     context = super().get_context_data(*args)
     context['properties'] = self.object.__get_valid_properties__()
+    context['methods'] = self.object.__get_valid_methods__()
     return context
 
 

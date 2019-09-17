@@ -130,16 +130,17 @@ class {self.name}:
         for property in all_properties:
             if checkProperty(property, element):
                 valid_properties.append(property)
-        print(valid_properties)
         return Property.objects.filter(name__in=valid_properties)
 
     def __get_valid_methods__(self):
         element = self.element.name
-        properties = self.properties
+        properties = self.properties.all()
         valid_methods = []
+        print(self.properties)
         for method in all_methods:
-            if checkMethod(method, element, property):
-                valid_methods.append(method)
+            for property in properties:
+                if checkMethod(method, element, property):
+                    valid_methods.append(method)
         print(valid_methods)
         return Method.objects.filter(name__in=valid_methods)
 
