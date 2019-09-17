@@ -101,7 +101,7 @@ class Data_Structure(models.Model):
         properties = self.properties.all()
         methods = self.methods.all()
         js = self.element.code_block.javascript + f'''
-const {self.name} _ => {{
+const {self.name} = _ => {{
   let obj = {{}}'''
         for property in properties:
             js += '\n' + property.code_block.javascript
@@ -124,7 +124,7 @@ class {self.name}:
             py += '\n\t' + method.code_block.python
         return py
 
-    def get_valid_properties(self):
+    def __get_valid_properties__(self):
         element = self.element.name
         valid_properties = []
         for property in all_properties:
