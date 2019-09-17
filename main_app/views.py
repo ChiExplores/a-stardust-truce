@@ -72,17 +72,38 @@ def structure_info(request, data_structures_id):
         'py': py,
     })
 
+# def structure_download(request, data_structures_id):
+#     ds = Data_Structure.objects.get(id = data_structures_id)
+#     js = ds.__get_js__()
+#     py = ds.__get_py__()
+
+
+#     js_data = open(f'{ds.name}.js', 'w+')
+#     file_data = js
+#     js_data.write(file_data)
+#     response = HttpResponse(js_data, content_type='application/javascript') 
+#     response['Content-Disposition'] = "attachment; filename='somejs.js'"
+#     return FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
+
 def structure_download(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     py = ds.__get_py__()
 
-    js_data = open(f'{ds.name}.js', 'w+')
-    file_data = js
-    js_data.write(file_data)
-    response = HttpResponse(js_data, content_type='application/javascript') 
-    response['Content-Disposition'] = "attachment; filename='somejs.js'"
-    return FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
+
+    with open('jscode.js', 'w+') as js_data:
+        file_data = js
+        js_data.write(file_data)
+
+        response = HttpResponse(js_data, content_type='application/javascript') 
+        response['Content-Disposition'] = "attachment; filename=f'{ds.name}.js'"
+        return FileResponse(open('jscode.js', 'rb'), as_attachment=True, filename=f'{ds.name}.js')
+
+
+
+
+
+
 
 
 class Ds_Update(UpdateView):
