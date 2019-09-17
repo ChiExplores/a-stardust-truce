@@ -2,7 +2,7 @@
   "model": "main_app.resource",
   "pk": 1,
   "fields": {
-    "name": "single_link_node",
+    "name": "single-link-node",
     "description": "This is a node that contains one reference point to another node in memory",
     "img_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Single_node1.jpg"
   }

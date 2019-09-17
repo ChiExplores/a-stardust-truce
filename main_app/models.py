@@ -2,6 +2,10 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 from django.urls import reverse
+from main_app.dependencies import checkMethod, checkProperty, all_properties, all_methods
+
+# checkComponent signature
+# checkComponent(component, data_structure, on_success, on_failure)
 
 class Code_Block(models.Model):
     name = models.CharField(max_length=50)
@@ -97,12 +101,15 @@ class Data_Structure(models.Model):
         properties = self.properties.all()
         methods = self.methods.all()
         js = self.element.code_block.javascript + f'''
-const {self.name} {{'''
+const {self.name} _ => {{
+  let obj = {{}}'''
         for property in properties:
             js += '\n' + property.code_block.javascript
         for method in methods:
             js += '\n' + method.code_block.javascript
-        js += '\n}'
+        js += '''
+  return obj
+}'''
         return js
 
     def __get_py__(self):
@@ -116,6 +123,14 @@ class {self.name}:
         for method in methods:
             py += '\n\t' + method.code_block.python
         return py
+
+    def get_valid_properties(self):
+        element = self.element.name
+        valid_properties = []
+        for property in all_properties:
+            valid_properties.append(property)
+        print(valid_properties)
+        return Property.objects.filter(name__in=valid_properties)
 
     class Meta:
         verbose_name = "Data Structure"

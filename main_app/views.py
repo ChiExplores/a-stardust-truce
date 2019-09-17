@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, DeleteView
 from django.views.generic.edit import CreateView, UpdateView
 from main_app.dependencies import checkMethod, checkProperty
-from .models import Data_Structure, Element
+from .models import *
 from django.http import HttpResponse, FileResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # checkComponent signature
 # checkComponent(component, data_structure, on_success, on_failure)
@@ -31,11 +33,19 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+
 class StructureList(ListView):
     model = Data_Structure
 
 
-class StructureCreate(CreateView):
+# def structures_index(request):
+#   # This reads ALL structures, not just the logged in user's structures
+#   structures = Data_Structure.objects.all()
+#   public_structures = Data_Structure.objects.filter(user=request.user)
+#   return render(request, 'structures/index.html', { 'structures': structures })
+
+
+class StructureCreate(LoginRequiredMixin,CreateView):
   model = Data_Structure
   fields = '__all__'
   
@@ -72,7 +82,6 @@ def structure_info(request, data_structures_id):
 
     return render(request, './main_app/info.html', {
         'ds': ds,
-        'props': ds.properties,
         'js': js,
         'py': py,
     })
@@ -83,9 +92,31 @@ def structure_download(request, data_structures_id):
     py = ds.__get_py__()
 
     js_data = open(f'{ds.name}.js', 'w+')
-    print("hello")
     file_data = js
     js_data.write(file_data)
-    response = HttpResponse(js_data, content_type='application/javascript') 
-    response['Content-Disposition'] = "attachment; filename='somejs.js'"
-    return FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
+    # response = HttpResponse(js_data, content_type='application/javascript') 
+    # response['Content-Disposition'] = "attachment; filename='somejs.js'"
+    response = FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=False, filename='somejs.js')
+    return response
+
+#  with open('output.txt', 'w') as f:
+#      f.write('Hi there!')
+
+def send_file(response):
+
+    img = open('images/bojnice.jpg', 'rb')
+
+    response = FileResponse(img)
+
+    return response
+
+def send_file(response):
+
+    img = open('images/bojnice.jpg', 'rb')
+
+    response = FileResponse(img)
+
+    return response
+
+class Ds_Update(UpdateView):
+    model = Data_Structure
