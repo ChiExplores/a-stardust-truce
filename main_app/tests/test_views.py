@@ -1,13 +1,7 @@
 from django.test import TestCase, Client
 from django.http import HttpRequest
-<<<<<<< HEAD
 from django.urls import reverse
 from main_app.models import Data_Structure
-=======
-# from django.test import SimpleTestCase
-# from django.urls import reverse
-
->>>>>>> 25d3517fb003f2e3ee9a78bcafb9d4515b9c363d
 
 
 class ViewTest(TestCase):

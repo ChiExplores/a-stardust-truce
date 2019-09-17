@@ -48,10 +48,7 @@ class StructureList(ListView):
 class StructureCreate(LoginRequiredMixin,CreateView):
   model = Data_Structure
   fields = '__all__'
-  
-  def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super().form_valid(form)
+	
 
 class StructureUpdate(UpdateView):
   model = Data_Structure
@@ -61,13 +58,11 @@ class StructureDelete(DeleteView):
     model = Data_Structure
     success_url = '/structures/'
 
-
 # stubbed detailed
 def structure_detail(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     py = ds.__get_py__()
     js = ds.__get_js__()
-    print(ds)
     return render(request, 'detail_test.html', {
         'ds':ds,
         'py': py,

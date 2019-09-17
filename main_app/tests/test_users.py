@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 from django.test import TestCase, Client
 from django.http import HttpRequest
 from django.contrib.auth.models import User
 from main_app.models import *
-=======
-from django.test import Client
-from django.test import TestCase
-
->>>>>>> 25d3517fb003f2e3ee9a78bcafb9d4515b9c363d
 
 class Setup_Class(TestCase):
   def setUp(self):
