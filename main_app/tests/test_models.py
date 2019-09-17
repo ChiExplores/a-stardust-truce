@@ -1,2 +1,3 @@
 from django.test import TestCase
-from ../models import CodeBlock
+from main_app.models import Code_Block
+

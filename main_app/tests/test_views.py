@@ -1,11 +1,8 @@
 from django.test import TestCase, Client
 from django.http import HttpRequest
-# from django.test import SimpleTestCase
-# from django.urls imp
-# ort reverse
-# from .views import *
+from django.urls import reverse
+from main_app.models import Data_Structure
 
-c = Client()
 class ViewTest(TestCase):
 
   def test_homepage(self):
@@ -18,7 +15,7 @@ class ViewTest(TestCase):
     self.assertEqual(response.status_code, 200)
 
   def test_structures_index_1(self):
-    response = self.client.get('/structures/?id=1/')
+    response = self.client.get('/structures/?id=f1/', follow=True)
     self.assertEqual(response.status_code, 200)
 
   
@@ -30,9 +27,9 @@ class ViewTest(TestCase):
     response = self.client.get('/structures/?id=5/update')
     self.assertEqual(response.status_code, 200)
 
-  def test_login(self):
-    response = self.client.get('/login/')
-    self.assertEqual(response.status_code, 200)
+  # def test_login(self):
+  #   response = self.client.get('/login/')
+  #   self.assertEqual(response.status_code, 200)
 
 
 
@@ -45,6 +42,31 @@ class UserPost(TestCase):
 def test_addAccount(self):
   response = self.client.post('/',{'username':'name','password':'pass', 'email':'mail@mail.com'})
   self.assertEqual(response.status_code, 302)
+
+class DSTests(TestCase):
+  def setUp(self):
+      ds = Data_Structure.objects.get(id=1)
+      print(ds)
+
+  def test_des_content(self):
+      ds = Data_Structure.objects.get(id=1)
+      expected_object_name = f'{ds.name}'
+      self.assertEquals(expected_object_name, 'More Arrays')
+
+  # def test_ds_list_view(self):
+  #     response = self.client.get(reverse('detail'))
+  #     self.assertEqual(response.status_code, 200)
+  #     self.assertContains(response, 'just a test')
+  #     self.assertTemplateUsed(response, 'detail.html')
+
+
+
+
+
+
+
+
+
 
 
 
