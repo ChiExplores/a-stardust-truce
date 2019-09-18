@@ -80,17 +80,14 @@ def structure_info(request, data_structures_id):
         'valid_props': valid_props
     })
 
-def structure_download(request, data_structures_id):
+def structure_download_js(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
-    py = ds.__get_py__()
-    
-    js_data = open(f'{ds.name}.js', 'w+')
+    filename = f'{ds.user.username}.txt'
+    js_data = open(filename, 'w+')
     file_data = js
     js_data.write(file_data)
-    response = HttpResponse(js_data, content_type='application/javascript') 
-    response['Content-Disposition'] = "attachment; filename='somejs.js'"
-    return FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
+    return FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.js')
 
 
 class Ds_Update(UpdateView):
