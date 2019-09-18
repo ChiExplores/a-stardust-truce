@@ -6,7 +6,9 @@ urlpatterns = [
 	path('about/',views.home, name='home'), #not sure if we need this one?
 # 	path('structures/', views.structure_view, name='index'),
 	# path('structures/create/', views.structure_create, name ='create'),
-	path('structures/<int:data_structures_id>/', views.structure_detail, name='detail'),
+	path('structures/<int:data_structures_id>/', views.structure_info, name='info'),
+	path('structures/<int:data_structures_id>/update/', views.structure_update, name = 'update'),
+	path('structures/<int:data_structures_id>/update/submit', views.structure_update_submit, name = 'submit'),
 	# path('structures/<int:data_structures_id>/edit/', views.structure_edit, name='edit'),
 # 	path('structures/<int:data_structures_id>/assoc_element/<int:element_id>', views.assoc_element, name ='assoc_element'),
 # 	path('structures/<int:data_structures_id>/assoc_prop/<int:prop_id>', views.assoc_prop, name ='assoc_prop'),
@@ -14,7 +16,6 @@ urlpatterns = [
 	#########CBV paths########
 	path('structures/', views.StructureList.as_view(), name = 'index'),
 	# path('structures/<int:pk>/', views.StructureDetail.as_view(), name = 'detail'),
-	path('structures/<int:data_structures_id>/update/', views.structure_update, name = 'update'),
 	path('structures/<int:pk>/delete/', views.StructureDelete.as_view(), name = 'delete'),
 	path('structures/create/', views.StructureCreate.as_view(), name = 'create'),
 
