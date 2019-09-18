@@ -1,8 +1,23 @@
-<h1>Log In</h1>
+{% extends 'base.html' %}
 
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn" value="login">
-    <input type="hidden" name="next" value="{{ next }}">
-</form>
+{% block content %}
+<div class="my-auto mx-auto col-3 align-self-center">
+
+    <form method="post" action="{% url 'login' %}" class="text-center text-white">
+        {% csrf_token %}
+
+        <div>
+            <p>
+                <input type="text" name="username" autofocus="" required="" id="id_username" placeholder="username" class="form-control signup-inputs text-center code-display">
+                <input type="password" name="password" required="" id="id_password" placeholder="password" class="form-control signup-inputs text-center code-display">
+            </p>
+        </div>
+
+        <input type="submit" class="btn color-3" value="login">
+        <a href='/accounts/signup' class="btn color-3">Sign Up</a>
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+
+</div>
+
+{% endblock %}

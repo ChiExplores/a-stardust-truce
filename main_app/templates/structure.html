@@ -8,8 +8,19 @@
         <hr>
         <h4>Description: {{ds.description}}</h4>
         <h5>Elements: {{ds.element}}</h5>
-        <h5>Properties: {{ds.properties}}</h5>
-        <h5>Methods: {{ds.methods}}</h5>
+
+        <h5>Properties: 
+            {% for prop in props %}
+            {{ prop.name }}
+            {% endfor %}
+        </h5>
+
+        <h5>Methods: 
+            {% for method in methods %}
+            {{ method.name }}
+            {% endfor %}
+        </h5>
+
         <h5>Created By: {{ds.user}}</h5>
         <button class="button btn color-3 flip-to-rear">View Code</button>
 
