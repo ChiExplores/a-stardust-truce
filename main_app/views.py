@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from main_app.dependencies import checkMethod, checkProperty
 from .models import *
 from django.http import HttpResponse, FileResponse
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import os
@@ -35,10 +36,9 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 
-class StructureList(LoginRequiredMixin, ListView):
-    def get(self, request):
-        model = Data_Structure
-
+class StructureList(ListView):
+    model = Data_Structure
+    paginate_by = 8
 
 
 def structure_index(request):
@@ -55,8 +55,14 @@ class StructureCreate(LoginRequiredMixin,CreateView):
 
 class StructureUpdate(UpdateView):
   model = Data_Structure
-  fields = '__all__'
+  fields = ['name', 'description', 'element']
+  def get_context_data(self, *args, **kwargs):
+    context = super().get_context_data(*args)
+    context['properties'] = self.object.__get_valid_properties__()
+    context['methods'] = self.object.__get_valid_methods__()
+    return context
 
+    
 class StructureDelete(DeleteView):
     model = Data_Structure
     success_url = '/structures/'
@@ -80,24 +86,29 @@ def structure_info(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     py = ds.__get_py__()
+    
 
     return render(request, './main_app/info.html', {
         'ds': ds,
         'js': js,
         'py': py,
+        'request.user': request.user,
     })
 
-def structure_download(request, data_structures_id):
+def structure_download_js(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
-    py = ds.__get_py__()
-    
-    js_data = open(f'{ds.name}.js', 'w+')
+    filename = f'{ds.user.username}.txt'
+    js_data = open(filename, 'w+')
     file_data = js
     js_data.write(file_data)
-    response = HttpResponse(js_data, content_type='application/javascript') 
-    response['Content-Disposition'] = "attachment; filename='somejs.js'"
-    return FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
+    return FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.js')
 
-class Ds_Update(UpdateView):
-    model = Data_Structure
+def structure_download_py(request, data_structures_id):
+    ds = Data_Structure.objects.get(id = data_structures_id)
+    py = ds.__get_py__()
+    filename = f'{ds.user.username}.txt'
+    py_data = open(filename, 'w+')
+    file_data = py
+    py_data.write(file_data)
+    return FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.py')

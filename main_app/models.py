@@ -101,7 +101,7 @@ class Data_Structure(models.Model):
         properties = self.properties.all()
         methods = self.methods.all()
         js = self.element.code_block.javascript + f'''
-const {self.name} _ => {{
+const {self.name} = _ => {{
   let obj = {{}}'''
         for property in properties:
             js += '\n' + property.code_block.javascript
@@ -124,16 +124,28 @@ class {self.name}:
             py += '\n\t' + method.code_block.python
         return py
 
-    def get_valid_properties(self):
+    def __get_valid_properties__(self):
         element = self.element.name
         valid_properties = []
         for property in all_properties:
-            valid_properties.append(property)
-        print(valid_properties)
+            if checkProperty(property, element):
+                valid_properties.append(property)
         return Property.objects.filter(name__in=valid_properties)
+
+    def __get_valid_methods__(self):
+        element = self.element.name
+        properties = self.properties.all()
+        valid_methods = []
+        print(self.properties)
+        for method in all_methods:
+            for property in properties:
+                if checkMethod(method, element, property):
+                    valid_methods.append(method)
+        print(valid_methods)
+        return Method.objects.filter(name__in=valid_methods)
 
     class Meta:
         verbose_name = "Data Structure"
 
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'data_structures_id': self.id})
+        return reverse('info', kwargs={'data_structures_id': self.id})
