@@ -66,10 +66,11 @@ def structure_update(request, data_structures_id):
         })
         
 def structure_update_submit(request, data_structures_id):
+    ds = Data_Structure.objects.get(id = data_structures_id)
     # validation
     # save
     # redirect
-    pass
+    return redirect(ds.get_absolute_url())
 
 class StructureUpdate(LoginRequiredMixin,UpdateView):
   model = Data_Structure
