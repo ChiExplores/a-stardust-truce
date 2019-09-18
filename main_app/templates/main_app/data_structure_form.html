@@ -17,16 +17,16 @@
         <!-- Django requires the following for security purposes -->
         {% csrf_token %}
             <!-- {{ form|crispy }} -->
-            {{ form.name|as_crispy_field }}
-            {{ form.description|as_crispy_field }}
-            {{ form.element|as_crispy_field }}
+            {% comment %} {{ form.name|as_crispy_field }} {% endcomment %}
+            {% comment %} {{ form.description|as_crispy_field }} {% endcomment %}
+            {% comment %} {{ form.element|as_crispy_field }} {% endcomment %}
 
             <div id="div_id_properties" class="form-group"> 
               <label for="id_properties" class="col-form-label ">Properties</label> 
               <div class=""> 
                 <select name="properties" class="selectmultiple form-control" id="id_properties" multiple=""> 
-                  {% for property in properties %}
-                        <option value="{{property.id}}">{{property.name}}</option> 
+                  {% for valid_property in valid_properties %}
+                        <option value="{{valid_property.id}}" {% if valid_property in properties %}selected=""{% endif %}>{{valid_property.name}}</option> 
                   {% endfor %}
                 </select>
               </div>
@@ -42,7 +42,7 @@
               </div>
             </div>
 
-            {{ form.user|as_crispy_field }}
+            {% comment %} {{ form.user|as_crispy_field }} {% endcomment %}
     {% if object %}
         <button class='btn color-3' type='submit'>Update Structure</button>
     {% else %}

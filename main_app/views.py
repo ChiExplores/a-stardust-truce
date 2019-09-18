@@ -53,6 +53,16 @@ class StructureCreate(LoginRequiredMixin,CreateView):
   fields = '__all__'
 	
 
+def structure_update(request, data_structures_id):
+    ds = Data_Structure.objects.get(id = data_structures_id)
+    return render(request, 'main_app/data_structure_form.html', {
+        'name': ds.name, 
+        'properties': ds.properties.all(), 
+        'valid_properties': ds.__get_valid_properties__(), 
+        'methods': ds.methods.all(),
+        'valid_methods': ds.__get_valid_methods__()
+        })
+
 class StructureUpdate(UpdateView):
   model = Data_Structure
   fields = ['name', 'description', 'element']

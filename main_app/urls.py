@@ -14,7 +14,7 @@ urlpatterns = [
 	#########CBV paths########
 	path('structures/', views.StructureList.as_view(), name = 'index'),
 	# path('structures/<int:pk>/', views.StructureDetail.as_view(), name = 'detail'),
-	path('structures/<int:pk>/update/', views.StructureUpdate.as_view(), name = 'update'),
+	path('structures/<int:data_structures_id>/update/', views.structure_update, name = 'update'),
 	path('structures/<int:pk>/delete/', views.StructureDelete.as_view(), name = 'delete'),
 	path('structures/create/', views.StructureCreate.as_view(), name = 'create'),
 
