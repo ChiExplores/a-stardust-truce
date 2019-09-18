@@ -20,7 +20,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 # List of Views
 def home(request):
-    return render(request, './main_app/edit.html')
+    return render(request, './main_app/home.html')
 
 def signup(request):
   error_message = ''
@@ -52,7 +52,6 @@ class StructureCreate(LoginRequiredMixin,CreateView):
   model = Data_Structure
   fields = '__all__'
 	
-
 def structure_update(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     return render(request, 'main_app/data_structure_form.html', {
@@ -72,9 +71,9 @@ def structure_update_submit(request, data_structures_id):
     # redirect
     pass
 
-class StructureUpdate(UpdateView):
+class StructureUpdate(LoginRequiredMixin,UpdateView):
   model = Data_Structure
-  fields = ['name', 'description', 'element']
+  fields = ['name', 'description', 'element', 'user']
   def get_context_data(self, *args, **kwargs):
     context = super().get_context_data(*args)
     context['properties'] = self.object.__get_valid_properties__()
@@ -106,13 +105,16 @@ def structure_info(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     py = ds.__get_py__()
-    
+    methods = ds.methods.all()
+    props = ds.properties.all()
 
     return render(request, './main_app/info.html', {
         'ds': ds,
         'js': js,
         'py': py,
         'request.user': request.user,
+        'methods': methods,
+        'props' : props
     })
 
 def structure_download_js(request, data_structures_id):

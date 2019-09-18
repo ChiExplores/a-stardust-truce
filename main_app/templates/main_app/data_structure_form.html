@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
@@ -16,10 +15,6 @@
     <form action="submit" method="post">
         <!-- Django requires the following for security purposes -->
         {% csrf_token %}
-            <!-- {{ form|crispy }} -->
-            {% comment %} {{ form.name|as_crispy_field }} {% endcomment %}
-            {% comment %} {{ form.description|as_crispy_field }} {% endcomment %}
-            {% comment %} {{ form.element|as_crispy_field }} {% endcomment %}
             <div id="div_id_name" class="form-group">
               <label for="id_name" class="col-form-label  requiredField">
                   Name<span class="asteriskField">*</span>
@@ -78,11 +73,10 @@
               </div>
             </div>
 
-            {% comment %} {{ form.user|as_crispy_field }} {% endcomment %}
-    {% if object %}
-        <button class='btn color-3' type='submit'>Update Structure</button>
-    {% else %}
+    {% if new_form %}
         <button class='btn color-3' type='submit'>Create Structure</button>
+    {% else %}
+        <button class='btn color-3' type='submit'>Update Structure</button>
     {% endif %}
       
     </form>
