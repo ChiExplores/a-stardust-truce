@@ -16,7 +16,6 @@ import tempfile
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
-
 # List of Views
 def home(request):
     return render(request, './main_app/edit.html')
@@ -36,15 +35,17 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 
-class StructureList(ListView):
-    model = Data_Structure
+class StructureList(LoginRequiredMixin, ListView):
+    def get(self, request):
+        model = Data_Structure
 
 
-# def structures_index(request):
-#   # This reads ALL structures, not just the logged in user's structures
-#   structures = Data_Structure.objects.all()
+
+def structure_index(request):
+  # This reads ALL structures, not just the logged in user's structures
+  structures = Data_Structure.objects.all()
 #   public_structures = Data_Structure.objects.filter(user=request.user)
-#   return render(request, 'structures/index.html', { 'structures': structures })
+  return render(request, './main_app/index.html', { 'structures': structures })
 
 
 class StructureCreate(LoginRequiredMixin,CreateView):
@@ -75,7 +76,6 @@ def structure_detail(request, data_structures_id):
         'props' : props
     })
 
-
 def structure_info(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
@@ -98,23 +98,6 @@ def structure_download(request, data_structures_id):
     response = HttpResponse(js_data, content_type='application/javascript') 
     response['Content-Disposition'] = "attachment; filename='somejs.js'"
     return FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
-
-
-def send_file(response):
-
-    img = open('images/bojnice.jpg', 'rb')
-
-    response = FileResponse(img)
-
-    return response
-
-def send_file(response):
-
-    img = open('images/bojnice.jpg', 'rb')
-
-    response = FileResponse(img)
-
-    return response
 
 class Ds_Update(UpdateView):
     model = Data_Structure

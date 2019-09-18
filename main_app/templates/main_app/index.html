@@ -1,0 +1,7 @@
+{% for structure in structures  %}
+
+ <a href="{%url 'detail' structure.id %}">
+    {{ structure.name }}
+</a>
+    <p>Description: {{ structure.description }}</p> 
+{% endfor %}

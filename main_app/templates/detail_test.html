@@ -7,30 +7,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    <title>Document</title>
+    <title>Data Structure</title>
 </head>
 <body>
     
 </body>
 </html>
 
-
 <h1>Name: {{ds.name}}</h1>
 <hr>
-<p>Description: {{ds.description}}</p>
+    <p>Description: {{ds.description}}</p>
 <br>
 Element: {{ds.element}}
 <br>
 Properties:
 {% for p in props%}
- {{p.name}}
+    {{p.name}}
 {% endfor %}
 <br>
 Methods:
 {% for m in methods %}
- {{m}}
+    {{m.name}}
 {% endfor %}
-
 <br>
 <hr>
 
