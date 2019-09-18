@@ -6,6 +6,8 @@ from .models import *
 from django.http import HttpResponse, FileResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+import os
+import tempfile
 
 # checkComponent signature
 # checkComponent(component, data_structure, on_success, on_failure)
@@ -63,10 +65,14 @@ def structure_detail(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     py = ds.__get_py__()
     js = ds.__get_js__()
+    methods = ds.methods.all()
+    props = ds.properties.all()
     return render(request, 'detail_test.html', {
         'ds':ds,
         'py': py,
-        'js': js
+        'js': js,
+        'methods': methods,
+        'props' : props
     })
 
 
@@ -85,17 +91,29 @@ def structure_download(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     py = ds.__get_py__()
-
-    js_data = open(f'{ds.name}.js', 'w+')
     file_data = js
-    js_data.write(file_data)
+    try:
+        js_data = open(f'{ds.name}.js', 'w+')
+        js_data.write(file_data)
+    finally:
+        js_data.close()
+        # os.remove('/' +)
+
     # response = HttpResponse(js_data, content_type='application/javascript') 
-    # response['Content-Disposition'] = "attachment; filename='somejs.js'"
-    response = FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=False, filename='somejs.js')
+    # response['Content-Length'] = os.path.getsize(file_data) 
+    response = FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
+        # response['Content-Disposition'] = "attachment; filename='somejs.js'"
     return response
 
-#  with open('output.txt', 'w') as f:
-#      f.write('Hi there!')
+    # with file_data(delete=True) as output:
+    #     js_data = open(f'{ds.name}.js', 'w+')
+    #     js_data.write(file_data)
+    #     response = HttpResponse(js_data, content_type='application/javascript') 
+    #     response['Content-Disposition'] = "attachment; filename='somejs.js'"
+    #     # response['Content-Length'] = os.path.getsize(file_data) 
+    #     response = FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=False, filename='somejs.js')
+    #     return response
+
 
 def send_file(response):
 

@@ -17,13 +17,20 @@
 
 <h1>Name: {{ds.name}}</h1>
 <hr>
-<p>Des: {{ds.description}}</p>
+<p>Description: {{ds.description}}</p>
 <br>
-Ele: {{ds.element}}
+Element: {{ds.element}}
 <br>
-Prop: {{ds.properties}}
+Properties:
+{% for p in props%}
+ {{p.name}}
+{% endfor %}
 <br>
-Methods: {{ds.methods}}
+Methods:
+{% for m in methods %}
+ {{m}}
+{% endfor %}
+
 <br>
 <hr>
 
