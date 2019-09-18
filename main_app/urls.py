@@ -24,4 +24,5 @@ urlpatterns = [
 	# Testing Routes
 	path('structures/<int:data_structures_id>/info', views.structure_info, name='info'),
 	path('structures/<int:data_structures_id>/js', views.structure_download_js, name='download_js'),
+	path('structures/<int:data_structures_id>/py', views.structure_download_py, name='download_py'),
 ]

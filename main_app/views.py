@@ -89,6 +89,15 @@ def structure_download_js(request, data_structures_id):
     js_data.write(file_data)
     return FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.js')
 
+def structure_download_py(request, data_structures_id):
+    ds = Data_Structure.objects.get(id = data_structures_id)
+    py = ds.__get_py__()
+    filename = f'{ds.user.username}.txt'
+    py_data = open(filename, 'w+')
+    file_data = py
+    py_data.write(file_data)
+    return FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.py')
+
 
 class Ds_Update(UpdateView):
     model = Data_Structure
