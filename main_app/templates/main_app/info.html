@@ -2,9 +2,11 @@
 
 {% block content %}
 
-    <div class="maincontainer h-100 col-6 text-center my-auto">
+    <div class="body-container col-6 text-center mx-auto">
         {% include '../structure.html' %}
-        <a class="btn btn-outline-primary" href="/structures/{{ds.id}}/update">Edit</a>
+
+        <a class="btn btn-outline-primary" href="/structures/{{ds.id}}/update"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046766.png"></a>
+        <a class="btn btn-outline-danger" href="/structures/{{ds.id}}/delete"><img class="icon-xs" src="https://image.flaticon.com/icons/svg/1370/1370550.svg"></a>
     </div>
 
 

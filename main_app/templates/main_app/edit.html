@@ -3,11 +3,11 @@
 {% block content %}
 <div class="body-container d-flex">
     
-    <div class="maincontainer h-100 col-6 text-center align-items-center my-auto">
+    <div class="maincontainer d-flex col-6 text-center align-items-center">
         {% include '../structure.html' %}
     </div>
     
-    <div class="sidecontainer h-100 col-6 text-center align-items-center mx-auto">
+    <div class="sidecontainer col-6 text-center align-items-center d-flex flex-column">
         {% include '../elements.html' %}
         {% include '../properties.html' %}
         {% include '../methods.html' %}
