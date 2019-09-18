@@ -96,29 +96,20 @@ def structure_info(request, data_structures_id):
         'request.user': request.user,
     })
 
-# def structure_download(request, data_structures_id):
-#     ds = Data_Structure.objects.get(id = data_structures_id)
-#     js = ds.__get_js__()
-#     py = ds.__get_py__()
-
-
-#     js_data = open(f'{ds.name}.js', 'w+')
-#     file_data = js
-#     js_data.write(file_data)
-#     response = HttpResponse(js_data, content_type='application/javascript') 
-#     response['Content-Disposition'] = "attachment; filename='somejs.js'"
-#     return FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
-
-def structure_download(request, data_structures_id):
+def structure_download_js(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
+    filename = f'{ds.user.username}.txt'
+    js_data = open(filename, 'w+')
+    file_data = js
+    js_data.write(file_data)
+    return FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.js')
+
+def structure_download_py(request, data_structures_id):
+    ds = Data_Structure.objects.get(id = data_structures_id)
     py = ds.__get_py__()
-
-
-    with open(f'{ds.user.username}.js', 'w+') as js_data:
-        file_data = js
-        js_data.write(file_data)
-
-        response = HttpResponse(js_data, content_type='application/javascript') 
-        response['Content-Disposition'] = "attachment; filename=f'{ds.name}.js'"
-        return FileResponse(open(f'{ds.user.username}.js', 'rb'), as_attachment=True, filename=f'{ds.name}.js')
+    filename = f'{ds.user.username}.txt'
+    py_data = open(filename, 'w+')
+    file_data = py
+    py_data.write(file_data)
+    return FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.py')
