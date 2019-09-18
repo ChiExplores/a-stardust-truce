@@ -99,22 +99,5 @@ def structure_download(request, data_structures_id):
     response['Content-Disposition'] = "attachment; filename='somejs.js'"
     return FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
 
-
-def send_file(response):
-
-    img = open('images/bojnice.jpg', 'rb')
-
-    response = FileResponse(img)
-
-    return response
-
-def send_file(response):
-
-    img = open('images/bojnice.jpg', 'rb')
-
-    response = FileResponse(img)
-
-    return response
-
 class Ds_Update(UpdateView):
     model = Data_Structure
