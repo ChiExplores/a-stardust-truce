@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from main_app.dependencies import checkMethod, checkProperty
 from .models import *
 from django.http import HttpResponse, FileResponse
+from django.core.paginator import Paginator
 
 # checkComponent signature
 # checkComponent(component, data_structure, on_success, on_failure)
@@ -33,7 +34,7 @@ def signup(request):
 
 class StructureList(ListView):
     model = Data_Structure
-
+    paginate_by = 8
 
 class StructureCreate(CreateView):
   model = Data_Structure
@@ -48,7 +49,7 @@ class StructureUpdate(UpdateView):
     context['methods'] = self.object.__get_valid_methods__()
     return context
 
-
+    
 class StructureDelete(DeleteView):
     model = Data_Structure
     success_url = '/structures/'
@@ -71,13 +72,13 @@ def structure_info(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     py = ds.__get_py__()
-    valid_props = ds.__get_valid_properties__()
+    
 
     return render(request, './main_app/info.html', {
         'ds': ds,
         'js': js,
         'py': py,
-        'valid_props': valid_props
+        'request.user': request.user,
     })
 
 # def structure_download(request, data_structures_id):
@@ -97,32 +98,12 @@ def structure_download(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     py = ds.__get_py__()
-<<<<<<< HEAD
 
 
-    with open('jscode.js', 'w+') as js_data:
+    with open(f'{ds.user.username}.js', 'w+') as js_data:
         file_data = js
         js_data.write(file_data)
 
         response = HttpResponse(js_data, content_type='application/javascript') 
         response['Content-Disposition'] = "attachment; filename=f'{ds.name}.js'"
-        return FileResponse(open('jscode.js', 'rb'), as_attachment=True, filename=f'{ds.name}.js')
-
-
-
-
-
-
-=======
-    
-    js_data = open(f'{ds.name}.js', 'w+')
-    file_data = js
-    js_data.write(file_data)
-    response = HttpResponse(js_data, content_type='application/javascript') 
-    response['Content-Disposition'] = "attachment; filename='somejs.js'"
-    return FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
->>>>>>> 9a6465ec5e97397441fa694abbb8a620fa5aa2af
-
-
-class Ds_Update(UpdateView):
-    model = Data_Structure
+        return FileResponse(open(f'{ds.user.username}.js', 'rb'), as_attachment=True, filename=f'{ds.name}.js')
