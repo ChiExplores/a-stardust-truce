@@ -135,6 +135,7 @@ STATIC_ROOT = '/a-stardust-truce/main_app/static'
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 #Config Django app for Heroku
 import django_heroku

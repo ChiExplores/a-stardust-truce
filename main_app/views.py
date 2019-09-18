@@ -4,6 +4,10 @@ from django.views.generic.edit import CreateView, UpdateView
 from main_app.dependencies import checkMethod, checkProperty
 from .models import *
 from django.http import HttpResponse, FileResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+import os
+import tempfile
 
 # checkComponent signature
 # checkComponent(component, data_structure, on_success, on_failure)
@@ -31,13 +35,22 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+
 class StructureList(ListView):
     model = Data_Structure
 
 
-class StructureCreate(CreateView):
+# def structures_index(request):
+#   # This reads ALL structures, not just the logged in user's structures
+#   structures = Data_Structure.objects.all()
+#   public_structures = Data_Structure.objects.filter(user=request.user)
+#   return render(request, 'structures/index.html', { 'structures': structures })
+
+
+class StructureCreate(LoginRequiredMixin,CreateView):
   model = Data_Structure
   fields = '__all__'
+	
 
 class StructureUpdate(UpdateView):
   model = Data_Structure
@@ -53,17 +66,19 @@ class StructureDelete(DeleteView):
     model = Data_Structure
     success_url = '/structures/'
 
-
 # stubbed detailed
 def structure_detail(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     py = ds.__get_py__()
     js = ds.__get_js__()
-    print(ds)
+    methods = ds.methods.all()
+    props = ds.properties.all()
     return render(request, 'detail_test.html', {
         'ds':ds,
         'py': py,
-        'js': js
+        'js': js,
+        'methods': methods,
+        'props' : props
     })
 
 
@@ -91,7 +106,6 @@ def structure_download(request, data_structures_id):
     response = HttpResponse(js_data, content_type='application/javascript') 
     response['Content-Disposition'] = "attachment; filename='somejs.js'"
     return FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
-
 
 class Ds_Update(UpdateView):
     model = Data_Structure
