@@ -91,28 +91,13 @@ def structure_download(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     py = ds.__get_py__()
+    
+    js_data = open(f'{ds.name}.js', 'w+')
     file_data = js
-    try:
-        js_data = open(f'{ds.name}.js', 'w+')
-        js_data.write(file_data)
-    finally:
-        js_data.close()
-        # os.remove('/' +)
-
-    # response = HttpResponse(js_data, content_type='application/javascript') 
-    # response['Content-Length'] = os.path.getsize(file_data) 
-    response = FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
-        # response['Content-Disposition'] = "attachment; filename='somejs.js'"
-    return response
-
-    # with file_data(delete=True) as output:
-    #     js_data = open(f'{ds.name}.js', 'w+')
-    #     js_data.write(file_data)
-    #     response = HttpResponse(js_data, content_type='application/javascript') 
-    #     response['Content-Disposition'] = "attachment; filename='somejs.js'"
-    #     # response['Content-Length'] = os.path.getsize(file_data) 
-    #     response = FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=False, filename='somejs.js')
-    #     return response
+    js_data.write(file_data)
+    response = HttpResponse(js_data, content_type='application/javascript') 
+    response['Content-Disposition'] = "attachment; filename='somejs.js'"
+    return FileResponse(open(f'{ds.name}.js', 'rb'), as_attachment=True, filename='somejs.js')
 
 
 def send_file(response):
