@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
@@ -16,7 +15,7 @@
     <form action="" method="post">
         <!-- Django requires the following for security purposes -->
         {% csrf_token %}
-            <!-- {{ form|crispy }} -->
+      
             {{ form.name|as_crispy_field }}
             {{ form.description|as_crispy_field }}
             {{ form.element|as_crispy_field }}
@@ -42,7 +41,6 @@
               </div>
             </div>
 
-            {{ form.user|as_crispy_field }}
     {% if object %}
         <button class='btn color-3' type='submit'>Update Structure</button>
     {% else %}
