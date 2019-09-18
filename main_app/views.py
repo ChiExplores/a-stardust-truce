@@ -58,6 +58,7 @@ def structure_update(request, data_structures_id):
     return render(request, 'main_app/data_structure_form.html', {
         'name': ds.name, 
         'properties': ds.properties.all(), 
+        'element': ds.element,
         'valid_properties': ds.__get_valid_properties__(), 
         'methods': ds.methods.all(),
         'valid_methods': ds.__get_valid_methods__()
