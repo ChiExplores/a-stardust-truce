@@ -10,9 +10,6 @@ from main_app.dependencies import checkMethod, checkProperty
 from .models import *
 import tempfile
 
-# checkComponent signature
-# checkComponent(component, data_structure, on_success, on_failure)
-
 # Account Functionality
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm

@@ -3,7 +3,7 @@ from . import views
 #  /submit path suffix allows for recreation of data_structure_form through entire create/update process
 urlpatterns = [
 	path('', views.home, name='home'),
-	path('about/',views.home, name='home'), #not sure if we need this one?
+	path('about/',views.home, name='home'), 
 	path('structures/index', views.structure_index, name='user_structures'),
 	path('structures/<int:data_structures_id>/', views.structure_info, name='info'),
 	path('structures/<int:data_structures_id>/update/', views.structure_update, name = 'update'),
