@@ -14,7 +14,6 @@ import tempfile
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
-# List of Views
 def home(request):
     return render(request, './main_app/home.html')
 

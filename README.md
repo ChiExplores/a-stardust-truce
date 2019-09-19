@@ -1,15 +1,14 @@
-## Welcome to GitHub Pages
+## A Stardust Truce
 
-You can use the [editor on GitHub](https://github.com/Chi37/a-stardust-truce/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+[Make your structures here](https://astardusttruce.herokuapp.com/)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+[Github](https://github.com/Chi37/a-stardust-truce) 
 
-### Markdown
+### Created by Jon, Sorrell, Chi 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
 ```markdown
-Syntax highlighted code block
+
 
 # Header 1
 ## Header 2

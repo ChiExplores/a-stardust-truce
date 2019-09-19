@@ -23,7 +23,6 @@ class Setup_Class(TestCase):
         self.assertTrue(response.context['user'].is_autheticated)
 
 
-
 class UserPost(TestCase):
   @classmethod
   def setUpClass(self):
