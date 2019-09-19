@@ -26,7 +26,15 @@ dependencies = {
         'list-is-empty': {
             element: ('single-link-node', 'double-link-list-node',),
             property: all_properties
-        }
+        },
+        'list-enqueue': {
+            element: {'single-link-node', 'double-link-list-node',},
+            property: {'list-tail',}
+        },
+        'list-dequeue': {
+            element: {'single-link-node', 'double-link-list-node',},
+            property: {'list-head',}
+        },
     }
 }
 
