@@ -51,10 +51,18 @@ class StructureList(ListView):
 class StructureCreate(LoginRequiredMixin,CreateView):
   model = Data_Structure
   fields = '__all__'
+
+def structure_create(request):
+    return render(request, 'main_app/data_structure_form.html', {
+        'new_form': True,
+        'name': None, 
+        'description': None,
+        'elements': Element.objects.all(), 
+    })
+
 	
 def structure_update(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
-    print(ds.__get_valid_methods__())
     return render(request, 'main_app/data_structure_form.html', {
         'new_form': not bool(ds),
         'name': ds.name, 
@@ -64,7 +72,7 @@ def structure_update(request, data_structures_id):
         'valid_properties': ds.__get_valid_properties__(), 
         'methods': ds.methods.all(),
         'valid_methods': ds.__get_valid_methods__()
-        })
+    })
         
 def structure_update_submit(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
