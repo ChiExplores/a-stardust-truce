@@ -72,19 +72,12 @@ def structure_update_submit(request, data_structures_id):
     try:
         ds.name = new['name']
         ds.description = new['description']
-        print(new)
-        print(new['properties'])
-        print(new['methods'])
-        print(Property.objects.filter(id__in=new['properties']))
-        ds.properties.set(Property.objects.filter(id__in=new['properties']))
-        ds.methods.set(Method.objects.filter(id__in=new['methods']))
+        ds.properties.set(Property.objects.filter(id__in=new.getlist('properties')))
+        ds.methods.set(Method.objects.filter(id__in=new.getlist('methods')))
         ds.save()
-        print(ds.properties.all())
-        # save
-        # redirect
         return redirect(ds.get_absolute_url())
     except:
-        return redirect(reverse('update'))
+        return redirect(f'/structures/{ds.id}/update')
 
 class StructureUpdate(LoginRequiredMixin,UpdateView):
     model = Data_Structure
