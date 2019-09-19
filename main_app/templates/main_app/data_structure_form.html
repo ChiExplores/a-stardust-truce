@@ -43,35 +43,41 @@
               </label>
               <div class="">
                 <select name="element" class="select form-control is-invalid" 
-                  required="" id="id_element" {%if new_form == False%}disabled=""{%endif%}
+                  required="" id="id_element" {% if new_form == False %}disabled=""{% endif %}
                 >
-                <!-- TODO: add all elements on create view -->
-                  <option value="{{element.id}}">{{element}}</option>
+                  {% if new_form %}
+                    {% for element in elements %}
+                      <option value="{{element.id}}">{{element}}</option>
+                    {% endfor %}
+                  {% else %}
+                    <option value="{{element.id}}">{{element}}</option>
+                  {% endif %}
                 </select>
                 <p id="error_1_id_element" class="invalid-feedback"><strong>This field is required.</strong></p>
               </div>
             </div>
-
-            <div id="div_id_properties" class="form-group"> 
-              <label for="id_properties" class="col-form-label ">Properties</label> 
-              <div class=""> 
-                <select name="properties" class="selectmultiple form-control" id="id_properties" multiple=""> 
-                  {% for valid_property in valid_properties %}
-                        <option value="{{valid_property.id}}" {% if valid_property in properties %}selected=""{% endif %}>{{valid_property.name}}</option> 
-                  {% endfor %}
-                </select>
+            {% if not new_form %}
+              <div id="div_id_properties" class="form-group"> 
+                <label for="id_properties" class="col-form-label ">Properties</label> 
+                <div class=""> 
+                  <select name="properties" class="selectmultiple form-control" id="id_properties" multiple=""> 
+                    {% for valid_property in valid_properties %}
+                          <option value="{{valid_property.id}}" {% if valid_property in properties %}selected=""{% endif %}>{{valid_property.name}}</option> 
+                    {% endfor %}
+                  </select>
+                </div>
               </div>
-            </div>
-            <div id="div_id_methods" class="form-group">
-              <label for="id_methods" class="col-form-label ">Methods</label> 
-              <div class="">
-                <select name="methods" class="selectmultiple form-control" id="id_methods" multiple="">
-                  {% for method in methods %}
-                    <option value="{{method.id}}" selected="">{{method.name}}</option>
-                  {% endfor %}
-                </select>
+              <div id="div_id_methods" class="form-group">
+                <label for="id_methods" class="col-form-label ">Methods</label> 
+                <div class="">
+                  <select name="methods" class="selectmultiple form-control" id="id_methods" multiple="">
+                    {% for valid_method in valid_methods %}
+                      <option value="{{valid_method.id}}" {% if valid_method in methods %}selected=""{% endif %}>{{valid_method.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
               </div>
-            </div>
+            {% endif %}
 
     {% if new_form %}
         <button class='btn color-3' type='submit'>Create Structure</button>

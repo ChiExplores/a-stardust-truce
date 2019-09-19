@@ -3,6 +3,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 from django.urls import reverse
 from main_app.dependencies import checkMethod, checkProperty, all_properties, all_methods
+import re
 
 # checkComponent signature
 # checkComponent(component, data_structure, on_success, on_failure)
@@ -98,10 +99,11 @@ class Data_Structure(models.Model):
         return f'{self.user.username}\'s {self.name}'
 
     def __get_js__(self):
+        class_name = re.sub('\W', '', self.name)
         properties = self.properties.all()
         methods = self.methods.all()
         js = self.element.code_block.javascript + f'''
-const {self.name} = _ => {{
+const {class_name} = _ => {{
   let obj = {{}}'''
         for property in properties:
             js += '\n' + property.code_block.javascript
@@ -113,10 +115,11 @@ const {self.name} = _ => {{
         return js
 
     def __get_py__(self):
+        class_name = re.sub('\W', '', self.name)
         properties = self.properties.all()
         methods = self.methods.all()
         py = self.element.code_block.python + f'''
-class {self.name}:
+class {class_name}:
     def __init(self):'''
         for property in properties:
             py += '\n\t' + property.code_block.python
@@ -136,12 +139,10 @@ class {self.name}:
         element = self.element.name
         properties = self.properties.all()
         valid_methods = []
-        print(self.properties)
         for method in all_methods:
             for property in properties:
-                if checkMethod(method, element, property):
+                if checkMethod(method, element, property.name):
                     valid_methods.append(method)
-        print(valid_methods)
         return Method.objects.filter(name__in=valid_methods)
 
     class Meta:
