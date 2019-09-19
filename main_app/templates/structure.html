@@ -16,22 +16,23 @@
 
             <h1>{{ds}}</h1>
             <hr>
-            <h4>Description: {{ds.description}}</h4>
-            <h5>Elements:</h5><br>
-            {{ds.element}}<br>
+            <h4 class='code-display'>Description:</h4>
+            {{ds.description}}<hr>
+            <h5 class='code-display'>Elements:</h5>
+            <u>{{ds.element}}</u><br>
             {{ds.element.resource.description}}<br>
             <img class='res_img' src="{{ds.element.resource.img_url}}" alt="{{prop.resource.name}}">
             <hr>
-            <h5>Properties:</h5><br>
+            <h5 class='code-display'>Properties:</h5><br>
                 {% for prop in props %}
-                {{ prop.name }}<br>
+                <u>{{ prop.name }}</u><br>
                 {{ prop.resource.description }}<br>
                 <img class='res_img' src="{{prop.resource.img_url}}" alt="{{prop.resource.name}}"><br>
                 {% endfor %}
             <hr>
-            <h5>Methods:</h5><br>
+            <h5 class='code-display'>Methods:</h5><br>
                 {% for method in methods %}
-                {{ method.name }}<br>
+                <u>{{ method.name }}</u><br>
                 {{method.resource.description}}<br>
                 <img class='res_img' src="{{method.resource.img_url}}" alt="{{prop.resource.name}}"><br>
                 <br>
