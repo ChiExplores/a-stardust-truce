@@ -50,15 +50,7 @@ def structure_index(request):
       'is_paginated': is_paginated 
       })
 
-<<<<<<< HEAD
-
-class StructureCreate(LoginRequiredMixin,CreateView):
-  model = DataStructure
-  fields = '__all__'
-
-=======
 @login_required
->>>>>>> 09d0c47f709002c388b59a351c2207333156e619
 def structure_create(request):
     return render(request, 'main_app/data_structure_form.html', {
         'new_form': True,
@@ -149,32 +141,10 @@ def structure_methods_submit(request, data_structures_id):
     except:
         return redirect(f'/structures/{ds.id}/methods')
 
-<<<<<<< HEAD
-class StructureDelete(DeleteView):
+class StructureDelete(LoginRequiredMixin, DeleteView):
     model = DataStructure
     success_url = '/structures/'
 
-# stubbed detailed
-def structure_detail(request, data_structures_id):
-    ds = DataStructure.objects.get(id = data_structures_id)
-    py = ds.__get_py__()
-    js = ds.__get_js__()
-    methods = ds.methods.all()
-    props = ds.properties.all()
-    return render(request, 'detail_test.html', {
-        'ds':ds,
-        'py': py,
-        'js': js,
-        'methods': methods,
-        'props' : props
-    })
-
-=======
-class StructureDelete(LoginRequiredMixin, DeleteView):
-    model = Data_Structure
-    success_url = '/structures/'
-
->>>>>>> 09d0c47f709002c388b59a351c2207333156e619
 def structure_info(request, data_structures_id):
     ds = DataStructure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
