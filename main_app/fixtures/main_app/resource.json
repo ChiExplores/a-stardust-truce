@@ -2,8 +2,8 @@
   "model": "main_app.resource",
   "pk": 1,
   "fields": {
-    "name": "single-link-node",
-    "description": "This is a node that contains one reference point to another node in memory",
+    "name": "single_link_node",
+    "description": "A single link node is a collection of data which also contains one reference point to another node in memory.",
     "img_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Single_node1.jpg"
   }
 }, {
@@ -11,7 +11,7 @@
   "pk": 2,
   "fields": {
     "name": "list-head",
-    "description": "The first element in a linked list",
+    "description": "The head of a list is a property that contains a reference to a piece of data that is to be interpreted as the beginning of that list.",
     "img_url": "https://media.geeksforgeeks.org/wp-content/cdn-uploads/gq/2013/03/Linkedlist.png"
   }
 }, {
@@ -27,23 +27,23 @@
   "pk": 4,
   "fields": {
     "name": "list-push",
-    "description": "Add element to end of list",
-    "img_url": "https://picsum.photos/id/605/100/100"
+    "description": "Push is a method which adds a node to the end, or tail, of a linked list",
+    "img_url": "http://pages.cs.wisc.edu/~paton/readings/Old/fall01/STACKS-AND-QUEUES-FIGURES/ll-push.gif"
   }
 }, {
   "model": "main_app.resource",
   "pk": 5,
   "fields": {
     "name": "list-pop",
-    "description": "list-pop description",
-    "img_url": "https://picsum.photos/id/605/100/100"
+    "description": "Pop is a method which removes the first, or head, item from a linked list and returns it's value.",
+    "img_url": "http://pages.cs.wisc.edu/~vernon/cs367/notes/STACKS-AND-QUEUES-FIGURES/ll-pop.gif"
   }
 }, {
   "model": "main_app.resource",
   "pk": 6,
   "fields": {
     "name": "list-peek",
-    "description": "See the value of the head element of a list without removing it from the list",
+    "description": "Peek is a method that returns the value of the front, or head, element of a list without removing it from the list",
     "img_url": "https://picsum.photos/id/605/100/100"
   }
 }, {
@@ -51,7 +51,31 @@
   "pk": 7,
   "fields": {
     "name": "list-is-empty",
-    "description": "Determines whether linked list has any value bearing elements and returns a boolean",
-    "img_url": "https://picsum.photos/id/605/100/100"
+    "description": "Is Empty is a method which determines whether a linked list has any value bearing elements and returns a boolean.",
+    "img_url": "https://www.w3resource.com/w3r_images/Python-data-type-list-excercise-8.png"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 8,
+  "fields": {
+    "name": "list-tail",
+    "description": "The tail of a list is a property that contains a pointer to some piece of data that should be treated as the last item in that list.",
+    "img_url": "https://www.cpp.edu/~ftang/courses/CS240/lectures/img/linked1.gif"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 9,
+  "fields": {
+    "name": "list-enqueue",
+    "description": "Enqueue adds a new element to the back, or tail, of a First In First Out list.",
+    "img_url": "https://adnan-alam.github.io/images/queue.png"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 10,
+  "fields": {
+    "name": "list-dequeue",
+    "description": "Dequeue removes an element from the front, or head, of a First In First Out list.",
+    "img_url": "https://adnan-alam.github.io/images/queue.png"
   }
 }]

@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.http import HttpRequest
 from django.urls import reverse
-from main_app.models import Data_Structure
+from main_app.models import DataStructure
 
 
 class ViewTest(TestCase):
@@ -46,11 +46,11 @@ def test_addAccount(self):
 
 class DSTests(TestCase):
   def setUp(self):
-      ds = Data_Structure.objects.get(id=1)
+      ds = DataStructure.objects.get(id=1)
       print(ds)
 
   def test_des_content(self):
-      ds = Data_Structure.objects.get(id=1)
+      ds = DataStructure.objects.get(id=1)
       expected_object_name = f'{ds.name}'
       self.assertEquals(expected_object_name, 'More Arrays')
 

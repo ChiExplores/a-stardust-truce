@@ -34,12 +34,12 @@ def signup(request):
 
 
 class StructureList(ListView):
-    model = Data_Structure
+    model = DataStructure
     paginate_by = 6
 
 @login_required()
 def structure_index(request):
-  structures_list = Data_Structure.objects.filter(user = request.user.id)
+  structures_list = DataStructure.objects.filter(user = request.user.id)
   paginator = Paginator(structures_list, 6)
   page = request.GET.get('page')
   is_paginated = paginator.num_pages > 1
@@ -74,7 +74,7 @@ def structure_create_submit(request):
 
 @login_required	
 def structure_update(request, data_structures_id):
-    ds = Data_Structure.objects.get(id = data_structures_id)
+    ds = DataStructure.objects.get(id = data_structures_id)
     return render(request, 'main_app/data_structure_form.html', {
         'new_form': not bool(ds),
         'methods_update': False,
@@ -87,7 +87,7 @@ def structure_update(request, data_structures_id):
 
 @login_required
 def structure_update_submit(request, data_structures_id):
-    ds = Data_Structure.objects.get(id = data_structures_id)
+    ds = DataStructure.objects.get(id = data_structures_id)
     new = request.POST
     try:
         ds.name = new['name']
@@ -101,7 +101,7 @@ def structure_update_submit(request, data_structures_id):
 
 @login_required
 def structure_methods(request, data_structures_id):
-    ds = Data_Structure.objects.get(id = data_structures_id)
+    ds = DataStructure.objects.get(id = data_structures_id)
     return render(request, 'main_app/data_structure_form.html', {
         'new_form': not bool(ds),
         'methods_update': True,
@@ -116,7 +116,7 @@ def structure_methods(request, data_structures_id):
 
 @login_required
 def structure_updaterrr(request, data_structures_id):
-    ds = Data_Structure.objects.get(id = data_structures_id)
+    ds = DataStructure.objects.get(id = data_structures_id)
     return render(request, 'main_app/edit.html', {
         'new_form': not bool(ds),
         'name': ds.name, 
@@ -130,7 +130,7 @@ def structure_updaterrr(request, data_structures_id):
         
 @login_required
 def structure_methods_submit(request, data_structures_id):
-    ds = Data_Structure.objects.get(id = data_structures_id)
+    ds = DataStructure.objects.get(id = data_structures_id)
     new = request.POST
     try:
         ds.name = new['name']
@@ -142,11 +142,11 @@ def structure_methods_submit(request, data_structures_id):
         return redirect(f'/structures/{ds.id}/methods')
 
 class StructureDelete(LoginRequiredMixin, DeleteView):
-    model = Data_Structure
+    model = DataStructure
     success_url = '/structures/'
 
 def structure_info(request, data_structures_id):
-    ds = Data_Structure.objects.get(id = data_structures_id)
+    ds = DataStructure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     py = ds.__get_py__()
     methods = ds.methods.all()
@@ -161,7 +161,7 @@ def structure_info(request, data_structures_id):
     })
 
 def structure_download_js(request, data_structures_id):
-    ds = Data_Structure.objects.get(id = data_structures_id)
+    ds = DataStructure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     filename = f'serve_code/{ds.user.username}.txt'
     js_data = open(filename, 'w+')
@@ -170,7 +170,7 @@ def structure_download_js(request, data_structures_id):
     return FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.js')
 
 def structure_download_py(request, data_structures_id):
-    ds = Data_Structure.objects.get(id = data_structures_id)
+    ds = DataStructure.objects.get(id = data_structures_id)
     py = ds.__get_py__()
     filename = f'serve_code/{ds.user.username}.txt'
     py_data = open(filename, 'w+')
@@ -179,7 +179,7 @@ def structure_download_py(request, data_structures_id):
     return FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.py')
 
 def structure_info_testing(request, data_structures_id):
-    ds = Data_Structure.objects.get(id = data_structures_id)
+    ds = DataStructure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     py = ds.__get_py__()
     methods = ds.methods.all()
