@@ -59,8 +59,16 @@ def structure_index(request):
   structures_list = Data_Structure.objects.filter(user = request.user.id)
   paginator = Paginator(structures_list, 6)
   page = request.GET.get('page')
+
+  is_paginated = paginator.num_pages > 1
+#   print(is_paged)
   structures = paginator.get_page(page)
-  return render(request, './main_app/index.html', {'page_obj' : structures})
+  return render(request, './main_app/index.html', {
+      'page_obj' : structures,
+      'paginator': paginator,
+      'is_paginated': is_paginated
+
+      })
 
 
 class StructureCreate(LoginRequiredMixin,CreateView):
