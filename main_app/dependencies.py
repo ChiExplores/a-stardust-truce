@@ -2,7 +2,7 @@ element = 'element'
 property = 'property'
 all_elements = ('single-link-node','double-link-list-node')
 all_properties = ('list-head','list-size', 'list-tail')
-all_methods = ('list-push','list-pop','list-peek','list-is-empty')
+all_methods = ('list-push','list-pop','list-peek','list-is-empty', 'list-enqueue', 'list-dequeue')
 
 dependencies = {
     'properties': {
