@@ -42,7 +42,6 @@ def test_addAccount(self):
 class DSTests(TestCase):
   def setUp(self):
       ds = DataStructure.objects.get(id=1)
-      print(ds)
 
   def test_des_content(self):
       ds = DataStructure.objects.get(id=1)
