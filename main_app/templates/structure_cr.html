@@ -1,0 +1,53 @@
+<div class="card cardflip d-flex" >
+    
+    <div class="card-face card-face-front">
+
+        {% csrf_token %}
+            <div id="div_id_name" class="form-group">
+                <label for="id_name" class="col-form-label  requiredField">
+                    Name<span class="asteriskField">*</span>
+                </label>
+            <div>
+                <input type="text" name="name" value="{{name}}" maxlength="50" class="textinput textInput form-control form-control" required="" id="id_name">
+            </div>
+            </div>
+            <div id="div_id_description" class="form-group">
+            <label for="id_description" class="col-form-label ">
+                Description
+            </label>
+            <div>
+                <textarea name="description" cols="40" rows="8" maxlength="255" 
+                    class="textarea form-control" id="id_description">
+                    {{description}}</textarea>
+            </div>
+            </div>
+
+        <button class="button btn color-3 flip-to-rear">View Code</button>
+
+        {% if request.user == ds.user %}
+            <a class="btn color-3" href="/structures/{{ds.id}}/update"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046766.png"></a>
+            <a class="btn color-3" href="/structures/{{ds.id}}/delete"><img class="icon-xs" src="https://image.flaticon.com/icons/svg/1370/1370550.svg"></a>
+        {% endif %}
+      
+    </div>
+    
+
+
+    <div class="card-face card-face-back">
+            
+            <div class="card">
+                <h4 class="my-auto">JavaScript:</h4>
+                <pre class="mx-auto"><code><p class="code-display" style="text-align: left;">{{js}}</p></code></pre>
+                <a href='/structures/{{ds.id}}/js' class="my-auto"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046801.png"></a>
+                
+                <h4 class="my-auto">Python: </h4>
+                <pre class="mx-auto"><code><p class="code-display" style="text-align: left;">{{py}}</p></code></pre>
+                <a href='/structures/{{ds.id}}/py' class="my-auto"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046801.png"></a>
+
+            </div>
+
+        <button class="button btn color-3 btn-rear">View Structure</button>
+    </div>
+
+
+</div>

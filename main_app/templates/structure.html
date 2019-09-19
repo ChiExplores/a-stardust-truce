@@ -1,51 +1,72 @@
-<div class="card cardflip d-flex" >
+<div class="card cardflip d-flex mx-auto" >
     
     <div class="card-face card-face-front">
-        <p class="text-center">Front of Card</p> 
-        <h1>{{ds}}</h1>
-        <h2>DS Name: {{ds.name}}</h2>
-        <p>DS ID (for testing): {{ ds.id }}</p>
-        <hr>
-        <h4>Description: {{ds.description}}</h4>
-        <h5>Elements: {{ds.element}}</h5>
 
-        <h5>Properties: 
-            {% for prop in props %}
-            {{ prop.name }}
-            {% endfor %}
-        </h5>
+        <div>
+            <img class="cardz__image" src="https://assets2.ello.co/uploads/asset/attachment/5923807/ello-optimized-33f3f778.gif" style="border-radius: 25px;">
+        </div>
 
-        <h5>Methods: 
-            {% for method in methods %}
-            {{ method.name }}
-            {% endfor %}
-        </h5>
+        <svg class="cardz__svg" viewBox="0 0 800 500">
+            <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#505050"/>
+            <path class="cardz__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent"/>
+        </svg>
 
-        <h5>Created By: {{ds.user}}</h5>
-        <button class="button btn color-3 flip-to-rear">View Code</button>
+        <p class="text-center">Front of Card</p>
+        <div class="cardz__content">
+
+            <h1>{{ds}}</h1>
+            <h2>DS Name: {{ds.name}}</h2>
+            <p>DS ID (for testing): {{ ds.id }}</p>
+            <hr>
+            <h4>Description: {{ds.description}}</h4>
+            <h5>Elements: {{ds.element}}</h5>
+    
+            <h5>Properties: 
+                {% for prop in props %}
+                {{ prop.name }}
+                {% endfor %}
+            </h5>
+    
+            <h5>Methods: 
+                {% for method in methods %}
+                {{ method.name }}
+                {% endfor %}
+            </h5>
+    
+            <h5>Created By: {{ds.user}}</h5>
+
+        </div>
 
         {% if request.user == ds.user %}
-            <a class="btn color-3" href="/structures/{{ds.id}}/update"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046766.png"></a>
+        <a class="btn color-3" href="/structures/{{ds.id}}/update"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046766.png"></a>
+        {% endif %}
+
+        <button class="button btn color-3 flip-to-rear"><img class="icon-m" src="https://image.flaticon.com/icons/svg/984/984145.svg"></button>
+
+        {% if request.user == ds.user %}
             <a class="btn color-3" href="/structures/{{ds.id}}/delete"><img class="icon-xs" src="https://image.flaticon.com/icons/svg/1370/1370550.svg"></a>
         {% endif %}
       
     </div>
-    
-    <div class="card-face card-face-back">
-            
-            <div class="card">
-                <h4 class="my-auto">JavaScript:</h4>
-                <pre class="mx-auto"><code><p class="code-display" style="text-align: left;">{{js}}</p></code></pre>
-                <a href='/structures/{{ds.id}}/js' class="my-auto"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046801.png"></a>
-                
-                <h4 class="my-auto">Python: </h4>
-                <pre class="mx-auto"><code><p class="code-display" style="text-align: left;">{{py}}</p></code></pre>
-                <a href='/structures/{{ds.id}}/py' class="my-auto"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046801.png"></a>
 
+    <div class="card-face card-face-back flex-wrap">
+            
+            <div class="card col">
+                <h4 class="card-title my-auto">JavaScript:</h4>
+                <pre class="card-text mx-auto"><code><p class="code-display" style="text-align: left;">{{js}}</p></code></pre>
+                <a href='/structures/{{ds.id}}/js' class="card-footer my-auto"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046801.png"></a>
             </div>
 
-        <button class="button btn color-3 btn-rear">View Structure</button>
+            <div class="card col">
+                <h4 class="card-title my-auto">Python: </h4>
+                <pre class="card-text mx-auto"><code><p class="code-display" style="text-align: left;">{{py}}</p></code></pre>
+                <a href='/structures/{{ds.id}}/py' class="card-footer my-auto"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046801.png"></a>
+            </div>
+                
+            <button class="button btn color-3 btn-rear">View Structure</button>
+
     </div>
 
-
+    
+    
 </div>

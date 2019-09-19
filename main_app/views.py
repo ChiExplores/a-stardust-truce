@@ -38,7 +38,7 @@ def signup(request):
 
 class StructureList(ListView):
     model = Data_Structure
-    paginate_by = 8
+    paginate_by = 6
 
 
 # class UserStrucList(LoginRequiredMixin, StructureList):
@@ -57,7 +57,7 @@ class StructureList(ListView):
 @login_required()
 def structure_index(request):
   structures_list = Data_Structure.objects.filter(user = request.user.id)
-  paginator = Paginator(structures_list, 8)
+  paginator = Paginator(structures_list, 6)
   page = request.GET.get('page')
   structures = paginator.get_page(page)
   return render(request, './main_app/index.html', {'page_obj' : structures})
@@ -119,7 +119,20 @@ def structure_methods(request, data_structures_id):
         'valid_properties': ds.__get_valid_properties__(), 
         'methods': ds.methods.all(),
         'valid_methods': ds.__get_valid_methods__()
-    })
+        })
+
+def structure_updaterrr(request, data_structures_id):
+    ds = Data_Structure.objects.get(id = data_structures_id)
+    return render(request, 'main_app/edit.html', {
+        'new_form': not bool(ds),
+        'name': ds.name, 
+        'description': ds.description,
+        'element': ds.element,
+        'properties': ds.properties.all(), 
+        'valid_properties': ds.__get_valid_properties__(), 
+        'methods': ds.methods.all(),
+        'valid_methods': ds.__get_valid_methods__()
+        })
         
 def structure_methods_submit(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
@@ -186,3 +199,19 @@ def structure_download_py(request, data_structures_id):
     file_data = py
     py_data.write(file_data)
     return FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.py')
+
+def structure_info_testing(request, data_structures_id):
+    ds = Data_Structure.objects.get(id = data_structures_id)
+    js = ds.__get_js__()
+    py = ds.__get_py__()
+    methods = ds.methods.all()
+    props = ds.properties.all()
+
+    return render(request, './main_app/info_testing.html', {
+        'ds': ds,
+        'js': js,
+        'py': py,
+        'request.user': request.user,
+        'methods': methods,
+        'props' : props
+    })

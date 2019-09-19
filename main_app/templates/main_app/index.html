@@ -2,26 +2,33 @@
 
 {% block content %}
     
-    <div class="row mx-auto justify-content-center">
+<div class="row mx-auto justify-content-center">
+    
+    {% for structure in page_obj %}
+    <div class="col-sm-5 cardx">
+        <div class="abstract text-center text-white">
+            <h5 class="card-title">{{ structure.name }}</h5>
+        </div>
         
-        {% for structure in page_obj %}
-        <div class="col-sm-5">
-            <div class="index-cards">
-                <div class="card-body text-center">
-                    <h5 class="card-title">{{ structure.name }}</h5>
-                    <div class="description-text">
-                        {% if structure.description %}
-                        <p class="card-text">{{ structure.description }}</p>
-                        {% endif %}
-                    </div>
-                    <a href="{%url 'info' structure.id %}" class="btn color-3">View</a>
-                </div>
+        <div class="details description-text">
+            <div class="details__inner text-center">
+                {% if structure.description %}
+                    <p class="card-text text-white">{{ structure.description }}</p>
+                {% endif %}
+                <a href="{%url 'info' structure.id %}" class="btn color-3">View</a>
             </div>
         </div>
-        {% endfor %}
-        
-<div class="pagination">
-    <span class="step-links">
+    </div>
+    {% endfor %}
+
+    <div class="col-sm-6 text-center">
+        <a href="{%url 'create' %}" class="btn color-3">Create</a>
+    </div>
+    
+    </div>
+{% comment %}
+<!-- <div class="pagination">
+    <span class="page-item">
         {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; first</a>
             <a href="?page={{ page_obj.previous_page_number }}">previous</a>
@@ -30,14 +37,73 @@
         <span class="current">
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
         </span>
-
+        
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        
         {% endif %}
     </span>
-</div> 
+</div> -->
+{% endcomment %}
+
+<div class="page-nav mx-auto justify-content-center">
+     
+    <nav aria-label="page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link pgbtn color-3" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="disabled">
+                <a class="page-link pgbtn color-3" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            {% endif %}
+            
+            {% comment %}
+            <!-- {% for structure in Paginator.page_range %}
+                {% if page_obj.number == structure %}
+                <li class="page-item">
+                    <a class="page-link pgbtn color-3 active">
+                        {{ structure }}
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link pgbtn color-3" href="?page={{ structure }}">
+                        {{ structure }}
+                    </a>
+                </li>
+                {% endif %}
+            {% endfor %} -->
+            {% endcomment %}
+            
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link pgbtn color-3" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link pgbtn color-3" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+        
+    </div>
 {% comment %} {% include '../pagination.html' %} {% endcomment %}
 
 {% endblock %}

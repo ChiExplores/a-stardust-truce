@@ -1,0 +1,9 @@
+const Node = (val, next) => {
+  let node = {}
+  node.val = val, node.next = next;
+  return node;
+}
+const singlelinkliststack = _ => {
+  let obj = {}
+  return obj
+}
