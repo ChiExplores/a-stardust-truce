@@ -1,4 +1,140 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<main class="wrapper">
+    
+    <section class="section parallax bg1">
+        <div class="text-center">
+            <h1>A Stardust Truce!</h1>
+            <h3>Guiding you to a <span class="code-display">Better Understanding</span> of Data Structures</h3>
+        </div>
+    </section>
+
+    <section class="section1 static">
+        <div class="col-sm-3 text-center">
+            <h1 class="code-display" >The Dilemna</h1>
+        </div>
+
+        <div class="col-sm-8 text-center">
+            <h3 style="opacity: 0.7;">Computer Science topics such as data structures can be difficult for even expert coders to   understand intuitively.</h3>
+            <h3>This can lead to unexpected bugs, inefficient code, and poor interview performance. </h3>
+        </div>
+    </section>
+
+    <section class="section2 parallax">
+        <div class="justify-content-center mx-auto my-auto">
+<pre style="width: 30vw;"><code><p class="code-display">const Node = (val, next) => {
+let node = {}
+node.val = val, node.next = next;
+return node;
+}
+const data_structure = _ => {
+let obj = {}
+// list-push
+obj.push = node => {
+    node = Node(node, obj.head);
+    obj.head = node;
+    if (obj.hasOwnProperty('size')) obj.size++;
+};</p></code></pre>
+        </div>
+        <div class="col-sm-6 text-center">
+            <h3>If this code block makes no sense to you, don't worry!</h3>
+            <h4 class="text-muted">Through creating your own data structure, you'll be able to BLAH</h4>
+        </div>
+    </section>
+
+    <section class="section2 static">
+        <div class="col-sm-8 text-center">
+            <h3 class="text-center">A Stardust Truce seeks to elevate student comprehension of core computer science concepts by providing an interactive utility that allows users to build common data structures from prefabricated code blocks.</h3>
+        </div>
+        <div class="col-sm-3 text-center">
+            <h1 class="code-display">Our Remedy</h1>
+        </div>
+    </section>
+
+    <section class="section2 parallax">
+        <div class="col-sm-3 text-center">
+            <h1 class="code-display">Umm... I can't think of anything?</h1>
+        </div>
+        <div class="col-sm-8 text-center">
+            <h3 class="text-center">PLEASE PUT SOMETHING IN HERE?</h3>
+        </div>
+    </section>
+
+    <section class="section parallax">
+        <div class="col-sm-3 text-center">
+        </div>
+        <div class="col-sm-8 text-center">
+        </div>
+    </section>
+
+
+
+    <section class="section3 parallax">
+        <div class="col-sm-4 text-left">
+            <h1>WHO</h1>
+        </div>
+    </section>
+
+    <section class="section3 parallax">
+        <div class="col-sm-4 text-center">
+            <h1>WE</h1>
+        </div>
+    </section>
+
+    <section class="section3 parallax">
+        <div class="col-sm-4 text-right">
+            <h1 class="code-display">ARE</h1>
+        </div>
+    </section>
+
+
+    <section class="section parallax bg1">
+        <div class="col text-center">
+
+            <div class="card-group"> 
+                
+                <div class="card col-sm-3" style="max-height: 35vh;">
+                    <div class="card-header">
+                        <h3 class="card-title">NAME</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">description?</p>
+                    </div>
+                    <div>
+                        <p class="text-muted">our motto</p>
+                    </div>
+                </div>
+    
+                <div class="card col-sm-3" style="max-height: 35vh;">
+                    <div class="card-header">
+                        <h3 class="card-title">NAME</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">description?</p>
+                    </div>
+                    <div>
+                        <p class="text-muted">our motto</p>
+                    </div>
+                </div>
+    
+                <div class="card col-sm-3" style="max-height: 35vh;">
+                    <div class="card-header">
+                        <h3 class="card-title">NAME</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">description?</p>
+                    </div>
+                    <div>
+                        <p class="text-muted">our motto</p>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
 {% endblock %}
