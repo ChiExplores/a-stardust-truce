@@ -17,7 +17,6 @@ import tempfile
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
-
 # List of Views
 def home(request):
     return render(request, './main_app/home.html')
@@ -41,11 +40,27 @@ class StructureList(ListView):
     model = Data_Structure
     paginate_by = 8
 
-# def structures_index(request):
-#   # This reads ALL structures, not just the logged in user's structures
-#   structures = Data_Structure.objects.all()
-#   public_structures = Data_Structure.objects.filter(user=request.user)
-#   return render(request, 'structures/index.html', { 'structures': structures })
+
+# class UserStrucList(LoginRequiredMixin, StructureList):
+#   template_name = "index.html"
+
+#   def get_context_data(self, **kwargs):
+#     context = super().get_context_data(*kwargs)
+#     context['page_obj'] = self.model.objects.filter(user = self.request.user.id)
+#     dicti = context['page_obj']
+#     print(self.request.user.id)
+#     print(context['page_obj'])
+#     return dicti
+
+
+
+@login_required()
+def structure_index(request):
+  structures_list = Data_Structure.objects.filter(user = request.user.id)
+  paginator = Paginator(structures_list, 8)
+  page = request.GET.get('page')
+  structures = paginator.get_page(page)
+  return render(request, './main_app/index.html', {'page_obj' : structures})
 
 
 class StructureCreate(LoginRequiredMixin,CreateView):
@@ -133,7 +148,6 @@ def structure_detail(request, data_structures_id):
         'methods': methods,
         'props' : props
     })
-
 
 def structure_info(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
