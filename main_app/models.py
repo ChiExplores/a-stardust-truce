@@ -131,8 +131,10 @@ class {class_name}:
         element = self.element.name
         valid_properties = []
         for property in all_properties:
+            print(property)
             if checkProperty(property, element):
                 valid_properties.append(property)
+                print('if')
         return Property.objects.filter(name__in=valid_properties)
 
     def __get_valid_methods__(self):

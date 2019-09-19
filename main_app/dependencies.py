@@ -31,7 +31,7 @@ dependencies = {
 
 # to search for dependencies of property
 def checkProperty(property, element):
-    if element in dependencies['properties'][property]:
+    if 'single_link_node' in dependencies['properties'][property]:
         return True
     else:
         return False
