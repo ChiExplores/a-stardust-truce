@@ -112,7 +112,6 @@ def structure_methods_submit(request, data_structures_id):
     try:
         ds.name = new['name']
         ds.description = new['description']
-        ds.properties.set(Property.objects.filter(id__in=new.getlist('properties')).filter(id__in=ds.__get_valid_properties__()))
         ds.methods.set(Method.objects.filter(id__in=new.getlist('methods')))
         ds.save()
         return redirect(ds.get_absolute_url())
