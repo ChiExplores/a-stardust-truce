@@ -45,15 +45,12 @@ def structure_index(request):
   structures_list = Data_Structure.objects.filter(user = request.user.id)
   paginator = Paginator(structures_list, 6)
   page = request.GET.get('page')
-
   is_paginated = paginator.num_pages > 1
-#   print(is_paged)
   structures = paginator.get_page(page)
   return render(request, './main_app/index.html', {
       'page_obj' : structures,
       'paginator': paginator,
-      'is_paginated': is_paginated
-
+      'is_paginated': is_paginated 
       })
 
 @login_required
@@ -151,34 +148,19 @@ class StructureDelete(LoginRequiredMixin, DeleteView):
     model = Data_Structure
     success_url = '/structures/'
 
-def structure_detail(request, data_structures_id):
-    ds = Data_Structure.objects.get(id = data_structures_id)
-    py = ds.__get_py__()
-    js = ds.__get_js__()
-    methods = ds.methods.all()
-    props = ds.properties.all()
-    return render(request, 'detail_test.html', {
-        'ds':ds,
-        'py': py,
-        'js': js,
-        'methods': methods,
-        'props' : props
-    })
-
 def structure_info(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
     py = ds.__get_py__()
     methods = ds.methods.all()
     props = ds.properties.all()
-
     return render(request, './main_app/info.html', {
         'ds': ds,
         'js': js,
         'py': py,
         'request.user': request.user,
         'methods': methods,
-        'props' : props
+        'props' : props,
     })
 
 def structure_download_js(request, data_structures_id):
@@ -214,4 +196,6 @@ def structure_info_testing(request, data_structures_id):
         'methods': methods,
         'props' : props
     })
+
+
 

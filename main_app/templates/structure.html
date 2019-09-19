@@ -15,23 +15,30 @@
         <div class="cardz__content">
 
             <h1>{{ds}}</h1>
-            <h2>DS Name: {{ds.name}}</h2>
-            <p>DS ID (for testing): {{ ds.id }}</p>
             <hr>
-            <h4>Description: {{ds.description}}</h4>
-            <h5>Elements: {{ds.element}}</h5>
-    
-            <h5>Properties: 
+            <h4>Description: {{ds.description}}
+            <hr>
+            </h4>
+            <h5>Elements: {{ds.element}}</h5><br>
+            {{ds.element.resource.name}}<br>{{ds.element.resource.description}}
+            <img class='res_img' src="{{ds.element.resource.img_url}}" alt="{{prop.resource.name}}">
+            <hr>
+            <h5>Properties:</h5> <br>
                 {% for prop in props %}
                 {{ prop.name }}
+                <br>
+                {{ prop.resource.description }}
+                <br>
+                <img class='res_img' src="{{prop.resource.img_url}}" alt="{{prop.resource.name}}"><br>
                 {% endfor %}
-            </h5>
-    
-            <h5>Methods: 
+            <hr>
+            <h5>Methods:</h5> <br>
                 {% for method in methods %}
-                {{ method.name }}
+                {{ method.name }}<br>
+                {{method.resource.description}}
+                <br>
                 {% endfor %}
-            </h5>
+            
     
             <h5>Created By: {{ds.user}}</h5>
 
