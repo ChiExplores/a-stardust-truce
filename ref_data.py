@@ -2,7 +2,7 @@ class User:
     def __init__(self, name: str):
         self.name = name
 
-class Code_Block:
+class CodeBlock:
     def __init__(self, python: str, javascript: str):
         self.python = python
         self.javascript = javascript
@@ -13,7 +13,7 @@ class Resource:
         self.img_url = img_url
 
 class Element:
-    def __init__(self, name: str, type: str, dimension: int, code_block: Code_Block, resource: Resource):
+    def __init__(self, name: str, type: str, dimension: int, code_block: CodeBlock, resource: Resource):
         # type selected from tuple ('node', 'block')
         self.name = name
         self.type = type
@@ -21,7 +21,7 @@ class Element:
         self.code_block = code_block
         self.resource = resource
 
-class Data_Structure:
+class DataStructure:
     def __init__(self, name: str, element: Element, description: str):
         self.name = name
         self.description = description
@@ -36,7 +36,7 @@ class Data_Structure:
         pass
 
 class Property:
-    def __init__(self, name: str, type: str, code_block: Code_Block, resource: Resource):
+    def __init__(self, name: str, type: str, code_block: CodeBlock, resource: Resource):
         # type selected from tuple ('int', 'str', 'float', 'var')
         self.name = name
         self.type = type
@@ -44,7 +44,7 @@ class Property:
         self.resource = resource
 
 class Method:
-    def __init__(self, name: str, code_block: Code_Block, resource: Resource):
+    def __init__(self, name: str, code_block: CodeBlock, resource: Resource):
         self.name = name
         self.code_block = code_block
         self.resource = resource
@@ -58,7 +58,7 @@ push = Method('Push', None, None) # code_block, resource
 pop = Method('Pop', None, None) # code_block, resource
 peek = Method('Peek', None, None) # code_block, resource
 is_empty = Method('Is Empty', None, None) # code_block, resource
-stack_list = Data_Structure('Stack - List', single_link_node, 'Linked List Implementation of Data Stack')
+stack_list = DataStructure('Stack - List', single_link_node, 'Linked List Implementation of Data Stack')
 
 # dependency tuples for each method and property model eg
 # push.agg_dependency = 'single_link_node', 'double_link_node'

@@ -8,7 +8,7 @@ import re
 # checkComponent signature
 # checkComponent(component, data_structure, on_success, on_failure)
 
-class Code_Block(models.Model):
+class CodeBlock(models.Model):
     name = models.CharField(max_length=50)
     python = models.TextField(max_length=300)
     javascript = models.TextField(max_length=300)
@@ -47,7 +47,7 @@ class Element(models.Model):
         ],
         default=1
     )
-    code_block = models.ForeignKey(Code_Block, on_delete=models.CASCADE)
+    code_block = models.ForeignKey(CodeBlock, on_delete=models.CASCADE)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -70,7 +70,7 @@ class Property(models.Model):
         choices=TYPE_CHOICES,
         default=INTEGER
     )
-    code_block = models.ForeignKey(Code_Block, on_delete=models.CASCADE)
+    code_block = models.ForeignKey(CodeBlock, on_delete=models.CASCADE)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -81,13 +81,13 @@ class Property(models.Model):
 
 class Method(models.Model):
     name = models.CharField(max_length=50)
-    code_block = models.ForeignKey(Code_Block, on_delete=models.CASCADE)
+    code_block = models.ForeignKey(CodeBlock, on_delete=models.CASCADE)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
-class Data_Structure(models.Model):
+class DataStructure(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(max_length=255, blank=True)
     element = models.ForeignKey(Element, on_delete=models.CASCADE)
