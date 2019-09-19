@@ -141,7 +141,7 @@ class {class_name}:
         valid_methods = []
         for method in all_methods:
             for property in properties:
-                if checkMethod(method, element, property):
+                if checkMethod(method, element, property.name):
                     valid_methods.append(method)
         return Method.objects.filter(name__in=valid_methods)
 
