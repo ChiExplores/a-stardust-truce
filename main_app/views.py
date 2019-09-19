@@ -1,12 +1,13 @@
+from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
+from django.http import HttpResponse, FileResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, DeleteView
 from django.views.generic.edit import CreateView, UpdateView
 from main_app.dependencies import checkMethod, checkProperty
 from .models import *
-from django.http import HttpResponse, FileResponse
-from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 import os
 import tempfile
 
@@ -84,7 +85,12 @@ def structure_create(request):
 def structure_create_submit(request):
     new = request.POST
     try:
-        new_ds = Data_Structure(name=new['name'], description=new['description'], element=Element.objects.get(id=new['element']), user=request.user)
+        new_ds = Data_Structure(
+            name=new['name'], 
+            description=new['description'], 
+            element=Element.objects.get(id=new['element']), 
+            user=request.user
+        )
         new_ds.save()
         return redirect(f'/structures/{new_ds.id}/update')
     except:
@@ -108,7 +114,7 @@ def structure_update_submit(request, data_structures_id):
     try:
         ds.name = new['name']
         ds.description = new['description']
-        ds.properties.set(Property.objects.filter(id__in=new.getlist('properties')).filter(id__in=ds.__get_valid_properties__()))
+        ds.properties.set(Property.objects.filter(Q(id__in=new.getlist('properties')) & Q(id__in=ds.__get_valid_properties__())))
         ds.save()
         return redirect(f'/structures/{ds.id}/methods')
     except:
@@ -127,7 +133,7 @@ def structure_methods(request, data_structures_id):
         'valid_properties': ds.__get_valid_properties__(), 
         'methods': ds.methods.all(),
         'valid_methods': ds.__get_valid_methods__()
-        })
+    })
 
 def structure_updaterrr(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
@@ -148,7 +154,7 @@ def structure_methods_submit(request, data_structures_id):
     try:
         ds.name = new['name']
         ds.description = new['description']
-        ds.methods.set(Method.objects.filter(id__in=new.getlist('methods')))
+        ds.methods.set(Method.objects.filter(Q(id__in=new.getlist('methods')) & Q(id__in=ds.__get_valid_methods__())))
         ds.save()
         return redirect(ds.get_absolute_url())
     except:
@@ -192,7 +198,7 @@ def structure_info(request, data_structures_id):
 def structure_download_js(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
-    filename = f'{ds.user.username}.txt'
+    filename = f'serve_code/{ds.user.username}.txt'
     js_data = open(filename, 'w+')
     file_data = js
     js_data.write(file_data)
@@ -201,7 +207,7 @@ def structure_download_js(request, data_structures_id):
 def structure_download_py(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     py = ds.__get_py__()
-    filename = f'{ds.user.username}.txt'
+    filename = f'serve_code/{ds.user.username}.txt'
     py_data = open(filename, 'w+')
     file_data = py
     py_data.write(file_data)
