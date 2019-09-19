@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <div class="row mx-auto justify-content-center">
+        
+        {% for structure in page_obj %}
+        <div class="col-sm-5">
+            <div class="index-cards">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ structure.name }}</h5>
+                    <div class="description-text">
+                        {% if structure.description %}
+                        <p class="card-text">{{ structure.description }}</p>
+                        {% endif %}
+                    </div>
+                    <a href="{%url 'info' structure.id %}" class="btn color-3">View</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            
+        {% endif %}
+    </span>
+</div> 
+{% comment %} {% include '../pagination.html' %} {% endcomment %}
+
+{% endblock %}
+
+
+
+
+
+
