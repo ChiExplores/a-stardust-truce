@@ -76,7 +76,12 @@ def structure_create(request):
 def structure_create_submit(request):
     new = request.POST
     try:
-        new_ds = Data_Structure(name=new['name'], description=new['description'], element=Element.objects.get(id=new['element']), user=request.user)
+        new_ds = Data_Structure(
+            name=new['name'], 
+            description=new['description'], 
+            element=Element.objects.get(id=new['element']), 
+            user=request.user
+        )
         new_ds.save()
         return redirect(f'/structures/{new_ds.id}/update')
     except:
@@ -119,7 +124,7 @@ def structure_methods(request, data_structures_id):
         'valid_properties': ds.__get_valid_properties__(), 
         'methods': ds.methods.all(),
         'valid_methods': ds.__get_valid_methods__()
-        })
+    })
 
 def structure_updaterrr(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
@@ -184,7 +189,7 @@ def structure_info(request, data_structures_id):
 def structure_download_js(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
-    filename = f'{ds.user.username}.txt'
+    filename = f'serve_code/{ds.user.username}.txt'
     js_data = open(filename, 'w+')
     file_data = js
     js_data.write(file_data)
@@ -193,7 +198,7 @@ def structure_download_js(request, data_structures_id):
 def structure_download_py(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     py = ds.__get_py__()
-    filename = f'{ds.user.username}.txt'
+    filename = f'serve_code/{ds.user.username}.txt'
     py_data = open(filename, 'w+')
     file_data = py
     py_data.write(file_data)
