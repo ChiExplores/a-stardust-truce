@@ -2,24 +2,29 @@
 
 {% block content %}
     
-    <div class="row mx-auto justify-content-center">
-        
-        {% for structure in page_obj %}
-        <div class="col-sm-5">
-            <div class="index-cards">
-                <div class="card-body text-center">
-                    <h5 class="card-title">{{ structure.name }}</h5>
-                    <div class="description-text">
-                        {% if structure.description %}
-                        <p class="card-text">{{ structure.description }}</p>
-                        {% endif %}
-                    </div>
-                    <a href="{%url 'info' structure.id %}" class="btn color-3">View</a>
+<div class="row mx-auto justify-content-center">
+    
+    {% for structure in page_obj %}
+    <div class="col-sm-5">
+        <div class="index-cards">
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ structure.name }}</h5>
+                <div class="description-text">
+                    {% if structure.description %}
+                    <p class="card-text">{{ structure.description }}</p>
+                    {% endif %}
                 </div>
+                <a href="{%url 'info' structure.id %}" class="btn color-3">View</a>
             </div>
         </div>
-        {% endfor %}
+    </div>
+    {% endfor %}
 
+    <div class="col-sm-6 text-center">
+        <a href="{%url 'create' %}" class="btn color-3">Create</a>
+    </div>
+    
+    </div>
 {% comment %}
 <!-- <div class="pagination">
     <span class="page-item">
@@ -31,18 +36,18 @@
         <span class="current">
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
         </span>
-
+        
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        
         {% endif %}
     </span>
 </div> -->
 {% endcomment %}
 
 <div class="page-nav mx-auto justify-content-center">
-
+     
     <nav aria-label="page navigation">
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
@@ -61,7 +66,8 @@
             </li>
             {% endif %}
             
-            {% for structure in Paginator.page_range %}
+            {% comment %}
+            <!-- {% for structure in Paginator.page_range %}
                 {% if page_obj.number == structure %}
                 <li class="page-item">
                     <a class="page-link pgbtn color-3 active">
@@ -75,7 +81,8 @@
                     </a>
                 </li>
                 {% endif %}
-            {% endfor %}
+            {% endfor %} -->
+            {% endcomment %}
             
             {% if page_obj.has_next %}
             <li class="page-item">
@@ -94,8 +101,8 @@
             {% endif %}
         </ul>
     </nav>
-    
-</div>
+        
+    </div>
 {% comment %} {% include '../pagination.html' %} {% endcomment %}
 
 {% endblock %}

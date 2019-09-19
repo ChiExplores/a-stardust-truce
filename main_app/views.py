@@ -199,3 +199,19 @@ def structure_download_py(request, data_structures_id):
     file_data = py
     py_data.write(file_data)
     return FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.py')
+
+def structure_info_testing(request, data_structures_id):
+    ds = Data_Structure.objects.get(id = data_structures_id)
+    js = ds.__get_js__()
+    py = ds.__get_py__()
+    methods = ds.methods.all()
+    props = ds.properties.all()
+
+    return render(request, './main_app/info_testing.html', {
+        'ds': ds,
+        'js': js,
+        'py': py,
+        'request.user': request.user,
+        'methods': methods,
+        'props' : props
+    })

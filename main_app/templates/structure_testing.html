@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="cardz">
+
+            <div class="cardz__image-container">
+                <img class="cardz__image" src="https://assets2.ello.co/uploads/asset/attachment/5923807/ello-optimized-33f3f778.gif" alt="">
+            </div>
+            
+            <svg class="cardz__svg" viewBox="0 0 800 500">
+        
+                <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333"/>
+                <path class="cardz__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent"/>
+            </svg>
+            
+            <div class="cardz__content">
+                <h1 class="cardz__title">{{ds.name}}</h1>
+                <p>{{ds.description}}</p>
+                <p>{{ds.element}}</p>
+                <p>{% for prop in props %}
+                        {{ prop.name }}
+                        {% endfor %}</p>
+                <p>{% for method in methods %}
+                        {{ method.name }}
+                        {% endfor %}</p>
+                <p>{{ds.user}}</p>
+
+            </div>
+
+
+    </div>
+
+
+</div>
