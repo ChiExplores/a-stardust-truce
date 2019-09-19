@@ -4,10 +4,19 @@
         <div class="flip-card-inner">
 
             <div class="flip-card-front">
-                <h2>Properties</h2>
-                <p>Property Name Placeholder</p>
-                <p>Property Name Placeholder</p>
-                <p>Property Name Placeholder</p>
+                <div id="div_id_properties" class="form-group"> 
+                    <label for="id_properties" class="col-form-label ">
+                        Properties
+                    </label>
+
+                    <div> 
+                        <select name="properties" class="selectmultiple form-control" id="id_properties" multiple=""> 
+                            {% for valid_property in valid_properties %}
+                                <option value="{{valid_property.id}}" {% if valid_property in properties %}selected=""{% endif %}>{{valid_property.name}}</option> 
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <div class="flip-card-back">

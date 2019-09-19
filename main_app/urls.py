@@ -8,6 +8,7 @@ urlpatterns = [
 	# path('structures/create/', views.structure_create, name ='create'),
 	path('structures/<int:data_structures_id>/', views.structure_info, name='info'),
 	path('structures/<int:data_structures_id>/update/', views.structure_update, name = 'update'),
+	path('structures/<int:data_structures_id>/updater/', views.structure_updaterrr, name = 'updater'),
 	path('structures/<int:data_structures_id>/update/submit', views.structure_update_submit, name = 'submit'),
 	# path('structures/<int:data_structures_id>/edit/', views.structure_edit, name='edit'),
 # 	path('structures/<int:data_structures_id>/assoc_element/<int:element_id>', views.assoc_element, name ='assoc_element'),

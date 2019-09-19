@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="text-center">
+<div class="text-center text-white">
     {% if new_form %}
         <h1>Create a Structure</h1>
     {% else %}
@@ -36,11 +36,11 @@
             </div>
             <div id="div_id_element" class="form-group">
               <label for="id_element" class="col-form-label  requiredField">
-                  Element<span class="asteriskField">*</span>
+                  Element
               </label>
               <div class="">
                 <select name="element" class="select form-control is-invalid" 
-                  required="" id="id_element" {%if new_form == False%}disabled=""{%endif%}
+                  required="" id="id_element" {% if new_form == False %} disabled="" {% endif %}
                 >
                 <!-- TODO: add all elements on create view -->
                   <option value="{{element.id}}">{{element}}</option>
@@ -59,6 +59,7 @@
                 </select>
               </div>
             </div>
+            
             <div id="div_id_methods" class="form-group">
               <label for="id_methods" class="col-form-label ">Methods</label> 
               <div class="">

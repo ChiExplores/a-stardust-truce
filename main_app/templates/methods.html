@@ -4,10 +4,20 @@
         <div class="flip-card-inner">
 
             <div class="flip-card-front">
-                <h2>Methods</h2>
-                <p>Method Name Placeholder</p>
-                <p>{{ds.methods}}</p>
-                <p>Method Name Placeholder</p>
+                
+                <div id="div_id_methods" class="form-group">
+                    <label for="id_methods" class="col-form-label ">
+                        Methods
+                    </label> 
+                    <div class="">
+                        <select name="methods" class="selectmultiple form-control" id="id_methods" multiple="">
+                        {% for method in methods %}
+                            <option value="{{method.id}}" selected="">{{method.name}}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
             </div>
 
             <div class="flip-card-back">
