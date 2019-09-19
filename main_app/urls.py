@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-
+#  /submit path suffix allows for recreation of data_structure_form through entire create/update process
 urlpatterns = [
 	path('', views.home, name='home'),
 	path('about/',views.home, name='home'), #not sure if we need this one?
@@ -10,6 +10,8 @@ urlpatterns = [
 	path('structures/<int:data_structures_id>/', views.structure_info, name='info'),
 	path('structures/<int:data_structures_id>/update/', views.structure_update, name = 'update'),
 	path('structures/<int:data_structures_id>/update/submit', views.structure_update_submit, name = 'submit'),
+	path('structures/<int:data_structures_id>/methods/submit', views.structure_methods_submit, name='methods_submit'),
+	path('structures/<int:data_structures_id>/methods/', views.structure_methods, name='methods'),
 	path('structures/create/submit', views.structure_create_submit, name = 'create_submit'),
 	path('structures/create/', views.structure_create, name = 'create'),
 	# path('structures/<int:data_structures_id>/edit/', views.structure_edit, name='edit'),

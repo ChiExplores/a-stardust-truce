@@ -86,6 +86,32 @@ def structure_update(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     return render(request, 'main_app/data_structure_form.html', {
         'new_form': not bool(ds),
+        'methods_update': False,
+        'name': ds.name, 
+        'description': ds.description,
+        'element': ds.element,
+        'properties': ds.properties.all(), 
+        'valid_properties': ds.__get_valid_properties__(), 
+    })
+
+def structure_update_submit(request, data_structures_id):
+    ds = Data_Structure.objects.get(id = data_structures_id)
+    new = request.POST
+    try:
+        ds.name = new['name']
+        ds.description = new['description']
+        ds.properties.set(Property.objects.filter(id__in=new.getlist('properties')).filter(id__in=ds.__get_valid_properties__()))
+        ds.save()
+        return redirect(f'/structures/{ds.id}/methods')
+    except:
+        return redirect(f'/structures/{ds.id}/update')
+    pass
+
+def structure_methods(request, data_structures_id):
+    ds = Data_Structure.objects.get(id = data_structures_id)
+    return render(request, 'main_app/data_structure_form.html', {
+        'new_form': not bool(ds),
+        'methods_update': True,
         'name': ds.name, 
         'description': ds.description,
         'element': ds.element,
@@ -95,27 +121,18 @@ def structure_update(request, data_structures_id):
         'valid_methods': ds.__get_valid_methods__()
     })
         
-def structure_update_submit(request, data_structures_id):
+def structure_methods_submit(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     new = request.POST
     try:
         ds.name = new['name']
         ds.description = new['description']
-        ds.properties.set(Property.objects.filter(id__in=new.getlist('properties')))
+        ds.properties.set(Property.objects.filter(id__in=new.getlist('properties')).filter(id__in=ds.__get_valid_properties__()))
         ds.methods.set(Method.objects.filter(id__in=new.getlist('methods')))
         ds.save()
         return redirect(ds.get_absolute_url())
     except:
-        return redirect(f'/structures/{ds.id}/update')
-
-class StructureUpdate(LoginRequiredMixin,UpdateView):
-    model = Data_Structure
-    fields = ['name', 'description', 'element', 'user']
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args)
-        context['properties'] = self.object.__get_valid_properties__()
-        context['methods'] = self.object.__get_valid_methods__()
-        return context
+        return redirect(f'/structures/{ds.id}/methods')
 
 class StructureDelete(DeleteView):
     model = Data_Structure
