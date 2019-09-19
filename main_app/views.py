@@ -54,6 +54,7 @@ class StructureCreate(LoginRequiredMixin,CreateView):
 	
 def structure_update(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
+    print(ds.__get_valid_methods__())
     return render(request, 'main_app/data_structure_form.html', {
         'new_form': not bool(ds),
         'name': ds.name, 
@@ -67,21 +68,33 @@ def structure_update(request, data_structures_id):
         
 def structure_update_submit(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
-    # validation
-    # save
-    # redirect
-    return redirect(ds.get_absolute_url())
+    new = request.POST
+    try:
+        ds.name = new['name']
+        ds.description = new['description']
+        print(new)
+        print(new['properties'])
+        print(new['methods'])
+        print(Property.objects.filter(id__in=new['properties']))
+        ds.properties.set(Property.objects.filter(id__in=new['properties']))
+        ds.methods.set(Method.objects.filter(id__in=new['methods']))
+        ds.save()
+        print(ds.properties.all())
+        # save
+        # redirect
+        return redirect(ds.get_absolute_url())
+    except:
+        return redirect(reverse('update'))
 
 class StructureUpdate(LoginRequiredMixin,UpdateView):
-  model = Data_Structure
-  fields = ['name', 'description', 'element', 'user']
-  def get_context_data(self, *args, **kwargs):
-    context = super().get_context_data(*args)
-    context['properties'] = self.object.__get_valid_properties__()
-    context['methods'] = self.object.__get_valid_methods__()
-    return context
+    model = Data_Structure
+    fields = ['name', 'description', 'element', 'user']
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args)
+        context['properties'] = self.object.__get_valid_properties__()
+        context['methods'] = self.object.__get_valid_methods__()
+        return context
 
-    
 class StructureDelete(DeleteView):
     model = Data_Structure
     success_url = '/structures/'

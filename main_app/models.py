@@ -139,12 +139,10 @@ class {class_name}:
         element = self.element.name
         properties = self.properties.all()
         valid_methods = []
-        print(self.properties)
         for method in all_methods:
             for property in properties:
                 if checkMethod(method, element, property):
                     valid_methods.append(method)
-        print(valid_methods)
         return Method.objects.filter(name__in=valid_methods)
 
     class Meta:
