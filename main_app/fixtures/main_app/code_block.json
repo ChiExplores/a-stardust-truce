@@ -1,5 +1,5 @@
 [{
-  "model": "main_app.code_block",
+  "model": "main_app.codeblock",
   "pk": 1,
   "fields": {
     "name": "single-link-node",
@@ -7,7 +7,7 @@
     "javascript": "const Node = (val, next) => {\r\n  let node = {}\r\n  node.val = val, node.next = next;\r\n  return node;\r\n}"
   }
 }, {
-  "model": "main_app.code_block",
+  "model": "main_app.codeblock",
   "pk": 2,
   "fields": {
     "name": "list-head",
@@ -15,7 +15,7 @@
     "javascript": "// list-head\r\n  obj.head = null;"
   }
 }, {
-  "model": "main_app.code_block",
+  "model": "main_app.codeblock",
   "pk": 3,
   "fields": {
     "name": "list-size",
@@ -23,7 +23,7 @@
     "javascript": "// list-size\r\n  obj.size = 0;"
   }
 }, {
-  "model": "main_app.code_block",
+  "model": "main_app.codeblock",
   "pk": 4,
   "fields": {
     "name": "list-push",
@@ -31,7 +31,7 @@
     "javascript": "// list-push\r\n  obj.push = node => {\r\n    node = Node(node, obj.head);\r\n    obj.head = node;\r\n    if (obj.hasOwnProperty('size')) obj.size++;\r\n  };"
   }
 }, {
-  "model": "main_app.code_block",
+  "model": "main_app.codeblock",
   "pk": 5,
   "fields": {
     "name": "list-pop",
@@ -39,7 +39,7 @@
     "javascript": "// list-pop\r\n  obj.pop = _ => {\r\n    let pop = obj.head || null;\r\n    obj.head = pop ? pop.next : null;\r\n    if (obj.hasOwnProperty('size')) obj.size--;\r\n    return pop ? pop.val : undefined;\r\n  }"
   }
 }, {
-  "model": "main_app.code_block",
+  "model": "main_app.codeblock",
   "pk": 6,
   "fields": {
     "name": "list-peek",
@@ -47,11 +47,35 @@
     "javascript": "// list-peek\r\n  obj.peek = _ => obj.head ? obj.head.val : undefined;"
   }
 }, {
-  "model": "main_app.code_block",
+  "model": "main_app.codeblock",
   "pk": 7,
   "fields": {
     "name": "list-is-empty",
     "python": "# list_is_empty\r\n    def is_empty(self):\r\n        return not bool(self.head)",
     "javascript": "// list-isEmpty\r\n  obj.isEmpty = _ => !obj.head"
+  }
+}, {
+  "model": "main_app.codeblock",
+  "pk": 8,
+  "fields": {
+    "name": "list-tail",
+    "python": "# list_tail\r\n        self.tail = None",
+    "javascript": "// list-tail\r\n  obj.tail = null;"
+  }
+}, {
+  "model": "main_app.codeblock",
+  "pk": 9,
+  "fields": {
+    "name": "list-enqueue",
+    "python": "# list-enqueue\r\n    def enqueue(self, node):\r\n        node = Node(node, None)\r\n        if (self.tail): \r\n            self.tail.next = node\r\n        self.tail = node\r\n        if hasattr(self,'size'): \r\n            self.size += 1\r\n        if hasattr(self,'head') and not self.head:",
+    "javascript": "// list-enqueue\r\n  obj.enqueue = node => {\r\n    node = Node(node, null);\r\n    if (obj.tail) obj.tail.next = node;\r\n    obj.tail = node;\r\n    if (obj.hasOwnProperty('size')) obj.size++;\r\n    if (obj.hasOwnProperty('head') && !obj"
+  }
+}, {
+  "model": "main_app.codeblock",
+  "pk": 10,
+  "fields": {
+    "name": "list-dequeue",
+    "python": "# list-dequeue\r\n    def dequeue(self):\r\n        dequeue = self.head\r\n        if(dequeue):\r\n            self.head = dequeue.next\r\n            if hasattr(self, 'size'): \r\n                self.size -= 1\r\n            return dequeue.val\r\n        else:\r\n            return None",
+    "javascript": "// list-dequeue\r\n  obj.dequeue = _ => {\r\n    let dequeue = obj.head;\r\n    if(dequeue) { \r\n      obj.head = dequeue.next;\r\n      if(obj.hasOwnProperty('size')) obj.size--;\r\n      return dequeue.val;\r\n    }\r\n    return undefined;\r\n  }"
   }
 }]

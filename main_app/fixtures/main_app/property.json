@@ -16,4 +16,13 @@
     "code_block": 3,
     "resource": 3
   }
+}, {
+  "model": "main_app.property",
+  "pk": 3,
+  "fields": {
+    "name": "list-tail",
+    "type": "sca",
+    "code_block": 8,
+    "resource": 8
+  }
 }]

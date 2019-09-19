@@ -30,4 +30,20 @@
     "code_block": 7,
     "resource": 7
   }
+}, {
+  "model": "main_app.method",
+  "pk": 5,
+  "fields": {
+    "name": "list-enqueue",
+    "code_block": 9,
+    "resource": 9
+  }
+}, {
+  "model": "main_app.method",
+  "pk": 6,
+  "fields": {
+    "name": "list-dequeue",
+    "code_block": 10,
+    "resource": 10
+  }
 }]
