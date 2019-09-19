@@ -38,7 +38,7 @@ def signup(request):
 
 class StructureList(ListView):
     model = Data_Structure
-    paginate_by = 8
+    paginate_by = 6
 
 
 # class UserStrucList(LoginRequiredMixin, StructureList):
@@ -57,7 +57,7 @@ class StructureList(ListView):
 @login_required()
 def structure_index(request):
   structures_list = Data_Structure.objects.filter(user = request.user.id)
-  paginator = Paginator(structures_list, 8)
+  paginator = Paginator(structures_list, 6)
   page = request.GET.get('page')
   structures = paginator.get_page(page)
   return render(request, './main_app/index.html', {'page_obj' : structures})
