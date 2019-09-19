@@ -61,7 +61,7 @@ def structure_create(request):
 def structure_create_submit(request):
     new = request.POST
     try:
-        new_ds = Data_Structure(
+        new_ds = DataStructure(
             name=new['name'], 
             description=new['description'], 
             element=Element.objects.get(id=new['element']), 
