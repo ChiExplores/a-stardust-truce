@@ -350,7 +350,76 @@ img {
 
 
 
+  .cardx {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    height: 260px;
+    margin: 20 auto;
+    perspective: 2000px;
+    transform-style: preserve-3d;
+  }
+  .abstract {
+    background-color: rgb(88, 88, 88)
+  }
 
+  .details {
+    background: linear-gradient(270deg, #e55d87, #5fc3e4, #e6dbff);
+  }
+  .abstract,
+  .details {
+    $bg: linear-gradient(270deg, #e55d87, #5fc3e4, #e6dbff);
+    width: 100%;
+    padding: 15px 30px;
+    position: relative;
+
+  
+    .cardx:hover & {
+        border: 1px solid white;
+    }
+  }
+  
+  .abstract {
+    //z-index: 10;
+    transition: .5s ease-in-out;
+  }
+  
+  .details {
+    max-height: 0;
+    padding: 0;
+    
+    overflow: hidden;
+    visibility: hidden;
+    
+    transform: rotateX(-180deg);
+    transform-origin: top center;
+    backface-visibility: hidden;
+    transition: .5s transform ease-in-out;
+    
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: grey;
+    }
+    
+    .cardx:hover & {
+      max-height: none;
+      overflow: visible;
+      visibility: visible;
+      transform: rotateX(0deg);
+    }
+  }
+  
+  .details__inner {
+    height: 100%;
+    width: 100%;
+    padding: 15px 30px;
+  }
 
 
 
