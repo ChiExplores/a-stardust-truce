@@ -8,73 +8,88 @@
     {% else %}
         <h1>Edit <span class="teal-text">{{name}}</span></h1>
     {% endif %}
-    <!-- Leaving the action empty makes the form post to the same url used to display it -->
-    <form action="submit" method="post">
-        <!-- Django requires the following for security purposes -->
-        {% csrf_token %}
-            <div id="div_id_name" class="form-group">
-              <label for="id_name" class="col-form-label  requiredField">
-                  Name<span class="asteriskField">*</span>
-              </label>
-              <div class="">
-                <input type="text" name="name" value="{{name}}" maxlength="50" 
-                  class="textinput textInput form-control form-control" 
-                  required="" id="id_name"
-                >
-              </div>
-            </div>
-            <div id="div_id_description" class="form-group">
-              <label for="id_description" class="col-form-label ">
-                  Description
-              </label>
-              <div class="">
-                  <textarea name="description" cols="40" rows="8" maxlength="255" 
-                    class="textarea form-control form-control" id="id_description"
-                  >{{description}}
-                  </textarea>
-              </div>
-            </div>
-            <div id="div_id_element" class="form-group">
-              <label for="id_element" class="col-form-label  requiredField">
-                  Element
-              </label>
-              <div class="">
-                <select name="element" class="select form-control is-invalid" 
-                  required="" id="id_element" {% if new_form == False %}disabled=""{% endif %}
-                >
-                  {% if new_form %}
-                    {% for element in elements %}
-                      <option value="{{element.id}}">{{element}}</option>
-                    {% endfor %}
-                  {% else %}
-                    <option value="{{element.id}}">{{element}}</option>
-                  {% endif %}
-                </select>
-                <p id="error_1_id_element" class="invalid-feedback"><strong>This field is required.</strong></p>
-              </div>
-            </div>
-            {% if not new_form %}
-              <div id="div_id_properties" class="form-group"> 
-                <label for="id_properties" class="col-form-label ">Properties</label> 
-                <div class=""> 
-                  <select name="properties" class="selectmultiple form-control" id="id_properties" multiple=""> 
-                    {% for valid_property in valid_properties %}
-                          <option value="{{valid_property.id}}" {% if valid_property in properties %}selected=""{% endif %}>{{valid_property.name}}</option> 
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-              <div id="div_id_methods" class="form-group">
-                <label for="id_methods" class="col-form-label ">Methods</label> 
-                <div class="">
-                  <select name="methods" class="selectmultiple form-control" id="id_methods" multiple="">
-                    {% for valid_method in valid_methods %}
-                      <option value="{{valid_method.id}}" {% if valid_method in methods %}selected=""{% endif %}>{{valid_method.name}}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-            {% endif %}
+</div>
+
+<div class="maincontainer h-100 col-6 text-center my-auto">
+  <form action="submit" method="post">
+    <!-- Django requires the following for security purposes -->
+    {% csrf_token %}
+    <div id="div_id_name" class="form-group">
+      <label for="id_name" class="col-form-label requiredField">
+        Name<span class="asteriskField">*</span>
+      </label>
+      <div class="">
+        <input type="text" name="name" value="{{name}}" maxlength="50" 
+          class="textinput textInput form-control form-control" 
+          required="" id="id_name"
+        >
+      </div>
+    </div>
+    <div id="div_id_description" class="form-group">
+      <label for="id_description" class="col-form-label ">
+          Description
+      </label>
+      <div class="">
+          <textarea name="description" cols="40" rows="8" maxlength="255" 
+            class="textarea form-control form-control" id="id_description"
+          >{{description}}</textarea>
+      </div>
+    </div>
+    <div id="div_id_element" class="form-group">
+      <label for="id_element" class="col-form-label  requiredField">
+          Element<span class="asteriskField">*</span>
+      </label>
+      <div class="">
+        <select name="element" class="select form-control is-invalid" 
+          required="" id="id_element" 
+          {% if not new_form %}disabled=""{% endif %}
+        >
+          {% if new_form %}
+            {% for element in elements %}
+              <option value="{{element.id}}">{{element}}</option>
+            {% endfor %}
+          {% else %}
+            <option value="{{element.id}}">{{element}}</option>
+          {% endif %}
+        </select>
+        <p id="error_1_id_element" class="invalid-feedback">
+          <strong>This field is required.</strong>
+        </p>
+      </div>
+    </div>
+    {% if not new_form %}
+      <div id="div_id_properties" class="form-group"> 
+        <label for="id_properties" class="col-form-label ">Properties</label> 
+        <div class=""> 
+          <select name="properties" class="selectmultiple form-control" 
+            id="id_properties" multiple=""
+            {% if methods_update %}disabled=""{% endif %}
+          > 
+            {% for valid_property in valid_properties %}
+              <option value="{{valid_property.id}}" 
+                {% if valid_property in properties %}selected=""{% endif %}
+              >{{valid_property.name}}
+              </option> 
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      {% if methods_update %}
+        <div id="div_id_methods" class="form-group">
+          <label for="id_methods" class="col-form-label ">Methods</label> 
+          <div class="">
+            <select name="methods" class="selectmultiple form-control" id="id_methods" multiple="">
+              {% for valid_method in valid_methods %}
+                <option value="{{valid_method.id}}" 
+                  {% if valid_method in methods %}selected=""{% endif %}
+                >{{valid_method.name}}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+      {% endif %}
+    {% endif %}
 
     {% if new_form %}
         <button class='btn color-3' type='submit'>Create Structure</button>
