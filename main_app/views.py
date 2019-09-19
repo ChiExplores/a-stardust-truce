@@ -78,7 +78,6 @@ def structure_update(request, data_structures_id):
         'valid_properties': ds.__get_valid_properties__(), 
         'methods': ds.methods.all(),
         'valid_methods': ds.__get_valid_methods__()
-<<<<<<< HEAD
         })
 
 def structure_updaterrr(request, data_structures_id):
@@ -93,9 +92,6 @@ def structure_updaterrr(request, data_structures_id):
         'methods': ds.methods.all(),
         'valid_methods': ds.__get_valid_methods__()
         })
-=======
-    })
->>>>>>> dce7c58e9d021eac3a1d80355686a5b759e0ede6
         
 def structure_update_submit(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
