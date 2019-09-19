@@ -1,7 +1,31 @@
-{% for structure in structures  %}
+{% extends 'base.html' %}
 
- <a href="{%url 'detail' structure.id %}">
-    {{ structure.name }}
-</a>
-    <p>Description: {{ structure.description }}</p> 
-{% endfor %}
+{% block content %}
+    
+    <div class="row mx-auto justify-content-center">
+        
+        {% for structure in page_obj %}
+        <div class="col-sm-5">
+            <div class="index-cards">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ structure.name }}</h5>
+                    <div class="description-text">
+                        {% if structure.description %}
+                        <p class="card-text">{{ structure.description }}</p>
+                        {% endif %}
+                    </div>
+                    <a href="{%url 'info' structure.id %}" class="btn color-3">View</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %} 
+
+{% include '../pagination.html' %}
+
+{% endblock %}
+
+
+
+
+
+
