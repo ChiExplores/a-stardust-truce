@@ -51,6 +51,21 @@ class StructureList(ListView):
 class StructureCreate(LoginRequiredMixin,CreateView):
   model = Data_Structure
   fields = '__all__'
+
+def structure_create(request):
+    return render(request, 'main_app/data_structure_form.html', {
+        'new_form': True,
+        'elements': Element.objects.all(), 
+    })
+
+def structure_create_submit(request):
+    new = request.POST
+    try:
+        new_ds = Data_Structure(name=new['name'], description=new['description'], element=Element.objects.get(id=new['element']), user=request.user)
+        new_ds.save()
+        return redirect(f'/structures/{new_ds.id}/update')
+    except:
+        return redirect('/create')
 	
 def structure_update(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
@@ -63,6 +78,7 @@ def structure_update(request, data_structures_id):
         'valid_properties': ds.__get_valid_properties__(), 
         'methods': ds.methods.all(),
         'valid_methods': ds.__get_valid_methods__()
+<<<<<<< HEAD
         })
 
 def structure_updaterrr(request, data_structures_id):
@@ -77,23 +93,32 @@ def structure_updaterrr(request, data_structures_id):
         'methods': ds.methods.all(),
         'valid_methods': ds.__get_valid_methods__()
         })
+=======
+    })
+>>>>>>> dce7c58e9d021eac3a1d80355686a5b759e0ede6
         
 def structure_update_submit(request, data_structures_id):
-    # validation
-    # save
-    # redirect
-    pass
+    ds = Data_Structure.objects.get(id = data_structures_id)
+    new = request.POST
+    try:
+        ds.name = new['name']
+        ds.description = new['description']
+        ds.properties.set(Property.objects.filter(id__in=new.getlist('properties')))
+        ds.methods.set(Method.objects.filter(id__in=new.getlist('methods')))
+        ds.save()
+        return redirect(ds.get_absolute_url())
+    except:
+        return redirect(f'/structures/{ds.id}/update')
 
 class StructureUpdate(LoginRequiredMixin,UpdateView):
-  model = Data_Structure
-  fields = ['name', 'description', 'element', 'user']
-  def get_context_data(self, *args, **kwargs):
-    context = super().get_context_data(*args)
-    context['properties'] = self.object.__get_valid_properties__()
-    context['methods'] = self.object.__get_valid_methods__()
-    return context
+    model = Data_Structure
+    fields = ['name', 'description', 'element', 'user']
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args)
+        context['properties'] = self.object.__get_valid_properties__()
+        context['methods'] = self.object.__get_valid_methods__()
+        return context
 
-    
 class StructureDelete(DeleteView):
     model = Data_Structure
     success_url = '/structures/'
