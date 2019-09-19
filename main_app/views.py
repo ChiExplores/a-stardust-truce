@@ -1,17 +1,14 @@
+from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
+from django.http import HttpResponse, FileResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, DeleteView
 from django.views.generic.edit import CreateView, UpdateView
 from main_app.dependencies import checkMethod, checkProperty
 from .models import *
-from django.http import HttpResponse, FileResponse
-from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-import os
 import tempfile
-
-# checkComponent signature
-# checkComponent(component, data_structure, on_success, on_failure)
 
 # Account Functionality
 from django.contrib.auth import login
@@ -40,48 +37,42 @@ class StructureList(ListView):
     model = Data_Structure
     paginate_by = 6
 
-
-# class UserStrucList(LoginRequiredMixin, StructureList):
-#   template_name = "index.html"
-
-#   def get_context_data(self, **kwargs):
-#     context = super().get_context_data(*kwargs)
-#     context['page_obj'] = self.model.objects.filter(user = self.request.user.id)
-#     dicti = context['page_obj']
-#     print(self.request.user.id)
-#     print(context['page_obj'])
-#     return dicti
-
-
-
 @login_required()
 def structure_index(request):
   structures_list = Data_Structure.objects.filter(user = request.user.id)
   paginator = Paginator(structures_list, 6)
   page = request.GET.get('page')
+  is_paginated = paginator.num_pages > 1
   structures = paginator.get_page(page)
-  return render(request, './main_app/index.html', {'page_obj' : structures})
+  return render(request, './main_app/index.html', {
+      'page_obj' : structures,
+      'paginator': paginator,
+      'is_paginated': is_paginated 
+      })
 
-
-class StructureCreate(LoginRequiredMixin,CreateView):
-  model = Data_Structure
-  fields = '__all__'
-
+@login_required
 def structure_create(request):
     return render(request, 'main_app/data_structure_form.html', {
         'new_form': True,
         'elements': Element.objects.all(), 
     })
 
+@login_required
 def structure_create_submit(request):
     new = request.POST
     try:
-        new_ds = Data_Structure(name=new['name'], description=new['description'], element=Element.objects.get(id=new['element']), user=request.user)
+        new_ds = Data_Structure(
+            name=new['name'], 
+            description=new['description'], 
+            element=Element.objects.get(id=new['element']), 
+            user=request.user
+        )
         new_ds.save()
         return redirect(f'/structures/{new_ds.id}/update')
     except:
         return redirect('/create')
-	
+
+@login_required	
 def structure_update(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     return render(request, 'main_app/data_structure_form.html', {
@@ -94,19 +85,21 @@ def structure_update(request, data_structures_id):
         'valid_properties': ds.__get_valid_properties__(), 
     })
 
+@login_required
 def structure_update_submit(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     new = request.POST
     try:
         ds.name = new['name']
         ds.description = new['description']
-        ds.properties.set(Property.objects.filter(id__in=new.getlist('properties')).filter(id__in=ds.__get_valid_properties__()))
+        ds.properties.set(Property.objects.filter(Q(id__in=new.getlist('properties')) & Q(id__in=ds.__get_valid_properties__())))
         ds.save()
         return redirect(f'/structures/{ds.id}/methods')
     except:
         return redirect(f'/structures/{ds.id}/update')
     pass
 
+@login_required
 def structure_methods(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     return render(request, 'main_app/data_structure_form.html', {
@@ -119,8 +112,9 @@ def structure_methods(request, data_structures_id):
         'valid_properties': ds.__get_valid_properties__(), 
         'methods': ds.methods.all(),
         'valid_methods': ds.__get_valid_methods__()
-        })
+    })
 
+@login_required
 def structure_updaterrr(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     return render(request, 'main_app/edit.html', {
@@ -134,37 +128,22 @@ def structure_updaterrr(request, data_structures_id):
         'valid_methods': ds.__get_valid_methods__()
         })
         
+@login_required
 def structure_methods_submit(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     new = request.POST
     try:
         ds.name = new['name']
         ds.description = new['description']
-        ds.properties.set(Property.objects.filter(id__in=new.getlist('properties')).filter(id__in=ds.__get_valid_properties__()))
-        ds.methods.set(Method.objects.filter(id__in=new.getlist('methods')))
+        ds.methods.set(Method.objects.filter(Q(id__in=new.getlist('methods')) & Q(id__in=ds.__get_valid_methods__())))
         ds.save()
         return redirect(ds.get_absolute_url())
     except:
         return redirect(f'/structures/{ds.id}/methods')
 
-class StructureDelete(DeleteView):
+class StructureDelete(LoginRequiredMixin, DeleteView):
     model = Data_Structure
     success_url = '/structures/'
-
-# stubbed detailed
-def structure_detail(request, data_structures_id):
-    ds = Data_Structure.objects.get(id = data_structures_id)
-    py = ds.__get_py__()
-    js = ds.__get_js__()
-    methods = ds.methods.all()
-    props = ds.properties.all()
-    return render(request, 'detail_test.html', {
-        'ds':ds,
-        'py': py,
-        'js': js,
-        'methods': methods,
-        'props' : props
-    })
 
 def structure_info(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
@@ -172,20 +151,19 @@ def structure_info(request, data_structures_id):
     py = ds.__get_py__()
     methods = ds.methods.all()
     props = ds.properties.all()
-
     return render(request, './main_app/info.html', {
         'ds': ds,
         'js': js,
         'py': py,
         'request.user': request.user,
         'methods': methods,
-        'props' : props
+        'props' : props,
     })
 
 def structure_download_js(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     js = ds.__get_js__()
-    filename = f'{ds.user.username}.txt'
+    filename = f'serve_code/{ds.user.username}.txt'
     js_data = open(filename, 'w+')
     file_data = js
     js_data.write(file_data)
@@ -194,7 +172,7 @@ def structure_download_js(request, data_structures_id):
 def structure_download_py(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
     py = ds.__get_py__()
-    filename = f'{ds.user.username}.txt'
+    filename = f'serve_code/{ds.user.username}.txt'
     py_data = open(filename, 'w+')
     file_data = py
     py_data.write(file_data)
@@ -215,3 +193,6 @@ def structure_info_testing(request, data_structures_id):
         'methods': methods,
         'props' : props
     })
+
+
+
