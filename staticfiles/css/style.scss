@@ -23,6 +23,7 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 header {
     height: 10%;
@@ -422,8 +423,62 @@ img {
   }
 
 
+// PARALLAX SECTION
 
+.wrapper {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 1px;
+  }
+  
+.section, .section1, .section2, .section3 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
 
+.section {
+    height: 100vh;
+}
+
+.section1 {
+    height: 45vh;
+}
+
+.section2 {
+    height: 60vh;
+}
+
+.section3 {
+    height: 10vh;
+}
+
+.parallax::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateZ(-1px) scale(2);
+    background-size: 100%;
+    z-index: -1;
+}
+  
+.static {
+    background-color: rgba(44, 44, 44, 0.9);
+}
+
+.bg1::after {
+    background-image: url('https://placekitten.com/g/900/700');
+}
+
+.bg2::after {
+    background-image: url('https://placekitten.com/g/800/600');
+}
 
 
 
