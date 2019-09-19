@@ -3,18 +3,18 @@
   "pk": 1,
   "fields": {
     "name": "single-link-list-stack",
-    "description": "A canonical data structure: THE STACK has been LIFO AF for generations\r\n                  \r\n                  \r\n                  ",
+    "description": "A stack is an abstract data structure that follows a LIFO (Last In, First Out) order. This implementation makes use of a singly linked list where each node carries data as well as a pointer to the next node in the list.",
     "element": 1,
     "user": 1,
-    "properties": [2, 1],
-    "methods": [4]
+    "properties": [1, 2],
+    "methods": [1, 2, 3, 4]
   }
 }, {
   "model": "main_app.datastructure",
   "pk": 18,
   "fields": {
     "name": "single-link-list-queue",
-    "description": "A queue is an abstract data structure that follows a FIFO (First In, First Out) order. This implementation makes use of a singly linked list where each",
+    "description": "A queue is an abstract data structure that follows a FIFO (First In, First Out) order. This implementation makes use of a singly linked list where each node carries data as well as a pointer to the next node in the list.",
     "element": 1,
     "user": 1,
     "properties": [1, 2, 3],
