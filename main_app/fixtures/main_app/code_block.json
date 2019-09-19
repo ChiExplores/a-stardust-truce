@@ -51,8 +51,8 @@
   "pk": 7,
   "fields": {
     "name": "list-is-empty",
-    "python": "# list_is_empty\r\n    def is_empty(self):\r\n        return not bool(self.head)",
-    "javascript": "// list-isEmpty\r\n  obj.isEmpty = _ => !obj.head"
+    "python": "# list_is_empty\r\n    def is_empty(self):\r\n        if hasattr(self, 'head'):\r\n            return not bool(self.head)\r\n        if hasattr(self, 'tail'):\r\n            return not bool(self.tail)\r\n        if hasattr(self, 'size'):\r\n            return not bool(self.size)",
+    "javascript": "// list-isEmpty\r\n  obj.isEmpty = _ => {\r\n    if obj.hasOwnProperty('head') return !obj.head\r\n    if obj.hasOwnProperty('tail') return !obj.tail\r\n    if obj.hasOwnProperty('size') return !obj.size\r\n}"
   }
 }, {
   "model": "main_app.codeblock",
