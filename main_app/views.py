@@ -55,11 +55,17 @@ class StructureCreate(LoginRequiredMixin,CreateView):
 def structure_create(request):
     return render(request, 'main_app/data_structure_form.html', {
         'new_form': True,
-        'name': None, 
-        'description': None,
         'elements': Element.objects.all(), 
     })
 
+def structure_create_submit(request):
+    new = request.POST
+    try:
+        new_ds = Data_Structure(name=new['name'], description=new['description'], element=Element.objects.get(id=new['element']), user=request.user)
+        new_ds.save()
+        return redirect(f'/structures/{new_ds.id}/update')
+    except:
+        return redirect('/create')
 	
 def structure_update(request, data_structures_id):
     ds = Data_Structure.objects.get(id = data_structures_id)
