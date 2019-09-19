@@ -1,4 +1,4 @@
-<div class="card cardflip d-flex" >
+<div class="card cardflip d-flex mx-auto" >
     
     <div class="card-face card-face-front">
         <p class="text-center">Front of Card</p> 
@@ -22,30 +22,37 @@
         </h5>
 
         <h5>Created By: {{ds.user}}</h5>
-        <button class="button btn color-3 flip-to-rear">View Code</button>
 
         {% if request.user == ds.user %}
-            <a class="btn color-3" href="/structures/{{ds.id}}/update"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046766.png"></a>
+        <a class="btn color-3" href="/structures/{{ds.id}}/update"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046766.png"></a>
+        {% endif %}
+
+        <button class="button btn color-3 flip-to-rear"><img class="icon-m" src="https://image.flaticon.com/icons/svg/984/984145.svg"></button>
+
+        {% if request.user == ds.user %}
             <a class="btn color-3" href="/structures/{{ds.id}}/delete"><img class="icon-xs" src="https://image.flaticon.com/icons/svg/1370/1370550.svg"></a>
         {% endif %}
       
     </div>
-    
-    <div class="card-face card-face-back">
+
+    <div class="card-face card-face-back flex-wrap">
             
-            <div class="card">
+            <div class="card col-sm-7">
                 <h4 class="card-title my-auto">JavaScript:</h4>
                 <pre class="card-text mx-auto"><code><p class="code-display" style="text-align: left;">{{js}}</p></code></pre>
                 <a href='/structures/{{ds.id}}/js' class="card-footer my-auto"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046801.png"></a>
             </div>
-            <div class="card">
+
+            <div class="card col-sm-7">
                 <h4 class="card-title my-auto">Python: </h4>
                 <pre class="card-text mx-auto"><code><p class="code-display" style="text-align: left;">{{py}}</p></code></pre>
                 <a href='/structures/{{ds.id}}/py' class="card-footer my-auto"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046801.png"></a>
             </div>
-    
-        <button class="button btn color-3 btn-rear">View Structure</button>
+                
+            <button class="button btn color-3 btn-rear">View Structure</button>
+
     </div>
+
     
     
 </div>

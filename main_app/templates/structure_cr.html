@@ -4,25 +4,21 @@
 
         {% csrf_token %}
             <div id="div_id_name" class="form-group">
-            <label for="id_name" class="col-form-label  requiredField">
-                Name<span class="asteriskField">*</span>
-            </label>
-            <div class="">
-                <input type="text" name="name" value="{{name}}" maxlength="50" 
-                class="textinput textInput form-control form-control" 
-                required="" id="id_name"
-                >
+                <label for="id_name" class="col-form-label  requiredField">
+                    Name<span class="asteriskField">*</span>
+                </label>
+            <div>
+                <input type="text" name="name" value="{{name}}" maxlength="50" class="textinput textInput form-control form-control" required="" id="id_name">
             </div>
             </div>
             <div id="div_id_description" class="form-group">
             <label for="id_description" class="col-form-label ">
                 Description
             </label>
-            <div class="">
+            <div>
                 <textarea name="description" cols="40" rows="8" maxlength="255" 
-                    class="textarea form-control form-control" id="id_description"
-                >{{description}}
-                </textarea>
+                    class="textarea form-control" id="id_description">
+                    {{description}}</textarea>
             </div>
             </div>
 
