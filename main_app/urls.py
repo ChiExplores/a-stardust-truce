@@ -4,8 +4,8 @@ from . import views
 urlpatterns = [
 	path('', views.home, name='home'),
 	path('about/',views.home, name='home'), #not sure if we need this one?
-	# path('structures/index', views.structure_index, name='userindex'),
-	# path('structures/index', views.UserStrucList.as_view(), name='userindex'),
+	path('structures/index', views.structure_index, name='user_structures'),
+	# path('structures/index', views.UserStrucList.as_view(), name='user_structures'),
 	# path('structures/create/', views.structure_create, name ='create'),
 	path('structures/<int:data_structures_id>/', views.structure_info, name='info'),
 	path('structures/<int:data_structures_id>/update/', views.structure_update, name = 'update'),

@@ -41,17 +41,26 @@ class StructureList(ListView):
     paginate_by = 8
 
 
-# class UserStrucList(StructureList):
-#   def structure_index(request):
-#     structures_list = Data_Structure.objects.filter(user = request.user.id)
+# class UserStrucList(LoginRequiredMixin, StructureList):
+#   template_name = "index.html"
 
-# @login_required()
-# def structure_index(request):
-#   structures_list = Data_Structure.objects.filter(user = request.user.id)
-#   paginator = Paginator(structures_list, 8)
-#   page = request.GET.get('page')
-#   structures = paginator.get_page(page)
-#   return render(request, './main_app/index.html', {'page_obj' : structures})
+#   def get_context_data(self, **kwargs):
+#     context = super().get_context_data(*kwargs)
+#     context['page_obj'] = self.model.objects.filter(user = self.request.user.id)
+#     dicti = context['page_obj']
+#     print(self.request.user.id)
+#     print(context['page_obj'])
+#     return dicti
+
+
+
+@login_required()
+def structure_index(request):
+  structures_list = Data_Structure.objects.filter(user = request.user.id)
+  paginator = Paginator(structures_list, 8)
+  page = request.GET.get('page')
+  structures = paginator.get_page(page)
+  return render(request, './main_app/index.html', {'page_obj' : structures})
 
 
 class StructureCreate(LoginRequiredMixin,CreateView):
