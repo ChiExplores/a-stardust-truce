@@ -1,0 +1,34 @@
+<div class="container1 row flex-grow-1">
+
+    <div class="flip-card">
+        <div class="flip-card-inner">
+
+            <div class="flip-card-front">
+                
+                <div id="div_id_element" class="form-group">
+                    <label for="id_element" class="col-form-label  requiredField">
+                    Element
+                    </label>
+                    
+                    <div>
+                        <select name="element" class="select form-control is-invalid" required="" id="id_element" {% if new_form == False %} disabled="" {% endif %}>
+                            <option value="{{element.id}}">{{element}}</option>
+                        </select>
+                        <p id="error_1_id_element" class="invalid-feedback"><strong>This field is required.</strong></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flip-card-back">
+                <h2>JavaScript:</h2> 
+                <p>JavaScript Code Placeholder</p> 
+                <p>JavaScript Code Placeholder</p>
+                <h2>Python:</h2>
+                <p>Python Code Placeholder</p>
+            </div>
+
+        </div>
+    </div>
+    
+</div>

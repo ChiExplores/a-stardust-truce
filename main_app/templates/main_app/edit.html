@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="body-container d-flex">
+    
+    <div class="maincontainer d-flex col-6 text-center align-items-center">
+        {% include '../structure_cr.html' %}
+    </div>
+    
+    <div class="sidecontainer col-6 text-center align-items-center d-flex flex-column">
+        {% include '../elements.html' %}
+        {% include '../properties.html' %}
+        {% include '../methods.html' %}
+    </div>
+
+</div>
+{% endblock %}

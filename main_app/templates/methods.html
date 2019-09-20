@@ -1,0 +1,34 @@
+<div class="container3 row flex-grow-1">
+
+    <div class="flip-card">
+        <div class="flip-card-inner">
+
+            <div class="flip-card-front">
+                
+                <div id="div_id_methods" class="form-group">
+                    <label for="id_methods" class="col-form-label ">
+                        Methods
+                    </label> 
+                    <div class="">
+                        <select name="methods" class="selectmultiple form-control" id="id_methods" multiple="">
+                        {% for method in methods %}
+                            <option value="{{method.id}}" selected="">{{method.name}}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flip-card-back">
+                <h2>JavaScript:</h2> 
+                <p>JavaScript Code Placeholder</p> 
+                <p>JavaScript Code Placeholder</p>
+                <h2>Python:</h2>
+                <p>Python Code Placeholder</p>
+            </div>
+            
+        </div>
+    </div>
+
+</div>

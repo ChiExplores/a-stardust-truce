@@ -1,24 +1,23 @@
 from django.urls import path, include
 from . import views
-
+#  /submit path suffix allows for recreation of Datastructure form through entire create/update process
 urlpatterns = [
 	path('', views.home, name='home'),
-	path('about/',views.home, name='home'), #not sure if we need this one?
-# 	path('structures/', views.structure_view, name='index'),
-	# path('structures/create/', views.structure_create, name ='create'),
-	path('structures/<int:data_structures_id>/', views.structure_detail, name='detail'),
-	# path('structures/<int:data_structures_id>/edit/', views.structure_edit, name='edit'),
-# 	path('structures/<int:data_structures_id>/assoc_element/<int:element_id>', views.assoc_element, name ='assoc_element'),
-# 	path('structures/<int:data_structures_id>/assoc_prop/<int:prop_id>', views.assoc_prop, name ='assoc_prop'),
-# 	path('structures/<int:data_structures_id>/assoc_method/<int:method_id>', views.assoc_method, name ='assoc_method'),
-	#########CBV paths########
+	path('about/',views.home, name='home'), 
+	path('structures/index', views.structure_index, name='user_structures'),
+	path('structures/<int:data_structures_id>/', views.structure_info, name='info'),
+	path('structures/<int:data_structures_id>/update/', views.structure_update, name = 'update'),
+	path('structures/<int:data_structures_id>/update/submit', views.structure_update_submit, name = 'submit'),
+	path('structures/<int:data_structures_id>/methods/submit', views.structure_methods_submit, name='methods_submit'),
+	path('structures/<int:data_structures_id>/methods/', views.structure_methods, name='methods'),
+	path('structures/create/submit', views.structure_create_submit, name = 'create_submit'),
+	path('structures/create/', views.structure_create, name = 'create'),
 	path('structures/', views.StructureList.as_view(), name = 'index'),
-	# path('structures/<int:pk>/', views.StructureDetail.as_view(), name = 'detail'),
-	path('structures/<int:pk>/update/', views.StructureUpdate.as_view(), name = 'update'),
 	path('structures/<int:pk>/delete/', views.StructureDelete.as_view(), name = 'delete'),
-	path('structures/create/', views.StructureCreate.as_view(), name = 'create'),
+	path('structures/<int:data_structures_id>/js', views.structure_download_js, name='download_js'),
+	path('structures/<int:data_structures_id>/py', views.structure_download_py, name='download_py'),
 
 	# Account Functionality
 	path('accounts/signup', views.signup, name='signup'),
-	
+
 ]

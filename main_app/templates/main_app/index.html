@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+<div class="row mx-auto justify-content-center">
+    
+    {% for structure in page_obj %}
+    <div class="col-sm-4 cardx">
+        <div class="abstract text-center text-white">
+            <h5 class="card-title">{{ structure.name }}</h5>
+        </div>
+        
+        <div class="details description-text">
+            <div class="details__inner text-center">
+                {% if structure.description %}
+                    <p class="card-text text-white text-truncate">{{ structure.description }}</p>
+                {% endif %}
+                <a href="{%url 'info' structure.id %}" class="btn color-3">View</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="col-sm-12 text-center">
+        <a href="{%url 'create' %}" class="btn color-3">Create</a>
+    </div>
+    
+    </div>
+
+{% include '../pagination.html' %} 
+
+{% endblock %}
+
+
+
+
+
+

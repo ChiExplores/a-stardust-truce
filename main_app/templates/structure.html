@@ -1,0 +1,77 @@
+<div class="card cardflip d-flex mx-auto" >
+    
+    <div class="card-face card-face-front">
+
+        <div>
+            <img class="cardz__image" src="https://assets2.ello.co/uploads/asset/attachment/5923807/ello-optimized-33f3f778.gif" style="border-radius: 25px;">
+        </div>
+
+        <svg class="cardz__svg" viewBox="0 0 800 500">
+            <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#505050"/>
+            <path class="cardz__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent"/>
+        </svg>
+
+        <div class="cardz__content">
+
+            <h1>{{ds}}</h1>
+            <hr>
+            <h4 class='code-display'>Description:</h4>
+            {{ds.description}}<hr>
+            <h5 class='code-display'>Elements:</h5>
+            <u>{{ds.element}}</u><br>
+            {{ds.element.resource.description}}<br>
+            <img class='res_img' src="{{ds.element.resource.img_url}}" alt="{{prop.resource.name}}">
+            <hr>
+            <h5 class='code-display'>Properties:</h5><br>
+                {% for prop in props %}
+                <u>{{ prop.name }}</u><br>
+                {{ prop.resource.description }}<br>
+                <img class='res_img' src="{{prop.resource.img_url}}" alt="{{prop.resource.name}}"><br>
+                {% endfor %}
+            <hr>
+            <h5 class='code-display'>Methods:</h5><br>
+                {% for method in methods %}
+                <u>{{ method.name }}</u><br>
+                {{method.resource.description}}<br>
+                <img class='res_img' src="{{method.resource.img_url}}" alt="{{prop.resource.name}}"><br>
+                <br>
+                {% endfor %}
+            
+    
+            <h5>Created By: {{ds.user}}</h5>
+
+        </div>
+
+        {% if request.user == ds.user %}
+        <a class="btn color-3" href="/structures/{{ds.id}}/update"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046766.png"></a>
+        {% endif %}
+
+        <button class="button btn color-3 flip-to-rear"><img class="icon-m" src="https://image.flaticon.com/icons/svg/984/984145.svg"></button>
+
+        {% if request.user == ds.user %}
+            <a class="btn color-3" href="/structures/{{ds.id}}/delete"><img class="icon-xs" src="https://image.flaticon.com/icons/svg/1370/1370550.svg"></a>
+        {% endif %}
+      
+    </div>
+
+    <div class="card-face card-face-back flex-wrap">
+            
+            <div class="card col">
+                <h4 class="card-title my-auto">JavaScript:</h4>
+                <pre class="card-text mx-auto"><code><p class="code-display" style="text-align: left;">{{js}}</p></code></pre>
+                <a href='/structures/{{ds.id}}/js' class="card-footer my-auto"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046801.png"></a>
+            </div>
+
+            <div class="card col">
+                <h4 class="card-title my-auto">Python: </h4>
+                <pre class="card-text mx-auto"><code><p class="code-display" style="text-align: left;">{{py}}</p></code></pre>
+                <a href='/structures/{{ds.id}}/py' class="card-footer my-auto"><img class="icon-xs" src="https://image.flaticon.com/icons/png/512/2046/2046801.png"></a>
+            </div>
+                
+            <button class="button btn color-3 btn-rear">View Structure</button>
+
+    </div>
+
+    
+    
+</div>
