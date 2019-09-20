@@ -1,36 +1,35 @@
 ## A Stardust Truce
 
-[Make your structures here](https://astardusttruce.herokuapp.com/)
+[Make your structures here!](https://astardusttruce.herokuapp.com/)
 
-[Github](https://github.com/Chi37/a-stardust-truce) 
+[Github Repo](https://github.com/Chi37/a-stardust-truce) 
 
-### Created by Jon, Sorrell, Chi 
+### Created by Jon, Sorrel, Chi 
+## Our Vision
+A Stardust Truce seeks to elevate student comprehension of core computer science concepts by providing an interactive utility that allows users to build common data structures from prefabricated code blocks.
+
+Computer Science topics such as data structures can be difficult for even expert coders to   understand intuitively.
+This can lead to unexpected bugs, inefficient code, and poor interview performance. 
+
+![demo](staticfiles/imgs/sdt.gif)
+
+# Tech Stack
+- Python
+- Django
+- PostgreSQL
+- HTML
+- SASS
+- Bootstrap
+- MyPy
+- JS
+
+[Pitch Deck](https://docs.google.com/presentation/d/1Vz4RZZBMdJfMy1-LDVcohWqV8bO3dF8WlZT9SNuVkrA/edit?usp=sharing)
+[Trello Board](https://trello.com/b/vyfWUQB2/data-structures)
 
 
-```markdown
 
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Chi37/a-stardust-truce/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+**TO DO** 
+- Refactor element forms to give the user the feel of 'creating' a new element type
+- Add more data structures possibilities
+- Add moving images so students have better comprehensions of a data structure's methods, elements, and properties 
+- Add drag and drop features to create a data structure with animation of elements corresponding to newly created fields
