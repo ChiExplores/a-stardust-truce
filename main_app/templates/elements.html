@@ -12,7 +12,6 @@
                     
                     <div>
                         <select name="element" class="select form-control is-invalid" required="" id="id_element" {% if new_form == False %} disabled="" {% endif %}>
-                            <!-- TODO: add all elements on create view -->
                             <option value="{{element.id}}">{{element}}</option>
                         </select>
                         <p id="error_1_id_element" class="invalid-feedback"><strong>This field is required.</strong></p>
