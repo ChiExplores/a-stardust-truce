@@ -130,6 +130,8 @@ header {
 .card-face-front {
     background-color: #505050;
     border-radius: 25px;
+    overflow: auto;
+    max-height: 1078px;
 }
 
 .card-face-back {

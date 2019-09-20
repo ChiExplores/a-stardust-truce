@@ -25,21 +25,24 @@
         <div class="justify-content-center mx-auto my-auto">
 <pre style="width: 30vw;"><code><p class="code-display">const Node = (val, next) => {
 let node = {}
-node.val = val, node.next = next;
-return node;
+  node.val = val, node.next = next;
+  return node;
 }
 const data_structure = _ => {
-let obj = {}
+  let obj = {}
+// list-head
+  obj.head = null;
 // list-push
-obj.push = node => {
+  obj.push = node => {
     node = Node(node, obj.head);
     obj.head = node;
     if (obj.hasOwnProperty('size')) obj.size++;
+  }
 };</p></code></pre>
         </div>
         <div class="col-sm-6 text-center">
             <h3>If this code block makes no sense to you, don't worry!</h3>
-            <h4 class="text-muted">Through creating your own data structure, you'll be able to gradually understand what properties and methods are inside a data structurec</h4>
+            <h4 class="text-muted">Through creating your own data structure, you'll be able to gradually understand what properties and methods go into common data structures!</h4>
         </div>
     </section>
 
@@ -97,36 +100,57 @@ obj.push = node => {
                 <div class="card col-sm-3" style="max-height: 35vh;">
                     <div class="card-header">
                         <h3 class="card-title">Jon</h3>
+                        <h5 class="code-display">The Painter</h5>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">description?</p>
+                        <a href="https://github.com/simpleCodify">
+                          <img 
+                            class="res_img" src="https://avatars2.githubusercontent.com/u/53620939?s=100&v=4" 
+                            alt="A photo of one of the amazing developers of A Stardust Truce"
+                          >
+                        </a>
+                        <p class="card-text">Galaxy Brain Scrum Master, style cascades for days</p>
                     </div>
                     <div>
-                        <p class="text-muted">our motto</p>
+                        <p class="text-muted">"Boba, anyone?"</p>
                     </div>
                 </div>
     
                 <div class="card col-sm-3" style="max-height: 35vh;">
                     <div class="card-header">
                         <h3 class="card-title">Sorrel</h3>
+                        <h5 class="code-display">The Architect</h5>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">description?</p>
+                        <a href="https://github.com/sorrelbri">
+                          <img 
+                            class="res_img" src="https://avatars2.githubusercontent.com/u/52061229?s=100&v=4" 
+                            alt="A photo of one of the amazing developers of A Stardust Truce"
+                          >
+                        </a>
+                        <p class="card-text">Laughs at errors and makes all the migrations, database manager, trips on nothing</p>
                     </div>
                     <div>
-                        <p class="text-muted">our motto</p>
+                        <p class="text-muted">"No one saw that, right?"</p>
                     </div>
                 </div>
     
                 <div class="card col-sm-3" style="max-height: 35vh;">
                     <div class="card-header">
                         <h3 class="card-title">Chi</h3>
+                        <h5 class="code-display">""</h5>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">description?</p>
+                        <a href="https://github.com/Chi37">
+                          <img 
+                            class="res_img" src="https://avatars2.githubusercontent.com/u/28641152?s=100&v=4" 
+                            alt="A photo of one of the amazing developers of A Stardust Truce"
+                          >
+                        </a>
+                        <p class="card-text">Enjoys eating hot Cheetos, master of git</p>
                     </div>
                     <div>
-                        <p class="text-muted">our motto</p>
+                        <p class="text-muted">"I'm going to wait until you've tested that"</p>
                     </div>
                 </div>
                 
