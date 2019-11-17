@@ -35,16 +35,16 @@ This can lead to unexpected bugs, inefficient code, and poor interview performan
 - Add drag and drop features to create a data structure with animation of elements corresponding to newly created fields
 
 
-**GIT Workflow**
-1. [Clone the project](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/)cloning-a-repository
-2. Create a feature branch (snake cased) with your initials at the front of the branch name (ex. ch_fix_navbar)
-	- `git checkout -b feature_branch_initial`
+**Contribute Quick Start**
+1. [Clone the project] (https://help.github.com/en/github/creating-cloning-and-archiving-repositories/) cloning-a-repository
+2. Create a feature branch (snake cased) with your initials at the front of the branch name 
+	- `git checkout -b feature_branch_initial` (ex. ch_fix_navbar)
 3. Add the original repo 
 	- `git remote add upstream https://github.com/Chi37/a-stardust-truce`
-3. Code, Do stuff
-4. Add and Commit
+3. Code, Do stuff!
+4. Commit Code
 5. Push to your local
-6. Create a pull request on Github 
+6. Create a pull request on Github web page
 
 
 Below is an image that shows our git workflow, we work on ONE particular issue and push it to the Dev branch to be reviewed and merged into master.
