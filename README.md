@@ -33,3 +33,23 @@ This can lead to unexpected bugs, inefficient code, and poor interview performan
 - Add more data structures possibilities
 - Add moving images so students have better comprehensions of a data structure's methods, elements, and properties 
 - Add drag and drop features to create a data structure with animation of elements corresponding to newly created fields
+
+
+# Contribute Quick Start
+1. [Clone the project] (https://help.github.com/en/github/creating-cloning-and-archiving-repositories/) cloning-a-repository
+2. Create a feature branch (snake cased) with your initials at the front of the branch name 
+	- `git checkout -b feature_branch_initial` (ex. ch_fix_navbar)
+3. Add the original repo 
+	- `git remote add upstream https://github.com/Chi37/a-stardust-truce`
+3. Code, Do stuff!
+4. Add and Commit Code
+5. Push to your local
+6. Create a pull request on Github web page
+
+
+Below is an image that shows our git workflow, we work on ONE particular issue and push it to the Dev branch to be reviewed and merged into master.
+![Git Workflow](staticfiles/imgs/gitworkflow.png)
+git workflow img from Sam Raza [^1]
+
+
+[^1]: https://medium.com/@sam.rizae/git-workflow-strategy-37bd5c242133
