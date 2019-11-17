@@ -9,6 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from main_app.dependencies import checkMethod, checkProperty
 from .models import *
 import tempfile
+import os
 
 # Account Functionality
 from django.contrib.auth import login
@@ -166,7 +167,10 @@ def structure_download_js(request, data_structures_id):
     js_data = open(filename, 'w+')
     file_data = js
     js_data.write(file_data)
-    return FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.js')
+    response = FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.js')
+    os.remove(filename)
+    return response
+
 
 def structure_download_py(request, data_structures_id):
     ds = DataStructure.objects.get(id = data_structures_id)
@@ -175,7 +179,9 @@ def structure_download_py(request, data_structures_id):
     py_data = open(filename, 'w+')
     file_data = py
     py_data.write(file_data)
-    return FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.py')
+    response = FileResponse(open(filename, 'rb'), as_attachment=True, filename=f'{ds.name}.py')
+    os.remove(filename)
+    return response
 
 def structure_info_testing(request, data_structures_id):
     ds = DataStructure.objects.get(id = data_structures_id)
