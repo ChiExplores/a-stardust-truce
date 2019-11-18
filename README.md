@@ -42,8 +42,8 @@ This can lead to unexpected bugs, inefficient code, and poor interview performan
 3. Add the original repo 
 	- `git remote add upstream https://github.com/Chi37/a-stardust-truce`
 3. Code, Do stuff!
-4. Add and Commit Code
-5. Push to your local
+4. Fetch upstream, Add and Commit Code
+5. Push branch to your remote repo
 6. Create a pull request on Github web page
 
 
