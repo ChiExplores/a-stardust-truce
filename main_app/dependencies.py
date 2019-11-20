@@ -1,13 +1,14 @@
 element = 'element'
 property = 'property'
 all_elements = ('single-link-node','double-link-list-node')
-all_properties = ('list-head','list-size')
-all_methods = ('list-push','list-pop','list-peek','list-is-empty')
+all_properties = ('list-head','list-size', 'list-tail')
+all_methods = ('list-push','list-pop','list-peek','list-is-empty', 'list-enqueue', 'list-dequeue')
 
 dependencies = {
     'properties': {
         'list-head': ['single-link-node', 'double-link-list-node',],
         'list-size': ['single-link-node', 'double-link-list-node',],
+        'list-tail': ['single-link-node', 'double-link-list-node',],
     },
     'methods': {
         'list-push': {
@@ -25,7 +26,15 @@ dependencies = {
         'list-is-empty': {
             element: ('single-link-node', 'double-link-list-node',),
             property: all_properties
-        }
+        },
+        'list-enqueue': {
+            element: {'single-link-node', 'double-link-list-node',},
+            property: {'list-tail',}
+        },
+        'list-dequeue': {
+            element: {'single-link-node', 'double-link-list-node',},
+            property: {'list-head',}
+        },
     }
 }
 

@@ -23,6 +23,7 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 header {
     height: 10%;
@@ -34,12 +35,11 @@ header {
 }
 
 #navbarpls.navbar {
-    background-color: #E6DBFF;
-    border: 2px solid black;
+    background-color: rgba(0, 0, 0, 0.267);
 }
 
 .nav-link {
-    color: #5726CC;
+    color: #E6DBFF;
 }
 
 .page-nav {
@@ -129,6 +129,8 @@ header {
 .card-face-front {
     background-color: #505050;
     border-radius: 25px;
+    overflow: auto;
+    max-height: 1078px;
 }
 
 .card-face-back {
@@ -421,16 +423,68 @@ img {
     padding: 15px 30px;
   }
 
+// PARALLAX SECTION
 
+.wrapper {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 1px;
+  }
+  
+.section, .section1, .section2, .section3 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
 
+.section {
+    height: 100vh;
+}
 
+.section1 {
+    height: 45vh;
+}
 
+.section2 {
+    height: 60vh;
+}
 
+.section3 {
+    height: 10vh;
+}
 
+.parallax::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateZ(-1px) scale(2);
+    background-size: 100%;
+    z-index: -1;
+}
+  
+.static {
+    background-color: rgba(44, 44, 44, 0.9);
+}
 
+.bg1::after {
+    background-image: url('https://images.pexels.com/photos/2892619/pexels-photo-2892619.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+}
 
+.bg2::after {
+    background-image: url('https://images.pexels.com/photos/2892619/pexels-photo-2892619.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+}
 
-
+.res_img{
+  border-radius: 3px;
+  height: 70%;
+  width: 70%;
+}
 
 @-webkit-keyframes CodeGradient {
     0%{background-position:0% 50%}

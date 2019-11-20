@@ -1,4 +1,164 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<main class="wrapper">
+    
+    <section class="section parallax bg1">
+        <div class="text-center">
+            <h1>A Stardust Truce!</h1>
+            <h3>Guiding you to a <span class="code-display">Better Understanding</span> of Data Structures</h3>
+        </div>
+    </section>
+
+    <section class="section1 static">
+        <div class="col-sm-3 text-center">
+            <h1 class="code-display" >The Dilemna</h1>
+        </div>
+
+        <div class="col-sm-8 text-center">
+            <h3 style="opacity: 0.7;">Computer Science topics such as data structures can be difficult for even expert coders to   understand intuitively.</h3>
+            <h3>This can lead to unexpected bugs, inefficient code, and poor interview performance. </h3>
+        </div>
+    </section>
+
+    <section class="section2 parallax">
+        <div class="justify-content-center mx-auto my-auto">
+<pre style="width: 30vw;"><code><p class="code-display">const Node = (val, next) => {
+let node = {}
+  node.val = val, node.next = next;
+  return node;
+}
+const data_structure = _ => {
+  let obj = {}
+// list-head
+  obj.head = null;
+// list-push
+  obj.push = node => {
+    node = Node(node, obj.head);
+    obj.head = node;
+    if (obj.hasOwnProperty('size')) obj.size++;
+  }
+};</p></code></pre>
+        </div>
+        <div class="col-sm-6 text-center">
+            <h3>If this code block makes no sense to you, don't worry!</h3>
+            <h4 class="text-muted">Through creating your own data structure, you'll be able to gradually understand what properties and methods go into common data structures!</h4>
+        </div>
+    </section>
+
+    <section class="section2 static">
+        <div class="col-sm-8 text-center">
+            <h3 class="text-center">A Stardust Truce seeks to elevate student comprehension of core computer science concepts by providing an interactive utility that allows users to build common data structures from prefabricated code blocks.</h3>
+        </div>
+        <div class="col-sm-3 text-center">
+            <h1 class="code-display">Our Remedy</h1>
+        </div>
+    </section>
+
+    <section class="section2 parallax">
+        <div class="col-sm-3 text-center">
+            <h1 class="code-display">How it works</h1>
+        </div>
+        <div class="col-sm-8 text-center">
+            <h3 class="text-center">View data structures other people have made<br> Create your own structures<br>Download the source code in Python and JS!</h3>
+        </div>
+    </section>
+
+    <section class="section parallax">
+        <div class="col-sm-3 text-center">
+        </div>
+        <div class="col-sm-8 text-center">
+        </div>
+    </section>
+
+
+
+    <section class="section3 parallax">
+        <div class="col-sm-4 text-left">
+            <h1>WHO</h1>
+        </div>
+    </section>
+
+    <section class="section3 parallax">
+        <div class="col-sm-4 text-center">
+            <h1>WE</h1>
+        </div>
+    </section>
+
+    <section class="section3 parallax">
+        <div class="col-sm-4 text-right">
+            <h1 class="code-display">ARE</h1>
+        </div>
+    </section>
+
+
+    <section class="section parallax bg1">
+        <div class="col text-center">
+
+            <div class="card-group"> 
+                
+                <div class="card col-sm-3" style="max-height: 35vh;">
+                    <div class="card-header">
+                        <h3 class="card-title">Jon</h3>
+                        <h5 class="code-display">The Painter</h5>
+                    </div>
+                    <div class="card-body">
+                        <a href="https://github.com/simpleCodify">
+                          <img 
+                            class="profile-pic" src="https://avatars2.githubusercontent.com/u/53620939?s=100&v=4" 
+                            alt="A photo of one of the amazing developers of A Stardust Truce"
+                          >
+                        </a>
+                        <p class="card-text">Galaxy Brain Scrum Master, style cascades for days</p>
+                    </div>
+                    <div>
+                        <p class="text-muted">"Boba, anyone?"</p>
+                    </div>
+                </div>
+    
+                <div class="card col-sm-3" style="max-height: 35vh;">
+                    <div class="card-header">
+                        <h3 class="card-title">Sorrel</h3>
+                        <h5 class="code-display">The Architect</h5>
+                    </div>
+                    <div class="card-body">
+                        <a href="https://github.com/sorrelbri">
+                          <img 
+                            class="profile-pic" src="https://avatars2.githubusercontent.com/u/52061229?s=100&v=4" 
+                            alt="A photo of one of the amazing developers of A Stardust Truce"
+                          >
+                        </a>
+                        <p class="card-text">Laughs at errors and makes all the migrations, database manager, trips on nothing</p>
+                    </div>
+                    <div>
+                        <p class="text-muted">"No one saw that, right?"</p>
+                    </div>
+                </div>
+    
+                <div class="card col-sm-3" style="max-height: 35vh;">
+                    <div class="card-header">
+                        <h3 class="card-title">Chi</h3>
+                        <h5 class="code-display">""</h5>
+                    </div>
+                    <div class="card-body">
+                        <a href="https://github.com/Chi37">
+                          <img 
+                            class="profile-pic" src="https://avatars2.githubusercontent.com/u/28641152?s=100&v=4" 
+                            alt="A photo of one of the amazing developers of A Stardust Truce"
+                          >
+                        </a>
+                        <p class="card-text">Enjoys eating hot Cheetos, master of git, helps with your spelling errors and debugging</p>
+                    </div>
+                    <div>
+                        <p class="text-muted">"I'm going to wait until you've tested that"</p>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
 {% endblock %}
