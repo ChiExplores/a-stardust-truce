@@ -78,4 +78,52 @@
     "description": "Dequeue removes an element from the front, or head, of a First In First Out list.",
     "img_url": "https://adnan-alam.github.io/images/queue.png"
   }
+}, {
+  "model": "main_app.resource",
+  "pk": 11,
+  "fields": {
+    "name": "binary-node",
+    "description": "A single node with left and right pointers.",
+    "img_url": "http://www.cs.nuim.ie/~dkelly/CS100-2/Binary%20Trees_files/image001.gif"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 12,
+  "fields": {
+    "name": "tree-root",
+    "description": "The root node of an out tree containing reference to all sub-trees.",
+    "img_url": "https://www.researchgate.net/profile/Jose_Sa3/publication/303773171/figure/fig2/AS:391407152975874@1"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 13,
+  "fields": {
+    "name": "binary-tree-insert",
+    "description": "Inserts item into the shallowest available node in order",
+    "img_url": "https://i2.wp.com/www.techiedelight.com/wp-content/uploads/Insert-into-BST.png?zoom=2&resize=408%2C3"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 14,
+  "fields": {
+    "name": "binary-tree-search",
+    "description": "Search an ordered binary tree for a given input",
+    "img_url": "https://miro.medium.com/max/900/1*OmRV7P0YluY2ToRj44jKGA.gif"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 15,
+  "fields": {
+    "name": "binary-tree-traversal-preorder",
+    "description": "Traverse tree from parent nodes to left-most nodes to right-most nodes",
+    "img_url": "https://www.gatevidyalay.com/wp-content/uploads/2018/07/Preorder-Traversal-Example.png"
+  }
+}, {
+  "model": "main_app.resource",
+  "pk": 16,
+  "fields": {
+    "name": "binary-tree-traversal-levelorder",
+    "description": "A depth first traversal of the entire tree",
+    "img_url": "https://raw.githubusercontent.com/sumitc91/data/master/askgif-blog/7833549b-eb6c-47f7-a6b0-1364f1434"
+  }
 }]

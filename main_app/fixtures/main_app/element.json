@@ -8,4 +8,14 @@
     "code_block": 1,
     "resource": 1
   }
+}, {
+  "model": "main_app.element",
+  "pk": 2,
+  "fields": {
+    "name": "binary-node",
+    "type": "NO",
+    "dimension": 2,
+    "code_block": 11,
+    "resource": 11
+  }
 }]

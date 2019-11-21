@@ -78,4 +78,52 @@
     "python": "# list-dequeue\r\n    def dequeue(self):\r\n        dequeue = self.head\r\n        if(dequeue):\r\n            self.head = dequeue.next\r\n            if hasattr(self, 'size'): \r\n                self.size -= 1\r\n            return dequeue.val\r\n        else:\r\n            return None",
     "javascript": "// list-dequeue\r\n  obj.dequeue = _ => {\r\n    let dequeue = obj.head;\r\n    if(dequeue) { \r\n      obj.head = dequeue.next;\r\n      if(obj.hasOwnProperty('size')) obj.size--;\r\n      return dequeue.val;\r\n    }\r\n    return undefined;\r\n  }"
   }
+}, {
+  "model": "main_app.codeblock",
+  "pk": 11,
+  "fields": {
+    "name": "binary-node",
+    "python": "class Node:\r\n    def __init__(self, value, left, right):\r\n        self.value = value\r\n        self.left = left\r\n        self.right = right",
+    "javascript": "const Node = (value, left, right) => {\r\n  let node = {}\r\n  node.value = value; \r\n  node.left = left;\r\n  node.right = right;\r\n  return node;\r\n}"
+  }
+}, {
+  "model": "main_app.codeblock",
+  "pk": 12,
+  "fields": {
+    "name": "tree-root",
+    "python": "# tree_root\r\n        self.root = None",
+    "javascript": "// tree-root\r\n  obj.root = null;"
+  }
+}, {
+  "model": "main_app.codeblock",
+  "pk": 13,
+  "fields": {
+    "name": "binary-tree-insert",
+    "python": "# binaryTree-insert\r\n    def insert(self, node_value):\r\n        new_node = Node(node_value, None, None)\r\n        if not self.root: \r\n            self.root = new_node\r\n            return\r\n        parent_node = self.root\r\n        current_node = parent_node\r\n        while current_node:\r\n            if current_node.value >= new_node.value:\r\n                current_node = current_node.left\r\n                if not current_node: \r\n                    parent_node.left = new_node\r\n            else:\r\n                current_node = current_node.right\r\n                if not current_node: \r\n                    parent_node.right = new_node\r\n            parent_node = current_node",
+    "javascript": "// binaryTree-insert\r\n  obj.insert = nodeValue => {\r\n    let newNode = Node(nodeValue, null, null);\r\n    if (!obj.root) { obj.root = newNode; return; }\r\n    let parentNode = obj.root;\r\n    let currentNode = parentNode;\r\n    while (currentNode) {\r\n      if (currentNode.value >= newNode.value) {\r\n        currentNode = currentNode.left;\r\n        if (!currentNode) parentNode.left = newNode;\r\n      }\r\n      else {\r\n        currentNode = currentNode.right;\r\n        if (!currentNode) parentNode.right = newNode;\r\n      }\r\n      parentNode = currentNode;\r\n    }\r\n  };"
+  }
+}, {
+  "model": "main_app.codeblock",
+  "pk": 14,
+  "fields": {
+    "name": "binary-tree-search",
+    "python": "# tree-search\r\n    def search(self, search_value):\r\n        current_node = self.root\r\n        while (current_node):\r\n            if search_value == current_node.value: \r\n                return current_node\r\n            if search_value > current_node.value:\r\n                current_node = current_node.right\r\n            else:\r\n                current_node = current_node.left\r\n        return False",
+    "javascript": "// tree-search\r\n  obj.search = searchValue => {\r\n    currentNode = obj.root;\r\n    while (currentNode) {\r\n      if (searchValue === currentNode.value) return currentNode;\r\n      currentNode = searchValue > currentNode.value \r\n        ? currentNode.right \r\n        : currentNode.left;\r\n    }\r\n    return false;\r\n  }"
+  }
+}, {
+  "model": "main_app.codeblock",
+  "pk": 15,
+  "fields": {
+    "name": "binary-tree-traversal-preorder",
+    "python": "# tree-traversal-preorder\r\n    def pre_order_traversal(self):\r\n        stack = [self.root]\r\n        traversal = []\r\n        while len(stack) > 0:\r\n            node = stack.pop()\r\n            print(node)\r\n            if node.right: \r\n                stack.append(node.right)\r\n            if node.left:\r\n                stack.append(node.left)\r\n            traversal.append(node.value)\r\n        return traversal",
+    "javascript": "// tree-traversal-preorder\r\n  obj.preOrderTraversal = _ => {\r\n    let stack = [obj.root];\r\n    let traversal = []\r\n    while (stack[0]) {\r\n      let node = stack.pop();\r\n      if (node.right) stack.push(node.right);\r\n      if (node.left) stack.push(node.left);\r\n      traversal.push(node.value)\r\n    }\r\n    return traversal;\r\n  }"
+  }
+}, {
+  "model": "main_app.codeblock",
+  "pk": 16,
+  "fields": {
+    "name": "binary-tree-traversal-levelorder",
+    "python": "# tree-traversal-levelorder\r\n    def level_order_traversal(self):\r\n        queue = [self.root,]\r\n        index = 0\r\n        while index < len(queue):\r\n            node = queue[index]\r\n            if node.left: \r\n                queue.append(node.left)\r\n            if node.right: \r\n                queue.append(node.right)\r\n            queue[index] = node.value\r\n            index += 1\r\n        return queue",
+    "javascript": "// tree-traversal-levelorder\r\n  obj.levelOrderTraversal = _ => {\r\n    let queue = [];\r\n    queue[0] = obj.root;\r\n    for (let index=0; node = queue[index]; index++) {\r\n      if (node.left) queue.push(node.left)\r\n      if (node.right) queue.push(node.right)\r\n    }\r\n    return queue.map(node => node.value);\r\n  }"
+  }
 }]
