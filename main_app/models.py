@@ -10,8 +10,8 @@ import re
 
 class CodeBlock(models.Model):
     name = models.CharField(max_length=50)
-    python = models.TextField(max_length=300)
-    javascript = models.TextField(max_length=300)
+    python = models.TextField(max_length=1000)
+    javascript = models.TextField(max_length=1000)
 
     def __str__(self):
         return self.name
