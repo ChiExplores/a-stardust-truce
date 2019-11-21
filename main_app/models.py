@@ -109,9 +109,11 @@ const {class_name} = _ => {{
             js += '\n' + property.code_block.javascript
         for method in methods:
             js += '\n' + method.code_block.javascript
-        js += '''
+        js += f'''
   return obj
-}'''
+}}
+module.exports = {{ {class_name} }};
+'''
         return js
 
     def __get_py__(self):
