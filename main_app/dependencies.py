@@ -1,14 +1,16 @@
 element = 'element'
 property = 'property'
-all_elements = ('single-link-node','double-link-list-node')
-all_properties = ('list-head','list-size', 'list-tail')
-all_methods = ('list-push','list-pop','list-peek','list-is-empty', 'list-enqueue', 'list-dequeue')
+all_elements = ('single-link-node', 'double-link-list-node', 'binary-node',)
+all_properties = ('list-head','list-size', 'list-tail', 'tree-root',)
+all_methods = ('list-push','list-pop','list-peek','list-is-empty', 'list-enqueue', 'list-dequeue', 
+    'binary-tree-insert', 'binary-tree-search', 'binary-tree-traversal-preorder', 'binary-tree-traversal-levelorder')
 
 dependencies = {
     'properties': {
         'list-head': ['single-link-node', 'double-link-list-node',],
         'list-size': ['single-link-node', 'double-link-list-node',],
         'list-tail': ['single-link-node', 'double-link-list-node',],
+        'tree-root': ['binary-node',]
     },
     'methods': {
         'list-push': {
@@ -34,6 +36,22 @@ dependencies = {
         'list-dequeue': {
             element: {'single-link-node', 'double-link-list-node',},
             property: {'list-head',}
+        },
+        'binary-tree-insert': {
+            element: {'binary-node',},
+            property: {'tree-root',},
+        },
+        'binary-tree-search': {
+            element: {'binary-node',},
+            property: {'tree-root',},
+        },
+        'binary-tree-traversal-preorder': {
+            element: {'binary-node',},
+            property: {'tree-root',},
+        },
+        'binary-tree-traversal-levelorder': {
+            element: {'binary-node',},
+            property: {'tree-root',},
         },
     }
 }

@@ -46,4 +46,36 @@
     "code_block": 10,
     "resource": 10
   }
+}, {
+  "model": "main_app.method",
+  "pk": 7,
+  "fields": {
+    "name": "binary-tree-insert",
+    "code_block": 13,
+    "resource": 13
+  }
+}, {
+  "model": "main_app.method",
+  "pk": 8,
+  "fields": {
+    "name": "binary-tree-search",
+    "code_block": 14,
+    "resource": 14
+  }
+}, {
+  "model": "main_app.method",
+  "pk": 9,
+  "fields": {
+    "name": "binary-tree-traversal-preorder",
+    "code_block": 15,
+    "resource": 15
+  }
+}, {
+  "model": "main_app.method",
+  "pk": 10,
+  "fields": {
+    "name": "binary-tree-traversal-levelorder",
+    "code_block": 16,
+    "resource": 16
+  }
 }]
