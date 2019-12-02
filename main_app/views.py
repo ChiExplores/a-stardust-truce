@@ -113,20 +113,6 @@ def structure_methods(request, data_structures_id):
         'methods': ds.methods.all(),
         'valid_methods': ds.__get_valid_methods__()
     })
-
-@login_required
-def structure_updaterrr(request, data_structures_id):
-    ds = DataStructure.objects.get(id = data_structures_id)
-    return render(request, 'main_app/edit.html', {
-        'new_form': not bool(ds),
-        'name': ds.name, 
-        'description': ds.description,
-        'element': ds.element,
-        'properties': ds.properties.all(), 
-        'valid_properties': ds.__get_valid_properties__(), 
-        'methods': ds.methods.all(),
-        'valid_methods': ds.__get_valid_methods__()
-        })
         
 @login_required
 def structure_methods_submit(request, data_structures_id):
