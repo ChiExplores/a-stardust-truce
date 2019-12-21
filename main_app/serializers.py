@@ -13,32 +13,24 @@ class ResourceBlockSerializer(serializers.ModelSerializer):
         model = Resource
         fields = ['name', 'description', 'img_url']
 
-class CodeBlockSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CodeBlock
-        fields = ['name', 'python', 'javascript']
-
 
 class MethodSerializer(serializers.ModelSerializer):
-    code_block = CodeBlockSerializer(read_only=True)
     resource = ResourceBlockSerializer(read_only=True)
     class Meta:
         model = Method
-        fields = ['name', 'code_block', 'resource']
+        fields = ['name', 'resource']
 
 class PropertySerializer(serializers.ModelSerializer):
-    code_block = CodeBlockSerializer(read_only=True)
     resource = ResourceBlockSerializer(read_only=True)
     class Meta:
         model = Property
-        fields = ['name', 'type', 'code_block', 'resource']
+        fields = ['name', 'type', 'resource']
 
 class ElementSerializer(serializers.ModelSerializer):
-    code_block = CodeBlockSerializer(read_only=True)
     resource = ResourceBlockSerializer(read_only=True)
     class Meta:
         model = Element
-        fields = ['name', 'type', 'code_block', 'resource']
+        fields = ['name', 'type', 'resource']
 
 class DataStructureSerializer(serializers.ModelSerializer): 
     methods = MethodSerializer(read_only=True, many=True)
