@@ -10,8 +10,8 @@ import re
 
 class CodeBlock(models.Model):
     name = models.CharField(max_length=50)
-    python = models.TextField(max_length=300)
-    javascript = models.TextField(max_length=300)
+    python = models.TextField(max_length=1000)
+    javascript = models.TextField(max_length=1000)
 
     def __str__(self):
         return self.name
@@ -109,9 +109,11 @@ const {class_name} = _ => {{
             js += '\n' + property.code_block.javascript
         for method in methods:
             js += '\n' + method.code_block.javascript
-        js += '''
+        js += f'''
   return obj
-}'''
+}}
+module.exports = {{ {class_name} }};
+'''
         return js
 
     def __get_py__(self):
@@ -131,10 +133,8 @@ class {class_name}:
         element = self.element.name
         valid_properties = []
         for property in all_properties:
-            print(property)
             if checkProperty(property, element):
                 valid_properties.append(property)
-                print('if')
         return Property.objects.filter(name__in=valid_properties)
 
     def __get_valid_methods__(self):
